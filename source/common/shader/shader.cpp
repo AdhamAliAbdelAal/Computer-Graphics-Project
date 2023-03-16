@@ -47,6 +47,7 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const
     string s=checkForShaderCompilationErrors(shader);
     if (s != "")
     {
+        cout <<"error in shader\n";
         cout << s << endl;
         return false;
     }
