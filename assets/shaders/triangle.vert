@@ -5,16 +5,13 @@
 // And it also should send the vertex color as a varying to the fragment shader where the colors are (in order):
 // (1.0, 0.0, 0.0), (0.0, 1.0, 0.0), (0.0, 0.0, 1.0)
 
-out Varyings {
-    vec3 color;
-} vs_out;
+
+out vec3 color;
 
 uniform vec2 scale;
 uniform vec2 translation;
 
-uniform vec4 red;
-uniform vec4 green;
-uniform vec4 blue;
+
 // Currently, the triangle is always in the same position, but we don't want that.
 // So two uniforms should be added: translation (vec2) and scale (vec2).
 // Each vertex "v" should be transformed to be "scale * v + translation".
@@ -24,13 +21,15 @@ uniform vec4 blue;
 
 
 void main(){
-    vec3 positions[3]=vec3[3](
-        vec3(0.5,0.5,0.0),
-        vec3(0.5,1,0.0),
+    vec3 positions[3]=
+    vec3[3](
+        vec3(-0.5,-0.5,0.0),
+        vec3(0.5,-0.5,0.0),
         vec3(0.0,0.5,0.0)
     );
 
-    
 
-    vs_out.color=vec3(1.0,0.0,0.0);
+
+   gl_Position=vec4(positions[gl_VertexID],1.0);
+color=vec3(1.0,0.0,0.0);
 }
