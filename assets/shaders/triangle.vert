@@ -32,5 +32,5 @@ void main(){
         vec3(0.0,0.0,1.0)
     );
 
-    vs_out.color=vec3(scale*positions[gl_VertexID]+translation,0.0);
+    vs_out.color=vec3(vec3(scale,1)*positions[gl_VertexID]+vec3(translation,0));
 }

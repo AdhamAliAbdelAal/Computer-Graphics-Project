@@ -50,6 +50,9 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const
         cout << s << endl;
         return false;
     }
+    // attach the shader to the program
+    glAttachShader(program, shader);
+    cout<<"adham 11111111111\n";
     return true;
 }
 
@@ -67,6 +70,7 @@ bool our::ShaderProgram::link() const
         cout << s << endl;
         return false;
     }
+    cout<<"adham linking 222222222222222222222222222222\n";
     return true;
     
 }
