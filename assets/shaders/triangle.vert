@@ -11,6 +11,10 @@ out Varyings {
 
 uniform vec2 scale;
 uniform vec2 translation;
+
+uniform vec4 red;
+uniform vec4 green;
+uniform vec4 blue;
 // Currently, the triangle is always in the same position, but we don't want that.
 // So two uniforms should be added: translation (vec2) and scale (vec2).
 // Each vertex "v" should be transformed to be "scale * v + translation".
@@ -26,11 +30,9 @@ void main(){
         vec3(0.0,0.5,0.0)
     );
 
-    vec3 colors[3]=vec3[3](
-        vec3(1.0,0.0,0.0),
-        vec3(0.0,1.0,0.0),
-        vec3(0.0,0.0,1.0)
-    );
+    red = vec4(1.0,0.0,0.0,1.0);
+    green = vec4(0.0,1.0,0.0,1.0);
+    blue = vec4(0.0,0.0,1.0,1.0);
 
     vs_out.color=vec3(vec3(scale,1)*positions[gl_VertexID]+vec3(translation,0));
 }
