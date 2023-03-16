@@ -25,12 +25,12 @@ uniform vec4 blue;
 
 void main(){
     vec3 positions[3]=vec3[3](
-        vec3(-0.5,-0.5,0.0),
-        vec3(0.5,-0.5,0.0),
+        vec3(0.5,0.5,0.0),
+        vec3(0.5,1,0.0),
         vec3(0.0,0.5,0.0)
     );
 
     
 
-    vs_out.color=vec3(vec3(scale,1)*positions[gl_VertexID]+vec3(translation,0));
+    vs_out.color=positions[gl_VertexID];
 }
