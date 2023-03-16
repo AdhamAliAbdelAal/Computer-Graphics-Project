@@ -30,9 +30,7 @@ void main(){
         vec3(0.0,0.5,0.0)
     );
 
-    red = vec4(1.0,0.0,0.0,1.0);
-    green = vec4(0.0,1.0,0.0,1.0);
-    blue = vec4(0.0,0.0,1.0,1.0);
+    
 
     vs_out.color=vec3(vec3(scale,1)*positions[gl_VertexID]+vec3(translation,0));
 }
