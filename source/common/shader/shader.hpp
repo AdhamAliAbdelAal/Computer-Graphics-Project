@@ -35,7 +35,7 @@ namespace our {
 
         GLuint getUniformLocation(const std::string &name) {
             //TODO: (Req 1) Return the location of the uniform with the given name
-            return glGetUniformLocation(program, name);
+            return glGetUniformLocation(program, name.c_str());
         }
 
         void set(const std::string &uniform, GLfloat value) {
