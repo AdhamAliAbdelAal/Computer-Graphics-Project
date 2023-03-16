@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+using namespace std;
 
 // Forward definition for error checking functions
 std::string checkForShaderCompilationErrors(GLuint shader);
@@ -39,20 +40,16 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const
     // the last parameter is an array of integers that specify the length of each string in the array
     // (or NULL to indicate that each string is null-terminated)
 
-    int success;
-    char infoLog[512];
 
     // compile the shader
     glCompileShader(shader);
 
-    // print compile errors if any
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-    if (!success)
+    string s=checkForShaderCompilationErrors(shader);
+    if (s != "")
     {
-        glGetShaderInfoLog(shader, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+        cout << s << endl;
         return false;
-    };
+    }
     return true;
 }
 
@@ -63,46 +60,52 @@ bool our::ShaderProgram::link() const
     //  an error in the given program. You should use it to check if there is a
     //  linking error and print it so that you can know what is wrong with the
     //  program. The returned string will be empty if there is no errors.
-
+    glLinkProgram(program);
+    string s=checkForLinkingErrors(program);
+    if (s != "")
+    {
+        cout << s << endl;
+        return false;
+    }
     return true;
+    
 }
+    ////////////////////////////////////////////////////////////////////
+    // Function to check for compilation and linking error in shaders //
+    ////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////
-// Function to check for compilation and linking error in shaders //
-////////////////////////////////////////////////////////////////////
-
-std::string checkForShaderCompilationErrors(GLuint shader)
-{
-    // Check and return any error in the compilation process
-    GLint status;
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
-    if (!status)
+    std::string checkForShaderCompilationErrors(GLuint shader)
     {
-        GLint length;
-        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
-        char *logStr = new char[length];
-        glGetShaderInfoLog(shader, length, nullptr, logStr);
-        std::string errorLog(logStr);
-        delete[] logStr;
-        return errorLog;
+        // Check and return any error in the compilation process
+        GLint status;
+        glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
+        if (!status)
+        {
+            GLint length;
+            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+            char *logStr = new char[length];
+            glGetShaderInfoLog(shader, length, nullptr, logStr);
+            std::string errorLog(logStr);
+            delete[] logStr;
+            return errorLog;
+        }
+        return std::string();
     }
-    return std::string();
-}
 
-std::string checkForLinkingErrors(GLuint program)
-{
-    // Check and return any error in the linking process
-    GLint status;
-    glGetProgramiv(program, GL_LINK_STATUS, &status);
-    if (!status)
+    std::string checkForLinkingErrors(GLuint program)
     {
-        GLint length;
-        glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
-        char *logStr = new char[length];
-        glGetProgramInfoLog(program, length, nullptr, logStr);
-        std::string error(logStr);
-        delete[] logStr;
-        return error;
+        // Check and return any error in the linking process
+        GLint status;
+        glGetProgramiv(program, GL_LINK_STATUS, &status);
+        if (!status)
+        {
+            GLint length;
+            glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
+            char *logStr = new char[length];
+            glGetProgramInfoLog(program, length, nullptr, logStr);
+            std::string error(logStr);
+            delete[] logStr;
+            return error;
+        }
+        return std::string();
     }
-    return std::string();
-}
