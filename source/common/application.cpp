@@ -11,6 +11,7 @@
 #include <filesystem>
 
 #include <flags/flags.h>
+using namespace std;
 
 // Include the Dear ImGui implementation headers
 #define IMGUI_IMPL_OPENGL_LOADER_GLAD2
@@ -238,12 +239,6 @@ int our::Application::run(int run_for_frames) {
     // The time at which the last frame started. But there was no frames yet, so we'll just pick the current time.
     double last_frame_time = glfwGetTime();
     int current_frame = 0;
-    int id=9202226;
-    glClearColor(
-        ((id/1)%16)/16.0,
-        ((id/16)%16)/16.0,
-        ((id/256)%16)/16.0,1.0
-    );
     //Game loop
     while(!glfwWindowShouldClose(window)){
         if(run_for_frames != 0 && current_frame >= run_for_frames) break;
