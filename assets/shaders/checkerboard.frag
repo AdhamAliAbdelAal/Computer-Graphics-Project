@@ -12,5 +12,8 @@ uniform int size = 32;
 uniform vec3 colors[2];
 
 void main(){
-    frag_color = vec4(colors[0], 1.0);
+
+    vec4 Position = floor(gl_FragCoord/size);
+    float total = mod (mod(Position.x, 2.0) + mod(Position.y, 2.0),2.0);
+    frag_color = vec4(colors[int(total)],1.0);
 }

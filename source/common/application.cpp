@@ -186,7 +186,7 @@ int our::Application::run(int run_for_frames) {
     std::cout << "VERSION         : " << glGetString(GL_VERSION) << std::endl;
     std::cout << "GLSL VERSION    : " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 
-#if !defined(ENABLE_OPENGL_DEBUG_MESSAGES)
+#if defined(ENABLE_OPENGL_DEBUG_MESSAGES)
     // if we have OpenGL debug messages enabled, set the message callback
     glDebugMessageCallback(opengl_callback, nullptr);
     // Then enable debug output
@@ -272,13 +272,13 @@ int our::Application::run(int run_for_frames) {
         if(currentState) currentState->onDraw(current_frame_time - last_frame_time);
         last_frame_time = current_frame_time; // Then update the last frame start time (this frame is now the last frame)
 
-#if !defined(ENABLE_OPENGL_DEBUG_MESSAGES)
+#if defined(ENABLE_OPENGL_DEBUG_MESSAGES)
         // Since ImGui causes many messages to be thrown, we are temporarily disabling the debug messages till we render the ImGui
         glDisable(GL_DEBUG_OUTPUT);
         glDisable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 #endif
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData()); // Render the ImGui to the framebuffer
-#if !defined(ENABLE_OPENGL_DEBUG_MESSAGES)
+#if defined(ENABLE_OPENGL_DEBUG_MESSAGES)
         // Re-enable the debug messages
         glEnable(GL_DEBUG_OUTPUT);
         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
