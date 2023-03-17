@@ -53,7 +53,11 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const
     }
     // attach the shader to the program
     glAttachShader(program, shader);
-    cout<<"adham 11111111111\n";
+    
+    //Delete the shader object after attaching it to the program
+    glDeleteShader(shader);
+
+    //Return true if the compilation succeeded
     return true;
 }
 
@@ -66,12 +70,15 @@ bool our::ShaderProgram::link() const
     //  program. The returned string will be empty if there is no errors.
     glLinkProgram(program);
     string s=checkForLinkingErrors(program);
+
     if (s != "")
     {
+        //Print the Error Message in case of failure
         cout << s << endl;
         return false;
     }
-    cout<<"adham linking 222222222222222222222222222222\n";
+
+    // We return true if the linking succeeded
     return true;
     
 }
