@@ -68,7 +68,7 @@ namespace our {
             glGenBuffers(1, &EBO);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);            
             glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                         elementCount * sizeof(unsigned int),
+                         this->elementCount * sizeof(unsigned int),
                          elements.data() /* a pointer to the first element */,
                          GL_STATIC_DRAW);
 
@@ -79,7 +79,7 @@ namespace our {
         {
             //TODO: (Req 2) Write this function
             glBindVertexArray(VAO);
-            glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, (void*)0);
+            glDrawElements(GL_TRIANGLES, this->elementCount, GL_UNSIGNED_INT, (void*)0);
         }
 
         // this function should delete the vertex & element buffers and the vertex array object
