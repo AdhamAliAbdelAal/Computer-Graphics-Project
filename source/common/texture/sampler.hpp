@@ -4,6 +4,8 @@
 #include <json/json.hpp>
 #include <glm/vec4.hpp>
 
+        //Follow This URL for info about GlGenSamplers, These samplers simply override the texture parameters when they're bound       
+        //https://stackoverflow.com/questions/28138674/what-is-the-difference-between-glgentextures-and-glgensamplers
 namespace our {
 
     // This class defined an OpenGL sampler
@@ -14,33 +16,45 @@ namespace our {
         // This constructor creates an OpenGL sampler and saves its object name in the member variable "name" 
         Sampler() {
             //TODO: (Req 6) Complete this function
+            //This sampler object, when bound, will override the texture sampling parameters.
+            glGenSamplers(1, &name);
         };
 
         // This deconstructor deletes the underlying OpenGL sampler
         ~Sampler() { 
             //TODO: (Req 6) Complete this function
+            glDeleteSamplers(1, &name);
          }
 
         // This method binds this sampler to the given texture unit
         void bind(GLuint textureUnit) const {
-            //TODO: (Req 6) Complete this function
+            //TODO: (Req 6) Complete this function 
+
+            //Bind a sampler called "name" to a texture unit.
+            glBindSampler(textureUnit, name);
         }
 
         // This static method ensures that no sampler is bound to the given texture unit
         static void unbind(GLuint textureUnit){
             //TODO: (Req 6) Complete this function
+
+            //Unbind a sampler by passing 0 as the sampler name
+            glBindSampler(textureUnit, 0);
         }
 
         // This function sets a sampler paramter where the value is of type "GLint"
         // This can be used to set the filtering and wrapping parameters
         void set(GLenum parameter, GLint value) const {
             //TODO: (Req 6) Complete this function
+
+            glSamplerParameteri(name, parameter, value);
         }
 
         // This function sets a sampler paramter where the value is of type "GLfloat"
         // This can be used to set the "GL_TEXTURE_MAX_ANISOTROPY_EXT" parameter
         void set(GLenum parameter, GLfloat value) const {
             //TODO: (Req 6) Complete this function
+            glSamplerParameterf(name, parameter, value);
         }
 
         // This function sets a sampler paramter where the value is of type "GLfloat[4]"
