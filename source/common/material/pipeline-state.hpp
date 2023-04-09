@@ -1,5 +1,4 @@
 #pragma once
-
 #include <glad/gl.h>
 #include <glm/vec4.hpp>
 #include <json/json.hpp>
