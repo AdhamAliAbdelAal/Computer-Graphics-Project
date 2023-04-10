@@ -11,7 +11,7 @@ namespace our {
         // Hint: To get a value of type T from a json object "data" where the key corresponding to the value is "key",
         // you can use write: data["key"].get<T>().
         // Look at "source/common/asset-loader.hpp" to know how to use the static class AssetLoader.
-        mesh=data["mesh"].get<Mesh>();
-        material=data["material"].get<Material>();
+        mesh = AssetLoader<Mesh>::get(data["mesh"]);
+        material = AssetLoader<Material>::get(data["material"]);
     }
 }
