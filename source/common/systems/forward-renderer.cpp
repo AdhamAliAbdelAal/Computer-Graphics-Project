@@ -135,22 +135,37 @@ namespace our {
 
         //TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
-        glm::vec3 cameraForward = glm::vec3(0.0, 0.0, -1.0f);
+
+        glm::vec4 cameraForward = glm::vec4(0.0, 0.0, -1.0f,0.0f);
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second". 
-            return false;
+            return first.<second;
         });
 
         //TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
+        glm::mat4 VP = camera->getViewProjectionMatrix();
         
         //TODO: (Req 9) Set the OpenGL viewport using viewportStart and viewportSize
+        glViewport(0, 0, windowSize.x, windowSize.y);
         
         //TODO: (Req 9) Set the clear color to black and the clear depth to 1
+        glClearColor(
+        0.0f,
+        0.0f,
+        0.0f,
+        1.0f);
+        glClearDepth(1.0f);
         
         //TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
-        
-
+        // what do they do??
+        glColorMask(
+            GL_TRUE,
+            GL_TRUE,
+            GL_TRUE,
+            GL_TRUE
+        );
+        glDepthMask(GL_TRUE);
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
             //TODO: (Req 11) bind the framebuffer
@@ -158,9 +173,12 @@ namespace our {
         }
 
         //TODO: (Req 9) Clear the color and depth buffers
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         //TODO: (Req 9) Draw all the opaque commands
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
+        // HINT: You can use the "setUniform" function of the material to set the uniform
+        
         
         // If there is a sky material, draw the sky
         if(this->skyMaterial){
