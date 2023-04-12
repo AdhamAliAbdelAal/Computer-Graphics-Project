@@ -136,15 +136,15 @@ namespace our {
         //TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
 
-        glm::vec4 cameraForward = glm::vec4(0.0, 0.0, -1.0f,0.0f);
+        glm::vec3 cameraForward = glm::vec3(0.0, 0.0, -1.0f);
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second". 
-            return first.<second;
+            return abs(first.center.z-cameraForward.z) < abs(second.center.z-cameraForward.z);
         });
 
         //TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
-        glm::mat4 VP = camera->getViewProjectionMatrix();
+        glm::mat4 VP = camera->getProjectionMatrix(windowSize)*camera->getViewMatrix();
         
         //TODO: (Req 9) Set the OpenGL viewport using viewportStart and viewportSize
         glViewport(0, 0, windowSize.x, windowSize.y);
@@ -178,7 +178,12 @@ namespace our {
         //TODO: (Req 9) Draw all the opaque commands
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         // HINT: You can use the "setUniform" function of the material to set the uniform
-        
+        for (auto & it:opaqueCommands)
+        {
+            it.material->setup();
+            it.material->shader->set("transform", VP*it.localToWorld);
+            it.mesh->draw();
+        }
         
         // If there is a sky material, draw the sky
         if(this->skyMaterial){
@@ -203,7 +208,12 @@ namespace our {
         }
         //TODO: (Req 9) Draw all the transparent commands
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
-        
+        for (auto & it:transparentCommands)
+        {
+            it.material->setup();
+            it.material->shader->set("transform", VP*it.localToWorld);
+            it.mesh->draw();
+        }
 
         // If there is a postprocess material, apply postprocessing
         if(postprocessMaterial){
