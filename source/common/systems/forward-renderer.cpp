@@ -1,7 +1,9 @@
 #include "forward-renderer.hpp"
 #include "../mesh/mesh-utils.hpp"
 #include "../texture/texture-utils.hpp"
+#include <iostream>
 
+using namespace std;
 namespace our {
 
     void ForwardRenderer::initialize(glm::ivec2 windowSize, const nlohmann::json& config){
@@ -57,12 +59,17 @@ namespace our {
         // Then we check if there is a postprocessing shader in the configuration
         if(config.contains("postprocess")){
             //TODO: (Req 11) Create a framebuffer
+            glGenFramebuffers(1, &postprocessFrameBuffer);
 
             //TODO: (Req 11) Create a color and a depth texture and attach them to the framebuffer
             // Hints: The color format can be (Red, Green, Blue and Alpha components with 8 bits for each channel).
             // The depth format can be (Depth component with 24 bits).
+
+            
+
             
             //TODO: (Req 11) Unbind the framebuffer just to be safe
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
             // Create a vertex array to use for drawing the texture
             glGenVertexArrays(1, &postProcessVertexArray);
@@ -148,7 +155,8 @@ namespace our {
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second". 
-            return abs(first.center.z-cameraForward.z) < abs(second.center.z-cameraForward.z);
+            // return abs(first.center.z-cameraForward.z) < abs(second.center.z-cameraForward.z);
+            return glm::dot(first.center, cameraForward) > glm::dot(second.center, cameraForward);
         });
 
         //TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
@@ -177,7 +185,7 @@ namespace our {
         // If there is a postprocess material, bind the framebuffer
         if(postprocessMaterial){
             //TODO: (Req 11) bind the framebuffer
-            
+            glBindFramebuffer(GL_FRAMEBUFFER, postprocessFrameBuffer);
         }
         
         //TODO: (Req 9) Clear the color and depth buffers
@@ -200,20 +208,18 @@ namespace our {
 
             //TODO: (Req 10) Get the camera position
              glm::vec3 cameraPosition = camera->getOwner()->localTransform.position;
-            //TODO: (Req 10) Create a model matrix for the sy such that it always follows the camera (sky sphere center = camera position)
-            glm::mat4 M = glm::mat4(
-                1.0f, 0.0f, 0.0f, 0.0f,
-                0.0f, 1.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 0.0f,
-                cameraPosition.x, cameraPosition.y, cameraPosition.z, 1.0f
-            );
+            //TODO: (Req 10) Create a model matrix for the sky such that it always follows the camera (sky sphere center = camera position)
+            glm::mat4 M = glm::translate(glm::mat4(1.0f), cameraPosition);
+            
             //TODO: (Req 10) We want the sky to be drawn behind everything (in NDC space, z=1)
             // We can acheive the is by multiplying by an extra matrix after the projection but what values should we put in it?
+
+            // The matrix translates the Z axis to 1 (All Z values will be 1 after the multiplication)
             glm::mat4 alwaysBehindTransform = glm::mat4(
                 1.0f, 0.0f, 0.0f, 0.0f,
                 0.0f, 1.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 0.5f, 0.0f,
-                0.0f, 0.0f, 0.5f, 1.0f
+                0.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 1.0f
             );  
             //TODO: (Req 10) set the "transform" uniform
             this->skyMaterial->shader->set("transform", alwaysBehindTransform*VP*M);
@@ -233,8 +239,10 @@ namespace our {
         // If there is a postprocess material, apply postprocessing
         if(postprocessMaterial){
             //TODO: (Req 11) Return to the default framebuffer
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
             
             //TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
+            
             
         }
     }
