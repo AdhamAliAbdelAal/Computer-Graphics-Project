@@ -26,6 +26,10 @@ namespace our {
             // We will draw the sphere from the inside, so what options should we pick for the face culling.
             PipelineState skyPipelineState{};
 
+            
+            // We enable depth testing so that the sky is drawn only where there is no opaque object in front of it
+            // We also enable face culling so that the sky is drawn only from the inside of the sphere; so we remove the front face
+            // Finally, we enable blending so that the sky is semi visible when it is behind an object (non opaque)
             skyPipelineState.depthTesting.enabled = true;
             skyPipelineState.depthTesting.function = GL_LEQUAL;
             skyPipelineState.faceCulling.enabled = true;
@@ -207,17 +211,28 @@ namespace our {
         // If there is a sky material, draw the sky
         if(this->skyMaterial){
             //TODO: (Req 10) setup the sky material
+            // We setupt the sky material to bind the needed elements
             this->skyMaterial->setup();
 
             //TODO: (Req 10) Get the camera position
+            // We get the camera position from the using the position of the entity owning the camera component
              glm::vec3 cameraPosition = camera->getOwner()->localTransform.position;
+
             //TODO: (Req 10) Create a model matrix for the sky such that it always follows the camera (sky sphere center = camera position)
+            // Whenever the camera moves, the sky sphere center will be translated by the same amount.
             glm::mat4 M = glm::translate(glm::mat4(1.0f), cameraPosition);
             
             //TODO: (Req 10) We want the sky to be drawn behind everything (in NDC space, z=1)
             // We can acheive the is by multiplying by an extra matrix after the projection but what values should we put in it?
 
             // The matrix translates the Z axis to 1 (All Z values will be 1 after the multiplication)
+
+            // If this matrix is multiplied by a vector (x, y, z, w), the result will be (x, y, 1, w)
+            // It first scales the Z axis by 0, then it translates it by 1.
+            // So we'll always have the sky behind everything
+
+            // NOTE: the translation factor is in the last row of the written matrix, because of how the matrix is stored in memory
+            // in openGL, the matrix is stored in column-major order, so the last row is the last column of the matrix
             glm::mat4 alwaysBehindTransform = glm::mat4(
                 1.0f, 0.0f, 0.0f, 0.0f,
                 0.0f, 1.0f, 0.0f, 0.0f,
@@ -225,8 +240,12 @@ namespace our {
                 0.0f, 0.0f, 1.0f, 1.0f
             );  
             //TODO: (Req 10) set the "transform" uniform
+            // Set the transform matrix to be equal to the model-view-projection matrix
+            // in addition to the alwaysBehindTransform matrix that will be applied after the projection
             this->skyMaterial->shader->set("transform", alwaysBehindTransform*VP*M);
+
             //TODO: (Req 10) draw the sky sphere
+            // Draw the sky sphere
             this->skySphere->draw();
             
         }
