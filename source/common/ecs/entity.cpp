@@ -12,6 +12,7 @@ namespace our {
     // its parent's parent's matrix and so on till you reach the root.
     glm::mat4 Entity::getLocalToWorldMatrix() const {
         //TODO: (Req 8) Write this function
+        // the function is implemented recursively by multiplying the local transform of the entity by the local to world matrix of its parent and so on and stop if the entity has no parent as mentioned in the tutorial (Scene Graphs) (transformation tutorial page 118).
         if(parent){
             return parent->getLocalToWorldMatrix()*localTransform.toMat4();
         }

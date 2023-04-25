@@ -35,9 +35,13 @@ namespace our {
             static_assert(std::is_base_of<Component, T>::value, "T must inherit from Component");
             //TODO: (Req 8) Create an component of type T, set its "owner" to be this entity, then push it into the component's list
             // Don't forget to return a pointer to the new component
+            // STEP 1: Create a new component of type T
             T*component=new T();
+            // STEP 2: Set the component's owner to be this entity
             component->owner=this;
+            // STEP 3: Push the component into the components list
             components.push_back(component);
+            // STEP 4: Return a pointer to the new component
             return component;
         }
 
@@ -48,10 +52,13 @@ namespace our {
             //TODO: (Req 8) Go through the components list and find the first component that can be dynamically cast to "T*".
             // Return the component you found, or return null of nothing was found.
             for(auto& it:components){
+                // it is a pointer to a component that is currently tested
                 T*component=dynamic_cast<T*>(it);
+                // if the component is not null, then it is of type T so return it
                 if(component!=nullptr)
                     return component;
             }
+            // if no component of type T was found, return nullptr
             return nullptr;
         }
 
@@ -72,9 +79,14 @@ namespace our {
             //TODO: (Req 8) Go through the components list and find the first component that can be dynamically cast to "T*".
             // If found, delete the found component and remove it from the components list
             for(auto it=components.begin();it!=components.end();it++){
+                // it is a pointer(or iterator)to pointer to a component that is currently tested
+                // *it means pointer to the component that is currently tested
                 T*component=dynamic_cast<T*>(*it);
+                // if the component is not null, then it is of type T so delete it and remove it from the list
                 if(component!=nullptr){
+                    // delete the component object first
                     delete component;
+                    // then remove the pointer from the list
                     components.erase(it);
                     break;
                 }
@@ -97,6 +109,9 @@ namespace our {
             //TODO: (Req 8) Go through the components list and find the given component "component".
             // If found, delete the found component and remove it from the components list
             for(auto it=components.begin();it!=components.end();it++){
+                // it is a pointer(or iterator)to pointer to a component that is currently tested
+                // *it means pointer to the component that is currently tested
+                // if the two pointers are equal, then delete the component object first, then remove the pointer from the list
                 if(*it==component){
                     delete *it;
                     components.erase(it);
@@ -109,8 +124,10 @@ namespace our {
         ~Entity(){
             //TODO: (Req 8) Delete all the components in "components".
             for(auto& it:components){
+                // delete the component object first for each component in the list
                 delete it;
             }
+            // then clear the list remove all the pointers from it to become empty
             components.clear();
         }
 
