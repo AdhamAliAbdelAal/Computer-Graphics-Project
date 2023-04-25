@@ -12,8 +12,8 @@ our::Texture2D* our::texture_utils::empty(GLenum format, glm::ivec2 size){
     texture->bind();
 
     //Passed a nullptr as the data pointer to glTexImage2D to create an empty texture
-    glTexImage2D(GL_TEXTURE_2D, 0, format, size.x, size.y, 0, format, GL_UNSIGNED_BYTE, nullptr);
-    texture->unbind();    
+    glTexStorage2D(GL_TEXTURE_2D, 1, format, size.x, size.y);
+    // texture->unbind();
 
     return texture;
 }
