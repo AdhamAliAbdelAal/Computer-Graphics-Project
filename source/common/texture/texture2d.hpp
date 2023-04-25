@@ -20,7 +20,7 @@ namespace our {
         // This deconstructor deletes the underlying OpenGL texture
         ~Texture2D() { 
             //TODO: (Req 5) Complete this function
-
+            // Delete the texture whose name is saved in the variable name
             glDeleteTextures(1, &name);
         }
 
@@ -32,14 +32,14 @@ namespace our {
         // This method binds this texture to GL_TEXTURE_2D
         void bind() const {
             //TODO: (Req 5) Complete this function
-
+            // Bind the texture whose name is in (name)
             glBindTexture(GL_TEXTURE_2D, name);
         }
 
         // This static method ensures that no texture is bound to GL_TEXTURE_2D
         static void unbind(){
             //TODO: (Req 5) Complete this function
-
+            // Unbind the currently bound texture, by binding 0 instead
             glBindTexture(GL_TEXTURE_2D, 0);
         }
 

@@ -1,4 +1,5 @@
 #include "texture-utils.hpp"
+#include <glm/glm.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
@@ -12,8 +13,11 @@ our::Texture2D* our::texture_utils::empty(GLenum format, glm::ivec2 size){
     texture->bind();
 
     //Passed a nullptr as the data pointer to glTexImage2D to create an empty texture
-    glTexStorage2D(GL_TEXTURE_2D, 1, format, size.x, size.y);
-    // texture->unbind();
+    glTexImage2D(GL_TEXTURE_2D, 0, format, size.x, size.y, 0, format, GL_UNSIGNED_BYTE, nullptr);
+
+    // GLsizei levels = (GLsizei)glm::floor(glm::log2((float)glm::max(size.x, size.y))) + 1; 
+    // glTexStorage2D(GL_TEXTURE_2D, levels, GL_RGBA8, size.x, size.y); 
+    texture->unbind();    
 
     return texture;
 }
@@ -42,15 +46,20 @@ our::Texture2D* our::texture_utils::loadImage(const std::string& filename, bool 
     //Bind the texture such that we upload the image data to its storage
     //TODO: (Req 5) Finish this function to fill the texture with the data found in "pixels"
 
+    // First: The Texture is bound
     texture->bind();
 
+    // We pass the type of texture, format, and size among other arguments.
     //2nd argument for the manual mipmap is set to 0 (base value)
+    //Last argument is the data to be fill the texture with
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.x, size.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 
     //In case Mipmaps are requested, generate them using glGenerateMipmap
     if (generate_mipmap) {
         glGenerateMipmap(GL_TEXTURE_2D);
     }
+
+    // Unbind the texture when done
     texture->unbind();
     
     stbi_image_free(pixels); //Free image data after uploading to GPU

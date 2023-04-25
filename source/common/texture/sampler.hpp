@@ -17,12 +17,14 @@ namespace our {
         Sampler() {
             //TODO: (Req 6) Complete this function
             //This sampler object, when bound, will override the texture sampling parameters.
+            //The function generates one sampler and saves its name to the variable name
             glGenSamplers(1, &name);
         };
 
         // This deconstructor deletes the underlying OpenGL sampler
         ~Sampler() { 
             //TODO: (Req 6) Complete this function
+            //Delete the sampler whose value is saved in the variable name
             glDeleteSamplers(1, &name);
          }
 
@@ -47,6 +49,8 @@ namespace our {
         void set(GLenum parameter, GLint value) const {
             //TODO: (Req 6) Complete this function
 
+            //Given a parameter and a GLint value to be assigned to it, pass both alongside the Sampler "name" to the function
+            //glSamplerParameteri
             glSamplerParameteri(name, parameter, value);
         }
 
@@ -54,6 +58,8 @@ namespace our {
         // This can be used to set the "GL_TEXTURE_MAX_ANISOTROPY_EXT" parameter
         void set(GLenum parameter, GLfloat value) const {
             //TODO: (Req 6) Complete this function
+            //Given a parameter and a GLfloat value to be assigned to it, pass both alongside the Sampler "name" to the function
+            //glSamplerParameterf
             glSamplerParameterf(name, parameter, value);
         }
 
