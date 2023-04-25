@@ -26,8 +26,12 @@ uniform vec4 blue=vec4(0.0,0.0,1.0,0.0);
 void main(){
 
     //Output color is a mixture of the input color and the color channel uniforms (Dot Product)
-    frag_color= vec4(dot(vec4(fs_in.color, 1), red),
-    dot(vec4(fs_in.color, 1), green), 
-    dot(vec4(fs_in.color, 1), blue),
+    // the dot product of the input color and the red uniform is the red channel of the output color after mixing
+    // the dot product of the input color and the green uniform is the green channel of the output color after mixing
+    // the dot product of the input color and the blue uniform is the blue channel of the output color after mixing
+    // the alpha channel of the output color is 1.0 (assumption)
+    frag_color= vec4(dot(vec4(fs_in.color, 1.0), red),
+    dot(vec4(fs_in.color, 1.0), green), 
+    dot(vec4(fs_in.color, 1.0), blue),
     1.0);
 }

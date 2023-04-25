@@ -8,7 +8,9 @@ namespace our {
     // This function should setup the pipeline state and set the shader to be used
     void Material::setup() const {
         //TODO: (Req 7) Write this function
+        // setup the pipeline state with default values
         pipelineState.setup();
+        // set the shader to be used (activate it)
         shader->use();
     }
 
@@ -27,7 +29,10 @@ namespace our {
     // set the "tint" uniform to the value in the member variable tint 
     void TintedMaterial::setup() const {
         //TODO: (Req 7) Write this function
+        // call the setup of the parent class
+        // the parent class of TintedMaterial class is Material class
         Material::setup();
+        // set the "tint" uniform to the value in the member variable tint using set function in shader.hpp that takes a string and a vec4
         shader->set("tint", tint);
     }
 
@@ -43,8 +48,11 @@ namespace our {
     // Then it should bind the texture and sampler to a texture unit and send the unit number to the uniform variable "tex" 
     void TexturedMaterial::setup() const {
         //TODO: (Req 7) Write this function
+        // the parent class of TexturedMaterial is TintedMaterial class
         TintedMaterial::setup();
+        // set the "alphaThreshold" uniform to the value in the member variable alphaThreshold using set function in shader.hpp that takes a string and a float
         shader->set("alphaThreshold", alphaThreshold);
+        // bind the texture and sampler to a texture unit and send the unit number to the uniform variable "tex"
         glActiveTexture(GL_TEXTURE0);
         texture->bind();
         sampler->bind(0);
