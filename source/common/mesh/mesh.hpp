@@ -32,7 +32,7 @@ namespace our {
             // remember to store the number of elements in "elementCount" since you will need it for drawing
             // For the attribute locations, use the constants defined above: ATTRIB_LOC_POSITION, ATTRIB_LOC_COLOR, etc
 
-            //Generating a vertex array of the verices.
+            // Generating a vertex array of the verices.
             glGenVertexArrays(1, &VAO);
             glBindVertexArray(VAO);
 
@@ -78,7 +78,9 @@ namespace our {
         void draw() 
         {
             //TODO: (Req 2) Write this function
+            // Binding the vertex array of the verices.
             glBindVertexArray(VAO);
+            // Drawing
             glDrawElements(GL_TRIANGLES, this->elementCount, GL_UNSIGNED_INT, (void*)0);
         }
 
