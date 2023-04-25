@@ -216,7 +216,7 @@ namespace our {
         // If there is a sky material, draw the sky
         if(this->skyMaterial){
             //TODO: (Req 10) setup the sky material
-            // We setupt the sky material to bind the needed elements
+            // We setup the sky material to bind the needed elements
             this->skyMaterial->setup();
 
             //TODO: (Req 10) Get the camera position
