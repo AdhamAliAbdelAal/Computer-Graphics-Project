@@ -44,8 +44,9 @@ namespace our
         //  - the center position which is the point (0,0,-1) but after being transformed by M
         //  - the up direction which is the vector (0,1,0) but after being transformed by M
         //  then you can use glm::lookAt
+        
         cout<<"Inside getViewMatrix fn"<<endl;
-
+        // will use the lookAt function which takes a parameters eye && center && up vectors after multiplying with M
         glm::vec4 eye = M * glm::vec4(0, 0, 0, 1);
         glm::vec4 center = M * glm::vec4(0, 0, -1, 1);
         glm::vec4 up = M * glm::vec4(0, 1, 0, 0);

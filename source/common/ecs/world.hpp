@@ -26,9 +26,13 @@ namespace our {
         Entity* add() {
             //TODO: (Req 8) Create a new entity, set its world member variable to this,
             // and don't forget to insert it in the suitable container.
+            // STEP 1: Create a new entity
             Entity*entity=new Entity();
+            // STEP 2: Set the entity's world to be this world
             entity->world=this;
+            // STEP 3: Insert the entity into the entities set
             entities.insert(entity);
+            // STEP 4: Return a pointer to the new entity
             return entity;
         }
 
@@ -41,7 +45,9 @@ namespace our {
         // The elements in the "markedForRemoval" set will be removed and deleted when "deleteMarkedEntities" is called.
         void markForRemoval(Entity* entity){
             //TODO: (Req 8) If the entity is in this world, add it to the "markedForRemoval" set.
+            // STEP 1: Check if the entity is in this world
             if(entities.find(entity)!=entities.end()){
+                // STEP 2: Add the entity to the "markedForRemoval" set
                 markedForRemoval.insert(entity);
             }
         }
@@ -50,7 +56,9 @@ namespace our {
         // Then each of these elements are deleted.
         void deleteMarkedEntities(){
             //TODO: (Req 8) Remove and delete all the entities that have been marked for removal
+            // STEP 1: Remove the entities in "markedForRemoval" from the "entities" set
             for(auto&it:markedForRemoval){
+                // STEP 2: Remove the entity from the "entities" set
                 entities.erase(it);
             }
         }
@@ -59,11 +67,14 @@ namespace our {
         void clear(){
             //TODO: (Req 8) Delete all the entities and make sure that the containers are empty
             for(auto&it:entities){
+                // Delete the entity objects
                 delete it;
             }
             for(auto&it:markedForRemoval){
+                // Delete the entity objects in the markedForRemoval set
                 delete it;
             }
+            // Clear the containers make them empty
             entities.clear();
             markedForRemoval.clear();
         }
