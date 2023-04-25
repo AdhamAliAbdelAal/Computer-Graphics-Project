@@ -31,7 +31,7 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const
 
     // We return true if the compilation succeeded
 
-    // create the shader object
+    // create the shader object of the given type
     GLuint shader = glCreateShader(type);
 
     // attach the shader source code to the shader object
@@ -43,7 +43,8 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const
 
     // compile the shader
     glCompileShader(shader);
-
+    // check for compilation errors
+    // if there is an error in the compilation process, print the error message and return false
     string s=checkForShaderCompilationErrors(shader);
     if (s != "")
     {
@@ -70,7 +71,7 @@ bool our::ShaderProgram::link() const
     //  program. The returned string will be empty if there is no errors.
     glLinkProgram(program);
     string s=checkForLinkingErrors(program);
-
+    // if there is an error in the linking process, print the error message and return false
     if (s != "")
     {
         //Print the Error Message in case of failure
