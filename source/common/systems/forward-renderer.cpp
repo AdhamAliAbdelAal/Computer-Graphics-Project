@@ -162,7 +162,7 @@ namespace our {
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second". 
-
+            // check if the first is drawn before the second or not
             return glm::dot(first.center, cameraForward) > glm::dot(second.center, cameraForward);
         });
 
@@ -170,9 +170,12 @@ namespace our {
         glm::mat4 VP = camera->getProjectionMatrix(windowSize)*camera->getViewMatrix();
         
         //TODO: (Req 9) Set the OpenGL viewport using viewportStart and viewportSize
+        // set the start with zeros and set the window size(x,y)
         glViewport(0, 0, windowSize.x, windowSize.y);
         
         //TODO: (Req 9) Set the clear color to black and the clear depth to 1
+        // put first three with 0 to set to black abd the last with one to set the alpha and then clear the depth  using function 
+        //glclearDepth to clear depth
         glClearColor(
         0.0f,
         0.0f,
@@ -182,6 +185,7 @@ namespace our {
         
         //TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
         // what do they do??
+        // set the color mask
         glColorMask(
             GL_TRUE,
             GL_TRUE,
@@ -201,6 +205,7 @@ namespace our {
         //TODO: (Req 9) Draw all the opaque commands
         // Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         // HINT: You can use the "setUniform" function of the material to set the uniform
+        // Step1:looping on the opaque commands and set the transform
         for (auto & it:opaqueCommands)
         {
             it.material->setup();
