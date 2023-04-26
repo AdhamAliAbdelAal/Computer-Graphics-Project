@@ -59,15 +59,22 @@ namespace our {
         // Then we check if there is a postprocessing shader in the configuration
         if(config.contains("postprocess")){
             //TODO: (Req 11) Create a framebuffer
+            // Generating the frame buffer in the postprocessFrameBuffer variable, and binding it
             glGenFramebuffers(1, &postprocessFrameBuffer);
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
 
             //TODO: (Req 11) Create a color and a depth texture and attach them to the framebuffer
             // Hints: The color format can be (Red, Green, Blue and Alpha components with 8 bits for each channel).
             // The depth format can be (Depth component with 24 bits).
+
+            // Using the empty function in the texture_utils.cpp file to create object as a color target
             colorTarget = texture_utils::empty(GL_RGBA8, windowSize);
+            // Attaching the colorTarget object to the frame buffer.
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTarget->getOpenGLName(), 0);
+
+            // Using the empty function in the texture_utils.cpp file to create object as a color target
             depthTarget = texture_utils::empty(GL_DEPTH_COMPONENT24, windowSize);
+            // Attaching the depthTarget object to the frame buffer.
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTarget->getOpenGLName(), 0);
             
             
@@ -242,10 +249,13 @@ namespace our {
         // If there is a postprocess material, apply postprocessing
         if(postprocessMaterial){
             //TODO: (Req 11) Return to the default framebuffer
+            // Unbinding the framebuffer again.
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
             //TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
             postprocessMaterial->setup();
+            // Binding the post process vertex array
             glBindVertexArray(postProcessVertexArray);
+            // Drawing the fullscreen triangle
             glDrawArrays(GL_TRIANGLES, 0, 3);
             
         }
