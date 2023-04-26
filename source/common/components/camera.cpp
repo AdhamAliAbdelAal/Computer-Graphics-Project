@@ -44,11 +44,12 @@ namespace our
         //  - the center position which is the point (0,0,-1) but after being transformed by M
         //  - the up direction which is the vector (0,1,0) but after being transformed by M
         //  then you can use glm::lookAt
-        cout<<"Inside getViewMatrix fn"<<endl;
 
-        glm::vec4 eye = M * glm::vec4(0, 0, 0, 1);
-        glm::vec4 center = M * glm::vec4(0, 0, -1, 1);
-        glm::vec4 up = M * glm::vec4(0, 1, 0, 0);
+        // transforming the eye, center and up vectors to world space
+        glm::vec4 eye = M * glm::vec4(0, 0, 0, 1);// the last 1 is indicates that it is a point
+        glm::vec4 center = M * glm::vec4(0, 0, -1, 1); // the last 1 is indicates that it is a point
+        glm::vec4 up = M * glm::vec4(0, 1, 0, 0);// the last 0 is indicates that it is a vector
+        // returning the lookAt matrix
         return glm::lookAt(glm::vec3(eye), glm::vec3(center), glm::vec3(up));
     }
 
@@ -62,7 +63,6 @@ namespace our
         //  Left and Right are the same but after being multiplied by the aspect ratio
         //  For the perspective camera, you can use glm::perspective
         
-        cout<<"Inside getProjectionMatrix fn"<<endl;
 
         float aspect = float(viewportSize.x) / viewportSize.y;
         if (cameraType == CameraType::ORTHOGRAPHIC)

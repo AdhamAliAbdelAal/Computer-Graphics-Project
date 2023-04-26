@@ -34,7 +34,12 @@ void main() {
         vec3(0.0, 0.0, 1.0)
         );
 
-    
+    // STEP 1: append 1 to scale vector to make it a vec3 (the default value for scale is 1) 
+    // STEP 2: append 0 to translation vector to make it a vec3 (the default value for translation is 0)
+    // STEP 3: multiply the scale vector by the position vector and add the translation vector
+
     gl_Position = vec4(vec3(scale,1.0)*positions[gl_VertexID]+vec3(translation,0.0), 1.0);
+
+    // Send the color to the fragment shader
     vs_out.color = colors[gl_VertexID];
 }

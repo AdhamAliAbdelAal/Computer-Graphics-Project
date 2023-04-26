@@ -15,7 +15,8 @@ namespace our {
         std::string type = data.value("type", "");
 
         
-
+        // We check the type of the component and add it to the entity.
+        // Then we deserialize the rest of the data to the component
         Component* component = nullptr;
         //TODO: (Req 8) Add an option to deserialize a "MeshRendererComponent" to the following if-else statement
         if(type == CameraComponent::getID()){

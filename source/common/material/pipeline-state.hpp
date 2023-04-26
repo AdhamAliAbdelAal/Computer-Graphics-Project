@@ -41,35 +41,58 @@ namespace our {
         // For example, if faceCulling.enabled is true, you should call glEnable(GL_CULL_FACE), otherwise, you should call glDisable(GL_CULL_FACE)
         void setup() const {
             //TODO: (Req 4) Write this function
+
+            // We check if an option is enabled, if so, we enable it and set its parameters
+            // If it is not enabled, we disable it
+
+            //We do this for faceCulling first
             if (faceCulling.enabled) {
+                //enable face culling
                 glEnable(GL_CULL_FACE);
+
+                //set the culled face
                 glCullFace(faceCulling.culledFace);
+
+                //Define the front face
                 glFrontFace(faceCulling.frontFace);
             }
             else {
+                //Otherwise, disable face culling
                 glDisable(GL_CULL_FACE);
             }
 
+            //Second, we check if depth testing is enabled
             if (depthTesting.enabled) {
+                //enable depth testing
                 glEnable(GL_DEPTH_TEST);
+
+                //set the depth testing function
                 glDepthFunc(depthTesting.function);
             }
             else {
+                //Otherwise, disable depth testing
                 glDisable(GL_DEPTH_TEST);
             }
-
+            
+            //Third, we check if blending is enabled
             if (blending.enabled) {
+                //enable blending
                 glEnable(GL_BLEND);
+                //set the blending equation
                 glBlendEquation(blending.equation);
+                //set the blending factors for the source and destination (How each will contribute to the final color)
                 glBlendFunc(blending.sourceFactor, blending.destinationFactor);
+                //set the blending constant color
                 glBlendColor(blending.constantColor.r, blending.constantColor.g, blending.constantColor.b, blending.constantColor.a);
             }
             else {
+                //Otherwise, disable blending
                 glDisable(GL_BLEND);
             }
-
+            //Set the color mask, if a parameter is true, we can write to it, otherwise, we don't
             glColorMask(colorMask.r, colorMask.g, colorMask.b, colorMask.a);
 
+            //Set the depth mask, if it is true, we can write to it, otherwise, we don't
             glDepthMask(depthMask);
 
             
