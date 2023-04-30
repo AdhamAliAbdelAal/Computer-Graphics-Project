@@ -35,7 +35,7 @@ namespace our {
             skyPipelineState.faceCulling.enabled = true;
             skyPipelineState.faceCulling.culledFace = GL_FRONT;
             skyPipelineState.faceCulling.frontFace = GL_CCW;
-            skyPipelineState.blending.enabled = true;
+            skyPipelineState.blending.enabled = false;
 
             
             // Load the sky texture (note that we don't need mipmaps since we want to avoid any unnecessary blurring while rendering the sky)
@@ -164,12 +164,22 @@ namespace our {
 
         //TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
+        // set the camera forward with the camera view matrix
 
-        glm::vec3 cameraForward = glm::vec3(0.0, 0.0, -1.0f);
+        //https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/gluLookAt.xml
+        // We use the negative of the 3rd Row of the LookAt Matrix which is -(center - eye)
+        glm::vec3 cameraForward = -glm::vec3(camera->getViewMatrix()[2]);
+
+        
+
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand& first, const RenderCommand& second){
             //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second". 
             // check if the first is drawn before the second or not
+
+            // Dot Product is used to make a projection of the first and second with the camera forward 
+            // and then compare the two projections to see which one is bigger and then return true if the first is bigger 
+            // Bigger Projection means that the object is further from the camera
             return glm::dot(first.center, cameraForward) > glm::dot(second.center, cameraForward);
         });
 
@@ -191,7 +201,7 @@ namespace our {
         glClearDepth(1.0f);
         
         //TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
-        // what do they do??
+        
         // set the color mask
         glColorMask(
             GL_TRUE,
