@@ -102,7 +102,7 @@ class Menustate: public our::State {
         // - The argument list () which is the arguments that the lambda should receive when it is called.
         //      We leave it empty since button actions receive no input.
         // - The body {} which contains the code to be executed. 
-        buttons[0].position = {830.0f, 607.0f};
+        buttons[0].position = {810.0f, 607.0f};
         buttons[0].size = {400.0f, 33.0f};
         buttons[0].action = [this](){this->getApp()->changeState("play");};
 
@@ -163,12 +163,20 @@ class Menustate: public our::State {
         rectangle->draw();
 
         // For every button, check if the mouse is inside it. If the mouse is inside, we draw the highlight rectangle over it.
+        unsigned int i = 0;
         for(auto& button: buttons){
             if(button.isInside(mousePosition)){
+                //Hover Colors
+                if(i == 0)
+                    highlightMaterial->tint = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+                else if(i == 1)
+                    highlightMaterial->tint = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+
                 highlightMaterial->setup();
                 highlightMaterial->shader->set("transform", VP*button.getLocalToWorld());
                 rectangle->draw();
             }
+            i++;
         }
         
     }
