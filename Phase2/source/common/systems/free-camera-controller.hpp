@@ -66,13 +66,6 @@ namespace our
                 rotation.y -= delta.x * controller->rotationSensitivity; // The x-axis controls the yaw
             }
 
-            // We prevent the pitch from exceeding a certain angle from the XZ plane to prevent gimbal locks
-            if(rotation.x < -glm::half_pi<float>() * 0.99f) rotation.x = -glm::half_pi<float>() * 0.99f;
-            if(rotation.x >  glm::half_pi<float>() * 0.99f) rotation.x  = glm::half_pi<float>() * 0.99f;
-            // This is not necessary, but whenever the rotation goes outside the 0 to 2*PI range, we wrap it back inside.
-            // This could prevent floating point error if the player rotates in single direction for an extremely long time. 
-            rotation.y = glm::wrapAngle(rotation.y);
-
             // // We update the camera fov based on the mouse wheel scrolling amount
             // float fov = camera->fovY + app->getMouse().getScrollOffset().y * controller->fovSensitivity;
             // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI

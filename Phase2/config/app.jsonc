@@ -145,14 +145,16 @@
                         "type": "Mesh Renderer",
                         "mesh": "monkey",
                         "material": "monkey"
-                    },
+                    }
+                    ,
                     {
                         "type": "Free Camera Controller"
-                    },
+                    }
+                    ,
                     {
                         "type": "Movement",
                         "linearVelocity": [0, 0, 0],
-                        "angularVelocity": [45, 0, 0]
+                        "angularVelocity": [-45, 0, 0]
                     }
                 ]
             },
