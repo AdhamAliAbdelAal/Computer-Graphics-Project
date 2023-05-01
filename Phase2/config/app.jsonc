@@ -4,8 +4,8 @@
     {
         "title":"Default Game Window",
         "size":{
-            "width":720,
-            "height":480
+            "width":1200,
+            "height":720
         },
         "fullscreen": false
     },

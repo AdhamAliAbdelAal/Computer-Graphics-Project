@@ -53,10 +53,12 @@ namespace our {
         // set the "alphaThreshold" uniform to the value in the member variable alphaThreshold using set function in shader.hpp that takes a string and a float
         shader->set("alphaThreshold", alphaThreshold);
         // bind the texture and sampler to a texture unit and send the unit number to the uniform variable "tex"
-        if(!texture || !sampler) return;
+        if(!texture && !sampler) return;
         glActiveTexture(GL_TEXTURE0);
-        texture->bind();
-        sampler->bind(0);
+        if(texture)
+            texture->bind();
+        if (sampler)
+            sampler->bind(0);
         shader->set("tex", 0);
     }
 
