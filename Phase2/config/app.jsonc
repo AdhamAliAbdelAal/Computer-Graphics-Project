@@ -30,11 +30,11 @@
                 "grass": "assets/textures/grass_ground_d.jpg",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
-                "monkey": "assets/textures/monkey.png"
+                "monkey": "assets/textures/glass-panels.png"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
-                "monkey": "assets/models/monkey.obj",
+                "monkey": "assets/models/volley_ball_OBJ.obj",
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/sphere.obj"
             },
@@ -129,31 +129,17 @@
         },
         "world":[
             {
-                "position": [0, 0, 10],
+                "position": [0, 4, 10],
                 "components": [
                     {
                         "type": "Camera"
                     }
                 ]
-                // ,
-                // "children": [
-                //     {
-                //         "position": [1, -1, -1],
-                //         "rotation": [45, 45, 0],
-                //         "scale": [0.1, 0.1, 1.0],
-                //         "components": [
-                //             {
-                //                 "type": "Mesh Renderer",
-                //                 "mesh": "cube",
-                //                 "material": "metal"
-                //             }
-                //         ]
-                //     }
-                // ]
             },
             {
                 "position": [0, 0, 0],
-                "rotation": [-45, 0, 0],
+                "rotation": [0, 0, 0],
+                "scale": [5, 5, 5],
                 "components": [
                     {
                         "type": "Mesh Renderer",

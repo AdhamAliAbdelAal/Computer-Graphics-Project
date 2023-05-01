@@ -47,7 +47,7 @@ namespace our
 
         // transforming the eye, center and up vectors to world space
         glm::vec4 eye = M * glm::vec4(0, 0, 0, 1);// the last 1 is indicates that it is a point
-        glm::vec4 center = M * glm::vec4(0, 0, -1, 1); // the last 1 is indicates that it is a point
+        glm::vec4 center = M * glm::vec4(0, -0.5, -1, 1); // the last 1 is indicates that it is a point
         glm::vec4 up = M * glm::vec4(0, 1, 0, 0);// the last 0 is indicates that it is a vector
         // returning the lookAt matrix
         return glm::lookAt(glm::vec3(eye), glm::vec3(center), glm::vec3(up));
