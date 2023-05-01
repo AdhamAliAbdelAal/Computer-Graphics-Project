@@ -56,15 +56,6 @@ namespace our
 
             // We get a reference to the entity's position and rotation
             glm::vec3& position = entity->localTransform.position;
-            glm::vec3& rotation = entity->localTransform.rotation;
-
-            // If the left mouse button is pressed, we get the change in the mouse location
-            // and use it to update the camera rotation
-            if(app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1)){
-                glm::vec2 delta = app->getMouse().getMouseDelta();
-                rotation.x -= delta.y * controller->rotationSensitivity; // The y-axis controls the pitch
-                rotation.y -= delta.x * controller->rotationSensitivity; // The x-axis controls the yaw
-            }
 
             // // We update the camera fov based on the mouse wheel scrolling amount
             // float fov = camera->fovY + app->getMouse().getScrollOffset().y * controller->fovSensitivity;
@@ -74,9 +65,9 @@ namespace our
             // We get the camera model matrix (relative to its parent) to compute the front, up and right directions
             glm::mat4 matrix = entity->localTransform.toMat4();
 
-            glm::vec3 front = glm::vec3(matrix * glm::vec4(0, 0, -1, 0)),
-                      up = glm::vec3(matrix * glm::vec4(0, 1, 0, 0)), 
-                      right = glm::vec3(matrix * glm::vec4(1, 0, 0, 0));
+            glm::vec3 front = glm::vec3(glm::vec4(0, 0, -1, 0)),
+                      up = glm::vec3(glm::vec4(0, 1, 0, 0)), 
+                      right = glm::vec3(glm::vec4(1, 0, 0, 0));
 
             glm::vec3 current_sensitivity = controller->positionSensitivity;
             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor

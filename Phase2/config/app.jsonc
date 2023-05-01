@@ -27,7 +27,7 @@
             },
             "textures":{
                 "moon": "assets/textures/moon.jpg",
-                "grass": "assets/textures/grass_ground_d.jpg",
+                "grass": "assets/textures/road_0.png",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
                 "monkey": "assets/textures/glass-panels.png"
@@ -129,7 +129,7 @@
         },
         "world":[
             {
-                "position": [0, 4, 10],
+                "position": [0, 4, 8],
                 "components": [
                     {
                         "type": "Camera"
@@ -137,9 +137,9 @@
                 ]
             },
             {
-                "position": [0, 5, 0],
+                "position": [0, 0, 0],
                 "rotation": [0, 0, 0],
-                "scale": [5, 5, 5],
+                "scale": [2, 2, 2],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -161,7 +161,7 @@
             {
                 "position": [0, -1, 0],
                 "rotation": [-90, 0, 0],
-                "scale": [10, 10, 1],
+                "scale": [10, 7, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
