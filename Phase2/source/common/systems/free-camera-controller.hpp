@@ -63,13 +63,29 @@ namespace our
             // camera->fovY = fov;
 
             // We get the camera model matrix (relative to its parent) to compute the front, up and right directions
-            glm::mat4 matrix = entity->localTransform.toMat4();
 
             glm::vec3 front = glm::vec3(glm::vec4(0, 0, -1, 0)),
                       up = glm::vec3(glm::vec4(0, 1, 0, 0)), 
                       right = glm::vec3(glm::vec4(1, 0, 0, 0));
-
             glm::vec3 current_sensitivity = controller->positionSensitivity;
+            // Check for Jump
+            if(entity->JumpDirection){
+                position += up * (deltaTime * current_sensitivity.y);
+                if(position.y >= 3.0f){
+                    entity->JumpDirection=false;
+                }
+                return;
+            }
+            else{
+                if(position.y > 0.0f){
+                    position -= up * (deltaTime * current_sensitivity.y);
+                    return;
+                }
+                else{
+                    position.y = 0.0f;
+                }
+            }
+
             // If the LEFT SHIFT key is pressed, we multiply the position sensitivity by the speed up factor
             if(app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT)) current_sensitivity *= controller->speedupFactor;
 
@@ -78,8 +94,9 @@ namespace our
             if(app->getKeyboard().isPressed(GLFW_KEY_W)) position += front * (deltaTime * current_sensitivity.z);
             if(app->getKeyboard().isPressed(GLFW_KEY_S)) position -= front * (deltaTime * current_sensitivity.z);
             // Q & E moves the player up and down
-            if(app->getKeyboard().isPressed(GLFW_KEY_Q)) position += up * (deltaTime * current_sensitivity.y);
-            if(app->getKeyboard().isPressed(GLFW_KEY_E)) position -= up * (deltaTime * current_sensitivity.y);
+            if(app->getKeyboard().isPressed(GLFW_KEY_Q)){
+                entity->JumpDirection=true;
+            }
             // A & D moves the player left or right 
             if(app->getKeyboard().isPressed(GLFW_KEY_D)) position += right * (deltaTime * current_sensitivity.x);
             if(app->getKeyboard().isPressed(GLFW_KEY_A)) position -= right * (deltaTime * current_sensitivity.x);
