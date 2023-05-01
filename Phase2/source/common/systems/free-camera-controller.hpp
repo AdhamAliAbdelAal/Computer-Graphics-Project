@@ -65,7 +65,7 @@ namespace our
             // We get the camera model matrix (relative to its parent) to compute the front, up and right directions
 
             glm::vec3 front = glm::vec3(glm::vec4(0, 0, -1, 0)),
-                      up = glm::vec3(glm::vec4(0, 1, 0, 0)), 
+                      up = glm::vec3(glm::vec4(0, 1, -0.5, 0)), 
                       right = glm::vec3(glm::vec4(1, 0, 0, 0));
             glm::vec3 current_sensitivity = controller->positionSensitivity;
             // Check for Jump

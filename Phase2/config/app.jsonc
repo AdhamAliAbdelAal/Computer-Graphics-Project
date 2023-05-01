@@ -137,7 +137,7 @@
                 ]
             },
             {
-                "position": [0, 0, 0],
+                "position": [0, 0, 5],
                 "rotation": [0, 0, 0],
                 "scale": [2, 2, 2],
                 "components": [
@@ -154,7 +154,7 @@
                     {
                         "type": "Movement",
                         "linearVelocity": [0, 0, 0],
-                        "angularVelocity": [-45, 0, 0]
+                        "angularVelocity": [-200, 0, 0]
                     }
                 ]
             },
