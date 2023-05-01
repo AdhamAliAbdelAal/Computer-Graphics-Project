@@ -2,6 +2,7 @@
 
 #include "../ecs/world.hpp"
 #include "../components/camera.hpp"
+#include "../components/mesh-renderer.hpp"
 #include "../components/free-camera-controller.hpp"
 
 #include "../application.hpp"
@@ -31,10 +32,10 @@ namespace our
         void update(World* world, float deltaTime) {
             // First of all, we search for an entity containing both a CameraComponent and a FreeCameraControllerComponent
             // As soon as we find one, we break
-            CameraComponent* camera = nullptr;
+            MeshRendererComponent* camera = nullptr;
             FreeCameraControllerComponent *controller = nullptr;
             for(auto entity : world->getEntities()){
-                camera = entity->getComponent<CameraComponent>();
+                camera = entity->getComponent<MeshRendererComponent>();
                 controller = entity->getComponent<FreeCameraControllerComponent>();
                 if(camera && controller) break;
             }
@@ -72,10 +73,10 @@ namespace our
             // This could prevent floating point error if the player rotates in single direction for an extremely long time. 
             rotation.y = glm::wrapAngle(rotation.y);
 
-            // We update the camera fov based on the mouse wheel scrolling amount
-            float fov = camera->fovY + app->getMouse().getScrollOffset().y * controller->fovSensitivity;
-            fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
-            camera->fovY = fov;
+            // // We update the camera fov based on the mouse wheel scrolling amount
+            // float fov = camera->fovY + app->getMouse().getScrollOffset().y * controller->fovSensitivity;
+            // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
+            // camera->fovY = fov;
 
             // We get the camera model matrix (relative to its parent) to compute the front, up and right directions
             glm::mat4 matrix = entity->localTransform.toMat4();
