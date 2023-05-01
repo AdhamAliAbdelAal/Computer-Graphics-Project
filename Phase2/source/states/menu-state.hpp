@@ -6,9 +6,12 @@
 #include <texture/texture-utils.hpp>
 #include <material/material.hpp>
 #include <mesh/mesh.hpp>
+#include <iostream>
 
 #include <functional>
 #include <array>
+
+using namespace std;
 
 // This struct is used to store the location and size of a button and the code it should execute when clicked
 struct Button {
@@ -115,6 +118,7 @@ class Menustate: public our::State {
         if(keyboard.justPressed(GLFW_KEY_SPACE)){
             // If the space key is pressed in this frame, go to the play state
             getApp()->changeState("play");
+            cout<<"Plaaaaaay\n";
         } else if(keyboard.justPressed(GLFW_KEY_ESCAPE)) {
             // If the escape key is pressed in this frame, exit the game
             getApp()->close();
