@@ -1,5 +1,5 @@
 {
-    "start-scene": "menu",
+    "start-scene": "play",
     "window":
     {
         "title":"Default Game Window",
@@ -137,7 +137,7 @@
                 ]
             },
             {
-                "position": [0, 0, 0],
+                "position": [0, 5, 0],
                 "rotation": [0, 0, 0],
                 "scale": [5, 5, 5],
                 "components": [
@@ -148,6 +148,11 @@
                     },
                     {
                         "type": "Free Camera Controller"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0, 0, 0],
+                        "angularVelocity": [45, 0, 0]
                     }
                 ]
             },
