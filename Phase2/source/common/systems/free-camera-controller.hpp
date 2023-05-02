@@ -44,23 +44,8 @@ namespace our
             // Get the entity that we found via getOwner of camera (we could use controller->getOwner())
             Entity* entity = camera->getOwner();
 
-            // If the left mouse button is pressed, we lock and hide the mouse. This common in First Person Games.
-            if(app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1) && !mouse_locked){
-                app->getMouse().lockMouse(app->getWindow());
-                mouse_locked = true;
-            // If the left mouse button is released, we unlock and unhide the mouse.
-            } else if(!app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1) && mouse_locked) {
-                app->getMouse().unlockMouse(app->getWindow());
-                mouse_locked = false;
-            }
-
             // We get a reference to the entity's position and rotation
             glm::vec3& position = entity->localTransform.position;
-
-            // // We update the camera fov based on the mouse wheel scrolling amount
-            // float fov = camera->fovY + app->getMouse().getScrollOffset().y * controller->fovSensitivity;
-            // fov = glm::clamp(fov, glm::pi<float>() * 0.01f, glm::pi<float>() * 0.99f); // We keep the fov in the range 0.01*PI to 0.99*PI
-            // camera->fovY = fov;
 
             // We get the camera model matrix (relative to its parent) to compute the front, up and right directions
 
@@ -69,10 +54,10 @@ namespace our
                       right = glm::vec3(glm::vec4(1, 0, 0, 0));
             glm::vec3 current_sensitivity = controller->positionSensitivity;
             // Check for Jump
-            if(entity->JumpDirection){
+            if(entity->jumpDirection){
                 position += up * (deltaTime * current_sensitivity.y);
                 if(position.y >= 3.0f){
-                    entity->JumpDirection=false;
+                    entity->jumpDirection=false;
                 }
                 return;
             }
@@ -93,9 +78,9 @@ namespace our
             // S & W moves the player back and forth
             if(app->getKeyboard().isPressed(GLFW_KEY_W)) position += front * (deltaTime * current_sensitivity.z);
             if(app->getKeyboard().isPressed(GLFW_KEY_S)) position -= front * (deltaTime * current_sensitivity.z);
-            // Q & E moves the player up and down
-            if(app->getKeyboard().isPressed(GLFW_KEY_Q)){
-                entity->JumpDirection=true;
+            // Space moves the player up
+            if(app->getKeyboard().isPressed(GLFW_KEY_SPACE)){
+                entity->jumpDirection=true;
             }
             // A & D moves the player left or right 
             if(app->getKeyboard().isPressed(GLFW_KEY_D)) position += right * (deltaTime * current_sensitivity.x);
