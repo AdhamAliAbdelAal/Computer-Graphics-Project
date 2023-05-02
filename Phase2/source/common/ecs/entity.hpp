@@ -20,14 +20,6 @@ namespace our
         friend World;       // The world is a friend since it is the only class that is allowed to instantiate an entity
         Entity() = default; // The entity constructor is private since only the world is allowed to instantiate an entity
     public:
-        /*
-            @author:Adham Ali
-            For jumping
-            false means down
-            true means up
-            this boolean used for jumping to indicates the direction of the jump
-        */
-        bool jumpDirection = false;
         std::string name;         // The name of the entity. It could be useful to refer to an entity by its name
         Entity *parent;           // The parent of the entity. The transform of the entity is relative to its parent.
                                   // If parent is null, the entity is a root entity (has no parent).

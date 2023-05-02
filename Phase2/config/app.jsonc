@@ -1,5 +1,5 @@
 {
-    "start-scene": "play",
+    "start-scene": "menu",
     "window":
     {
         "title":"Default Game Window",
@@ -154,7 +154,7 @@
                     {
                         "type": "Movement",
                         "linearVelocity": [0, 0, 0],
-                        "angularVelocity": [-200, 0, 0]
+                        "angularVelocity": [-300, 0, 0]
                     }
                 ]
             },

@@ -18,6 +18,14 @@ namespace our {
         float fovSensitivity = 0.3f; // The fov angle change per unit of mouse wheel scrolling
         glm::vec3 positionSensitivity = {10.0f, 10.0f, 10.0f}; // The unity per second of camera movement if WASD is pressed
         float speedupFactor = 5.0f; // A multiplier for the positionSensitivity if "Left Shift" is held.
+        /*
+            @author:Adham Ali
+            For jumping
+            false means down
+            true means up
+            this boolean used for jumping to indicates the direction of the jump
+        */
+        bool jumpDirection = false;
 
         // The ID of this component type is "Free Camera Controller"
         static std::string getID() { return "Free Camera Controller"; }
