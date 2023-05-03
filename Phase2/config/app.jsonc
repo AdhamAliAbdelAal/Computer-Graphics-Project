@@ -36,7 +36,7 @@
                 "cube": "assets/models/cube.obj",
                 "monkey": "assets/models/volley_ball_OBJ.obj",
                 "plane": "assets/models/plane.obj",
-                "sphere": "assets/models/sphere.obj"
+                "sphere": "assets/models/Coin 2.obj"
             },
             "samplers":{
                 "default":{},
@@ -45,41 +45,6 @@
                 }
             },
             "materials":{
-                "metal":{
-                    "type": "tinted",
-                    "shader": "tinted",
-                    "pipelineState": {
-                        "faceCulling":{
-                            "enabled": false
-                        },
-                        "depthTesting":{
-                            "enabled": true
-                        }
-                    },
-                    "tint": [0.45, 0.4, 0.5, 1]
-                },
-                "glass":{
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling":{
-                            "enabled": false
-                        },
-                        "depthTesting":{
-                            "enabled": true
-                        },
-                        "blending":{
-                            "enabled": true,
-                            "sourceFactor": "GL_SRC_ALPHA",
-                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
-                        },
-                        "depthMask": false
-                    },
-                    "transparent": true,
-                    "tint": [1, 1, 1, 1],
-                    "texture": "glass",
-                    "sampler": "pixelated"
-                },
                 "grass":{
                     "type": "textured",
                     "shader": "textured",
@@ -111,8 +76,8 @@
                     "sampler": "default"
                 },
                 "moon":{
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "tinted",
+                    "shader": "tinted",
                     "pipelineState": {
                         "faceCulling":{
                             "enabled": false
@@ -121,9 +86,7 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "moon",
-                    "sampler": "default"
+                    "tint": [0.85, 0.65, 0, 1]
                 }
             }
         },
@@ -173,7 +136,7 @@
         ],
         "coin":{
             "position": [0, 0, -2],
-            // "rotation": [45, 0, 0],
+            "rotation": [90, 0, 0],
             "scale": [0.75, 0.75, 0.75],
             "components": [
                 {
