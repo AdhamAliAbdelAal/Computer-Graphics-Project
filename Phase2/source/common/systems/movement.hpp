@@ -18,8 +18,6 @@ namespace our
     // For more information, see "common/components/movement.hpp"
     class MovementSystem {
     public:
-    float cnt=0;
-
         // This should be called every frame to update all entities containing a MovementComponent. 
         void update(World* world, float deltaTime) {
             // For each entity in the world
@@ -33,7 +31,7 @@ namespace our
                     entity->localTransform.rotation += deltaTime * movement->angularVelocity;
                     // cnt+=(deltaTime*movement->angularVelocity.x);
                     // cout<<"rotate("<<movement->angularVelocity.x<< " , "<<movement->angularVelocity.y<<')'<<'\n';
-                    cout<<"rotate("<<entity->localTransform.rotation.x<< " , "<<entity->localTransform.rotation.y<<')'<<'\n';
+                    // cout<<"rotate("<<entity->localTransform.rotation.x<< " , "<<entity->localTransform.rotation.y<<')'<<'\n';
                     // cout<<cnt<<'\n';
                 }
             }

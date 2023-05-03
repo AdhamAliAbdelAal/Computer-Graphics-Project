@@ -170,6 +170,23 @@
                     }
                 ]
             }
-        ]
+        ],
+        "coin":{
+            "position": [0, 0, -2],
+            // "rotation": [45, 0, 0],
+            "scale": [0.75, 0.75, 0.75],
+            "components": [
+                {
+                    "type": "Mesh Renderer",
+                    "mesh": "sphere",
+                    "material": "moon"
+                },
+                {
+                    "type": "Movement",
+                    "angularVelocity": [0, 90, 0],
+                    "linearVelocity": [0, 0, 1]
+                }
+            ]
+        }
     }
 }

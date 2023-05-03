@@ -64,22 +64,24 @@ namespace our
             glm::vec3 current_sensitivity = controller->positionSensitivity;
             // Check for Jump
             if (controller->jumpDirection)
-            {   
+            {
                 // controller->velocity += deltaTime * controller->gravity;
                 if (position.y >= 3.0f)
                 {
                     controller->jumpDirection = false;
                 }
-                else{
-                    position += up * (deltaTime * current_sensitivity.y);
+                else
+                {
+                    controller->velocity += deltaTime * controller->gravity;
+                    position += up * (deltaTime * controller->velocity);
                 }
             }
             else
             {
                 if (position.y > 0.0f)
                 {
-                    // controller->velocity -= deltaTime * controller->gravity;
-                    position -= up * (deltaTime * current_sensitivity.y);
+                    controller->velocity -= deltaTime * controller->gravity;
+                    position -= up * (deltaTime * controller->velocity);
                 }
                 else
                 {
@@ -94,34 +96,33 @@ namespace our
             // W & UP moves the player forward
             if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
             {
-                if(position.z > MAX_FORWARD_POSITION)
+                if (position.z > MAX_FORWARD_POSITION)
                     position += front * (deltaTime * current_sensitivity.z);
             }
             // S & DOWN moves the player backward
             if (app->getKeyboard().isPressed(GLFW_KEY_S) || app->getKeyboard().isPressed(GLFW_KEY_DOWN))
             {
-                if(position.z < MAX_BACKWARD_POSITION)
+                if (position.z < MAX_BACKWARD_POSITION)
                     position -= front * (deltaTime * current_sensitivity.z);
             }
-            
+
             // Space moves the player up
             if (app->getKeyboard().isPressed(GLFW_KEY_SPACE))
-            {   
+            {
                 controller->jumpDirection = true;
             }
             // D & RIGHT moves the player right
-            if (app->getKeyboard().isPressed(GLFW_KEY_D)|| app->getKeyboard().isPressed(GLFW_KEY_RIGHT)){
-                if(position.x < MAX_X_POSITION)
+            if (app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT))
+            {
+                if (position.x < MAX_X_POSITION)
                     position += right * (deltaTime * current_sensitivity.x);
             }
             // A & LEFT moves the player left
-            if (app->getKeyboard().isPressed(GLFW_KEY_A)|| app->getKeyboard().isPressed(GLFW_KEY_LEFT)){
-                if(position.x > -MAX_X_POSITION)
+            if (app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT))
+            {
+                if (position.x > -MAX_X_POSITION)
                     position -= right * (deltaTime * current_sensitivity.x);
             }
-
-            
-            
         }
 
         // When the state exits, it should call this function to ensure the mouse is unlocked
