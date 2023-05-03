@@ -22,6 +22,9 @@ namespace our
     {
         Application *app;          // The application in which the state runs
         bool mouse_locked = false; // Is the mouse locked
+        const float MAX_X_POSITION = 5.5;
+        const float MAX_FORWARD_POSITION = -2.f;
+        const float MAX_BACKWARD_POSITION = 5.5;
 
     public:
         // When a state enters, it should call this function and give it the pointer to the application
@@ -91,12 +94,14 @@ namespace our
             // W & UP moves the player forward
             if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
             {
-                position += front * (deltaTime * current_sensitivity.z);
+                if(position.z > MAX_FORWARD_POSITION)
+                    position += front * (deltaTime * current_sensitivity.z);
             }
             // S & DOWN moves the player backward
             if (app->getKeyboard().isPressed(GLFW_KEY_S) || app->getKeyboard().isPressed(GLFW_KEY_DOWN))
             {
-                position -= front * (deltaTime * current_sensitivity.z);
+                if(position.z < MAX_BACKWARD_POSITION)
+                    position -= front * (deltaTime * current_sensitivity.z);
             }
             
             // Space moves the player up
@@ -106,21 +111,25 @@ namespace our
                 // Move to the right
                 if(app->getKeyboard().isPressed(GLFW_KEY_D))
                 {
-                    position += right * (deltaTime * current_sensitivity.x);
+                    if(position.x < MAX_X_POSITION)
+                        position += right * (deltaTime * current_sensitivity.x);
                 }
                 // Move to the left
                 if(app->getKeyboard().isPressed(GLFW_KEY_A))
                 {
-                    position -= right * (deltaTime * current_sensitivity.x);
+                    if(position.x > -MAX_X_POSITION)
+                        position -= right * (deltaTime * current_sensitivity.x);
                 }
             }
             // D & RIGHT moves the player right
             if (app->getKeyboard().isPressed(GLFW_KEY_D)|| app->getKeyboard().isPressed(GLFW_KEY_RIGHT)){
-                position += right * (deltaTime * current_sensitivity.x);
+                if(position.x < MAX_X_POSITION)
+                    position += right * (deltaTime * current_sensitivity.x);
             }
             // A & LEFT moves the player left
             if (app->getKeyboard().isPressed(GLFW_KEY_A)|| app->getKeyboard().isPressed(GLFW_KEY_LEFT)){
-                position -= right * (deltaTime * current_sensitivity.x);
+                if(position.x > -MAX_X_POSITION)
+                    position -= right * (deltaTime * current_sensitivity.x);
             }
 
             
