@@ -26,6 +26,7 @@ namespace our
     class CoinGenerationSystem
     {
     private:
+        // for coin generation
         ll curr_time;
         ll delay;
 
@@ -34,6 +35,8 @@ namespace our
             return min + rand()*(max - min) / RAND_MAX;
         }
     public:
+        // this is the data for the coin
+        // to hold the data of the coin read from app config to use it later in the update function
         const nlohmann::json &data;
 
         CoinGenerationSystem(const nlohmann::json &data) : data(data),curr_time(0),delay(3) {
@@ -42,16 +45,20 @@ namespace our
         // This should be called every frame to update all entities containing a MovementComponent.
         void update(World *world, float deltaTime)
         {
-            // cout << "coin generation system update" << time(NULL) << '\n';
+            //check if the time passed is less than the delay
             if (time(NULL)-curr_time < delay)
                 return;
             curr_time = time(NULL);
+            //create a new entity
             Entity *entity = nullptr;
+            //deserialize the data of the coin
             entity = world->objectDeserialize(data);
             if (!entity)
                 return;
+            //set the position of the coin by generating a random float in x axis in the range of -5.5 to 5.5
             glm::vec3 position=glm::vec3(generateRandomFloat(),0,-2);
             cout<<generateRandomFloat()<<'\n';
+            // change the position of the coin to the generated position
             entity->localTransform.position = position;
         }
     };

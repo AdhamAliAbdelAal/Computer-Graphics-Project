@@ -32,6 +32,7 @@ class Playstate: public our::State {
             world.deserialize(config["world"]);
             cout<<"world deserialized : "<<typeid(config["world"]).name()<<'\n';
         }
+        // if we have a coin in the scene config, we use to hold the data of the coin
         if(config.contains("coin")){
             if(!config["coin"].is_object()) return;
             coinGenerationSystem=new our::CoinGenerationSystem(config["coin"]);
@@ -49,6 +50,7 @@ class Playstate: public our::State {
         cameraController.update(&world, (float)deltaTime);
 
         //TODO: Add more systems here
+        // system 1 : call update function of coin generation system
         if(coinGenerationSystem) coinGenerationSystem->update(&world, (float)deltaTime);
 
 
