@@ -15,6 +15,8 @@ using namespace std;
 
 typedef long long int ll;
 
+#define MAX_RANGE 5.5f
+
 namespace our
 {
 
@@ -25,41 +27,32 @@ namespace our
     {
     private:
         ll curr_time;
+        ll delay;
 
+        float generateRandomFloat(float min=-MAX_RANGE, float max=MAX_RANGE)
+        {
+            return min + rand()*(max - min) / RAND_MAX;
+        }
     public:
         const nlohmann::json &data;
 
-        CoinGenerationSystem(const nlohmann::json &data) : data(data),curr_time(0) {}
-
+        CoinGenerationSystem(const nlohmann::json &data) : data(data),curr_time(0),delay(3) {
+            srand(time(0));
+        }
         // This should be called every frame to update all entities containing a MovementComponent.
         void update(World *world, float deltaTime)
         {
-            cout << "coin generation system update" << time(NULL) << '\n';
-            if (curr_time > time(NULL))
+            // cout << "coin generation system update" << time(NULL) << '\n';
+            if (time(NULL)-curr_time < delay)
                 return;
             curr_time = time(NULL);
             Entity *entity = nullptr;
-            if (curr_time % 13 == 0 || curr_time % 17==0 || curr_time % 11==0)
-            {
-                entity = world->objectDeserialize(data);
-            }
+            entity = world->objectDeserialize(data);
             if (!entity)
                 return;
-            glm::vec3 position;
-            if (curr_time % 17==0)
-            {
-                position = glm::vec3(-2, 0, -2); // The position is defined as a vec3. (0,0,0) means no translation
-            }
-            else if (curr_time % 13==0)
-            {
-                position = glm::vec3(0, 0, -2); // The position is defined as a vec3. (0,0,0) means no translation
-            }
-            else if (curr_time % 11==0)
-            {
-                position = glm::vec3(2, 0, -2); // The position is defined as a vec3. (0,0,0) means no translation
-            }
+            glm::vec3 position=glm::vec3(generateRandomFloat(),0,-2);
+            cout<<generateRandomFloat()<<'\n';
             entity->localTransform.position = position;
-            ++curr_time;
         }
     };
 
