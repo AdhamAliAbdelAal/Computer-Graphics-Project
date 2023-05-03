@@ -35,20 +35,16 @@ namespace our
         RoadRepeaterSystem(World *world)
         {
             const unordered_set<Entity *> entities = world->getEntities();
-            vector<Entity *> v;
+            // vector<Entity *> v;
             for (auto it : entities)
             {
                 // if the entity has a movement component
                 if (it->name == "road")
                 {
-                    v.push_back(it);
+                    dq.push_back(it);
                 }
             }
-            sort(v.begin(), v.end(), cmp);
-            for (auto &it : v)
-            {
-                dq.push_back(it);
-            }
+            sort(dq.begin(), dq.end(), cmp);
         }
         // This should be called every frame to update all entities containing a MovementComponent.
         void update(World *world, float deltaTime)

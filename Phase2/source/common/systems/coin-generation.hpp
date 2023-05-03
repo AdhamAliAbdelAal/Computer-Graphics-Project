@@ -40,7 +40,7 @@ namespace our
         // to hold the data of the coin read from app config to use it later in the update function
         const nlohmann::json &data;
 
-        CoinGenerationSystem(const nlohmann::json &data) : data(data), curr_time(0), delay(3)
+        CoinGenerationSystem(const nlohmann::json &data) : data(data), curr_time(0), delay(2)
         {
             srand(time(0));
         }
