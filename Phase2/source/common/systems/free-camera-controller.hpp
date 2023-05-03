@@ -98,10 +98,21 @@ namespace our
             {
                 position -= front * (deltaTime * current_sensitivity.z);
             }
+            
             // Space moves the player up
             if (app->getKeyboard().isPressed(GLFW_KEY_SPACE))
             {   
                 controller->jumpDirection = true;
+                // Move to the right
+                if(app->getKeyboard().isPressed(GLFW_KEY_D))
+                {
+                    position += right * (deltaTime * current_sensitivity.x);
+                }
+                // Move to the left
+                if(app->getKeyboard().isPressed(GLFW_KEY_A))
+                {
+                    position -= right * (deltaTime * current_sensitivity.x);
+                }
             }
             // D & RIGHT moves the player right
             if (app->getKeyboard().isPressed(GLFW_KEY_D)|| app->getKeyboard().isPressed(GLFW_KEY_RIGHT)){
@@ -111,6 +122,9 @@ namespace our
             if (app->getKeyboard().isPressed(GLFW_KEY_A)|| app->getKeyboard().isPressed(GLFW_KEY_LEFT)){
                 position -= right * (deltaTime * current_sensitivity.x);
             }
+
+            
+            
         }
 
         // When the state exits, it should call this function to ensure the mouse is unlocked
