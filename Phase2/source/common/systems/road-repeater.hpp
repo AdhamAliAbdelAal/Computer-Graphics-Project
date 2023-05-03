@@ -21,16 +21,14 @@ namespace our
     {
         return a->localTransform.position.z > b->localTransform.position.z;
     }
-    // The movement system is responsible for moving every entity which contains a MovementComponent.
+    // the road repeater system is responsible for repeating the road
     // This system is added as a simple example for how use the ECS framework to implement logic.
-    // For more information, see "common/components/movement.hpp"
     class RoadRepeaterSystem
     {
+        // deque to hold the roads
         deque<Entity *> dq;
 
     public:
-        // this is the data for the coin
-        // to hold the data of the coin read from app config to use it later in the update function
 
         RoadRepeaterSystem(World *world)
         {
@@ -44,6 +42,7 @@ namespace our
                     dq.push_back(it);
                 }
             }
+            // sorting the roads according to their z position
             sort(dq.begin(), dq.end(), cmp);
         }
         // This should be called every frame to update all entities containing a MovementComponent.
@@ -52,15 +51,17 @@ namespace our
             if (dq.empty())
                 return;
             Entity *road1 = dq.front();
-            cout << "deque size : " << dq.front()->localTransform.position.z << '\n';
+            // cout << "deque size : " << dq.front()->localTransform.position.z << '\n';
             if (road1->localTransform.position.z > 15)
             {
-                cout << "3adda\n";
+                // cout << "3adda\n";
                 dq.pop_front();
                 if (dq.empty())
                     return;
                 Entity *road3 = dq.back();
+                // repeat the road 1 as it is out of the screen
                 road1->localTransform.position.z = road3->localTransform.position.z - 14;
+                
                 dq.push_back(road1);
             }
         }

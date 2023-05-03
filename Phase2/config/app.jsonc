@@ -178,7 +178,7 @@
         ],
         "coin":{
             "name":"coin",
-            "position": [0, 0, -2],
+            "position": [0, 0, -10],
             "rotation": [90, 0, 0],
             "scale": [0.75, 0.75, 0.75],
             "components": [

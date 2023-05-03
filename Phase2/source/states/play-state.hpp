@@ -7,6 +7,7 @@
 #include <systems/free-camera-controller.hpp>
 #include <systems/movement.hpp>
 #include <systems/coin-generation.hpp>
+#include <systems/coin-collection.hpp>
 #include <systems/road-repeater.hpp>
 #include <asset-loader.hpp>
 #include<iostream>
@@ -23,6 +24,9 @@ class Playstate: public our::State {
 
     // road repeater system is responsible for repeating the road
     our::RoadRepeaterSystem *roadRepeaterSystem;
+
+    // coin collection system is responsible for collecting coins
+    our::CoinCollectionSystem coinCollectionSystem;
 
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
@@ -60,7 +64,10 @@ class Playstate: public our::State {
         //TODO: Add more systems here
         // system 1 : call update function of coin generation system
         if(coinGenerationSystem) coinGenerationSystem->update(&world, (float)deltaTime);
+        // system 2 : call update function of road repeater system
         if(roadRepeaterSystem) roadRepeaterSystem->update(&world, (float)deltaTime);
+        // system 3 : call update function of coin collection system
+        coinCollectionSystem.update(&world, (float)deltaTime);
 
 
         // And finally we use the renderer system to draw the scene

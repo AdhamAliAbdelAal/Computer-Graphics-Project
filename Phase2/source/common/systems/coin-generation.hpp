@@ -40,7 +40,7 @@ namespace our
         // to hold the data of the coin read from app config to use it later in the update function
         const nlohmann::json &data;
 
-        CoinGenerationSystem(const nlohmann::json &data) : data(data), curr_time(0), delay(2)
+        CoinGenerationSystem(const nlohmann::json &data) : data(data), curr_time(0), delay(1)
         {
             srand(time(0));
         }
@@ -59,7 +59,7 @@ namespace our
             if (!entity)
                 return;
             // set the position of the coin by generating a random float in x axis in the range of -5.5 to 5.5
-            glm::vec3 position = glm::vec3(generateRandomFloat(), 0, -2);
+            glm::vec3 position = glm::vec3(generateRandomFloat(), 0, -10);
             // cout << generateRandomFloat() << '\n';
             // change the position of the coin to the generated position
             entity->localTransform.position = position;
