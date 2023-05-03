@@ -65,21 +65,21 @@ namespace our
             // Check for Jump
             if (controller->jumpDirection)
             {   
-                controller->velocity += deltaTime * controller->gravity;
-                position += up * (deltaTime * controller->velocity);
+                // controller->velocity += deltaTime * controller->gravity;
                 if (position.y >= 3.0f)
                 {
                     controller->jumpDirection = false;
                 }
-                return;
+                else{
+                    position += up * (deltaTime * current_sensitivity.y);
+                }
             }
             else
             {
                 if (position.y > 0.0f)
                 {
-                    controller->velocity -= deltaTime * controller->gravity;
-                    position -= up * (deltaTime * controller->velocity);
-                    return;
+                    // controller->velocity -= deltaTime * controller->gravity;
+                    position -= up * (deltaTime * current_sensitivity.y);
                 }
                 else
                 {
@@ -108,18 +108,6 @@ namespace our
             if (app->getKeyboard().isPressed(GLFW_KEY_SPACE))
             {   
                 controller->jumpDirection = true;
-                // Move to the right
-                if(app->getKeyboard().isPressed(GLFW_KEY_D))
-                {
-                    if(position.x < MAX_X_POSITION)
-                        position += right * (deltaTime * current_sensitivity.x);
-                }
-                // Move to the left
-                if(app->getKeyboard().isPressed(GLFW_KEY_A))
-                {
-                    if(position.x > -MAX_X_POSITION)
-                        position -= right * (deltaTime * current_sensitivity.x);
-                }
             }
             // D & RIGHT moves the player right
             if (app->getKeyboard().isPressed(GLFW_KEY_D)|| app->getKeyboard().isPressed(GLFW_KEY_RIGHT)){
