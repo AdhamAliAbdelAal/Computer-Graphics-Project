@@ -50,6 +50,7 @@ namespace our {
             if(entities.find(entity)!=entities.end()){
                 // STEP 2: Add the entity to the "markedForRemoval" set
                 markedForRemoval.insert(entity);
+                entities.erase(entity);
             }
         }
 
@@ -60,8 +61,10 @@ namespace our {
             // STEP 1: Remove the entities in "markedForRemoval" from the "entities" set
             for(auto&it:markedForRemoval){
                 // STEP 2: Remove the entity from the "entities" set
-                entities.erase(it);
+                delete it;
             }
+            // STEP 3: Clear the "markedForRemoval" set
+            markedForRemoval.clear();
         }
 
         //This deletes all entities in the world
