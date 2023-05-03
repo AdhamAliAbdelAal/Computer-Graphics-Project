@@ -61,8 +61,9 @@ namespace our
             glm::vec3 current_sensitivity = controller->positionSensitivity;
             // Check for Jump
             if (controller->jumpDirection)
-            {
-                position += up * (deltaTime * current_sensitivity.y);
+            {   
+                controller->velocity += deltaTime * controller->gravity;
+                position += up * (deltaTime * controller->velocity);
                 if (position.y >= 3.0f)
                 {
                     controller->jumpDirection = false;
@@ -73,7 +74,8 @@ namespace our
             {
                 if (position.y > 0.0f)
                 {
-                    position -= up * (deltaTime * current_sensitivity.y);
+                    controller->velocity -= deltaTime * controller->gravity;
+                    position -= up * (deltaTime * controller->velocity);
                     return;
                 }
                 else
@@ -98,7 +100,7 @@ namespace our
             }
             // Space moves the player up
             if (app->getKeyboard().isPressed(GLFW_KEY_SPACE))
-            {
+            {   
                 controller->jumpDirection = true;
             }
             // D & RIGHT moves the player right
