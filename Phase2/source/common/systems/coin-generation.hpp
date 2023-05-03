@@ -70,10 +70,8 @@ namespace our
             {
                 cout<<"entity : "<<it<<'\n';
                 if(!it) continue;
-
-                MovementComponent *movement = it->getComponent<MovementComponent>();
                 // if the entity has a movement component
-                if (movement)
+                if (it->name == "coin")
                 {
                     // get the position of the entity
                     glm::vec3 &position = it->localTransform.position;

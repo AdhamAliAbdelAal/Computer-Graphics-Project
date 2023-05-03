@@ -92,6 +92,7 @@
         },
         "world":[
             {
+                "name": "camera",
                 "position": [0, 4, 8],
                 "components": [
                     {
@@ -100,6 +101,7 @@
                 ]
             },
             {
+                "name":"ball",
                 "position": [0, 0, 5],
                 "rotation": [0, 0, 0],
                 "scale": [2, 2, 2],
@@ -122,6 +124,7 @@
                 ]
             },
             {
+                "name":"road",
                 "position": [0, -1, 0],
                 "rotation": [-90, 0, 0],
                 "scale": [10, 7, 1],
@@ -135,6 +138,7 @@
             }
         ],
         "coin":{
+            "name":"coin",
             "position": [0, 0, -2],
             "rotation": [90, 0, 0],
             "scale": [0.75, 0.75, 0.75],
