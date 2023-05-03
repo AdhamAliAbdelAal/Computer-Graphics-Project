@@ -55,7 +55,7 @@ namespace our
             Entity *entity = nullptr;
             // deserialize the data of the coin
             entity = world->objectDeserialize(data);
-            cout<<"coin generated : "<<entity<<'\n';
+            // cout<<"coin generated : "<<entity<<'\n';
             if (!entity)
                 return;
             // set the position of the coin by generating a random float in x axis in the range of -5.5 to 5.5
@@ -68,7 +68,7 @@ namespace our
             const unordered_set<Entity*> entities = world->getEntities();
             for (auto it : entities)
             {
-                cout<<"entity : "<<it<<'\n';
+                // cout<<"entity : "<<it<<'\n';
                 if(!it) continue;
                 // if the entity has a movement component
                 if (it->name == "coin")
@@ -78,7 +78,7 @@ namespace our
                     // if the position of the entity is greater than 10
                     if (position.z > 10)
                     {
-                        cout<<"coin deleted : "<<it<<'\n';
+                        // cout<<"coin deleted : "<<it<<'\n';
                         // delete the entity
                         world->markForRemoval(it);
                         world->deleteMarkedEntities();
