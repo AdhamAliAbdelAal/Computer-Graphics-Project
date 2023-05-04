@@ -217,7 +217,7 @@
         },
         "fire":{
             "name":"fire",
-            "position": [0, 0, -10],
+            "position": [0, -2, -10],
             "rotation": [0, 0, 0],
             "scale": [2.5, 2.5, 2.5],
             "components": [

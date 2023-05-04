@@ -19,6 +19,7 @@ namespace our {
         glm::vec3 positionSensitivity = {10.0f, 10.0f, 10.0f}; // The unity per second of camera movement if WASD is pressed
         float speedupFactor = 5.0f; // A multiplier for the positionSensitivity if "Left Shift" is held.
         float velocity = 10.0f; // The velocity of the jump
+        float jumpBoost = 3.0f; // The jump boost in z axis
         float gravity = -9.81f; // The gravity of the jump
         /*
             @author:Adham Ali
@@ -28,6 +29,7 @@ namespace our {
             this boolean used for jumping to indicates the direction of the jump
         */
         bool jumpDirection = false;
+        bool enabled = true; // If this is false, the system will not jump the entity
 
         // The ID of this component type is "Free Camera Controller"
         static std::string getID() { return "Free Camera Controller"; }
