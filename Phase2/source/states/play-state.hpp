@@ -58,7 +58,7 @@ class Playstate: public our::State {
 
     void onDraw(double deltaTime) override {
         // Here, we just run a bunch of systems to control the world logic
-        movementSystem.update(&world, (float)deltaTime);
+        movementSystem.update(&world, (float)deltaTime, getApp());
         cameraController.update(&world, (float)deltaTime);
 
         //TODO: Add more systems here

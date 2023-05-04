@@ -51,6 +51,7 @@ namespace our
             if (dq.empty())
                 return;
             Entity *road1 = dq.front();
+            
             // cout << "deque size : " << dq.front()->localTransform.position.z << '\n';
             if (road1->localTransform.position.z > 15)
             {

@@ -44,6 +44,7 @@ namespace our
             {
                 meshRenderer = entity->getComponent<MeshRendererComponent>();
                 controller = entity->getComponent<FreeCameraControllerComponent>();
+                
                 if (meshRenderer && controller)
                     break;
             }
