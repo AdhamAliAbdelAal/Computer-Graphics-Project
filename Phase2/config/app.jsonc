@@ -26,17 +26,18 @@
                 }
             },
             "textures":{
-                "moon": "assets/textures/moon.jpg",
-                "grass": "assets/textures/road_0.png",
+                "evil": "assets/textures/moon.jpg",
+                "road": "assets/textures/road_0.png",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
-                "monkey": "assets/textures/glass-panels.png"
+                "ball": "assets/textures/glass-panels.png"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
-                "monkey": "assets/models/volley_ball_OBJ.obj",
+                "ball": "assets/models/volley_ball_OBJ.obj",
                 "plane": "assets/models/plane.obj",
-                "sphere": "assets/models/Coin 2.obj"
+                "sphere": "assets/models/Coin 2.obj",
+                "coin": "assets/models/Coin 2.obj"
             },
             "samplers":{
                 "default":{},
@@ -45,7 +46,7 @@
                 }
             },
             "materials":{
-                "grass":{
+                "road":{
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -57,10 +58,10 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "grass",
+                    "texture": "road",
                     "sampler": "default"
                 },
-                "monkey":{
+                "ball":{
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -72,10 +73,10 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "monkey",
+                    "texture": "ball",
                     "sampler": "default"
                 },
-                "moon":{
+                "coin":{
                     "type": "tinted",
                     "shader": "tinted",
                     "pipelineState": {
@@ -108,8 +109,8 @@
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "monkey",
-                        "material": "monkey"
+                        "mesh": "ball",
+                        "material": "ball"
                     }
                     ,
                     {
@@ -132,7 +133,7 @@
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "grass"
+                        "material": "road"
                     }
                     ,
                     {
@@ -150,7 +151,7 @@
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "grass"
+                        "material": "road"
                     },
                     {
                         "type": "Movement",
@@ -167,7 +168,7 @@
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "grass"
+                        "material": "road"
                     },
                     {
                         "type": "Movement",
@@ -184,8 +185,8 @@
             "components": [
                 {
                     "type": "Mesh Renderer",
-                    "mesh": "sphere",
-                    "material": "moon"
+                    "mesh": "coin",
+                    "material": "coin"
                 },
                 {
                     "type": "Movement",
