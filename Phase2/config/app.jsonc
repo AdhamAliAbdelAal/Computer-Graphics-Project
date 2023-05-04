@@ -26,7 +26,7 @@
                 }
             },
             "textures":{
-                "evil": "assets/textures/moon.jpg",
+                "fire": "assets/textures/Fire.png",
                 "road": "assets/textures/road_0.png",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
@@ -37,7 +37,8 @@
                 "ball": "assets/models/volley_ball_OBJ.obj",
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/Coin 2.obj",
-                "coin": "assets/models/Coin 2.obj"
+                "coin": "assets/models/Coin 2.obj",
+                "fire": "assets/models/fire head.obj"
             },
             "samplers":{
                 "default":{},
@@ -88,6 +89,21 @@
                         }
                     },
                     "tint": [0.85, 0.65, 0, 1]
+                },
+                "fire":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "fire",
+                    "sampler": "default"
                 }
             }
         },
@@ -192,6 +208,32 @@
                     "type": "Movement",
                     "angularVelocity": [0, 300, 0],
                     "linearVelocity": [0, 0, 3]
+                },
+                {
+                    "type":"Gain",
+                    "gain": 1
+                }
+            ]
+        },
+        "fire":{
+            "name":"fire",
+            "position": [0, 0, -10],
+            "rotation": [0, 0, 0],
+            "scale": [2.5, 2.5, 2.5],
+            "components": [
+                {
+                    "type": "Mesh Renderer",
+                    "mesh": "fire",
+                    "material": "fire"
+                },
+                {
+                    "type": "Movement",
+                    "angularVelocity": [0, 0, 0],
+                    "linearVelocity": [0, 0, 3]
+                },
+                {
+                    "type":"Gain",
+                    "gain": -1
                 }
             ]
         }

@@ -2,6 +2,7 @@
 
 #include "../ecs/world.hpp"
 #include "../components/movement.hpp"
+#include "../components/gain.hpp"
 #include "../ecs/entity.hpp"
 
 #include <glm/glm.hpp>
@@ -38,9 +39,9 @@ namespace our
     public:
         // this is the data for the coin
         // to hold the data of the coin read from app config to use it later in the update function
-        const nlohmann::json &data;
+        const nlohmann::json coin, fire;
 
-        CoinGenerationSystem(const nlohmann::json &data) : data(data), curr_time(0), delay(1)
+        CoinGenerationSystem(const nlohmann::json &coin,const nlohmann::json &fire) : coin(coin),fire(fire), curr_time(0), delay(1)
         {
             srand(time(0));
         }
@@ -53,8 +54,11 @@ namespace our
             curr_time = time(NULL);
             // create a new entity
             Entity *entity = nullptr;
-            // deserialize the data of the coin
-            entity = world->objectDeserialize(data);
+            // deserialize the data of the coin or fire
+            if(rand()%2==0)
+                entity = world->objectDeserialize(fire);
+            else
+                entity = world->objectDeserialize(coin);
             // cout<<"coin generated : "<<entity<<'\n';
             if (!entity)
                 return;
@@ -70,9 +74,11 @@ namespace our
             {
                 // cout<<"entity : "<<it<<'\n';
                 if(!it) continue;
-                // if the entity has a movement component
-                if (it->name == "coin")
+                // if the entity has a gain component
+                GainComponent *gain = it->getComponent<GainComponent>();
+                if (gain)
                 {
+                    cout<<"Gain : "<<gain<<'\n';
                     // get the position of the entity
                     glm::vec3 &position = it->localTransform.position;
                     // if the position of the entity is greater than 10
