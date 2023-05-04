@@ -31,12 +31,16 @@ namespace our
                 // If the movement component exists
                 if(movement){
                     glm::vec3 currentLinearVelocity = movement->linearVelocity;
-
+                    glm::vec3 currentAngularVelocity = movement->angularVelocity;
                     if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
+                    {
                         currentLinearVelocity.z *= 5.0f;
+                        currentAngularVelocity.x *= 5.0f;
+                    }
+
                     // Change the position and rotation based on the linear & angular velocity and delta time.
                     entity->localTransform.position += deltaTime * currentLinearVelocity;
-                    entity->localTransform.rotation += deltaTime * movement->angularVelocity;
+                    entity->localTransform.rotation += deltaTime * currentAngularVelocity;
                     // cnt+=(deltaTime*movement->angularVelocity.x);
                     // cout<<"rotate("<<movement->angularVelocity.x<< " , "<<movement->angularVelocity.y<<')'<<'\n';
                     // cout<<"rotate("<<entity->localTransform.rotation.x<< " , "<<entity->localTransform.rotation.y<<')'<<'\n';
