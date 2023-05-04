@@ -14,7 +14,8 @@
 
 // This state shows how to use the ECS framework and deserialization.
 class Playstate: public our::State {
-
+    
+    bool isPaused = false;
     our::World world;
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
@@ -58,23 +59,33 @@ class Playstate: public our::State {
 
     void onDraw(double deltaTime) override {
         // Here, we just run a bunch of systems to control the world logic
-        movementSystem.update(&world, (float)deltaTime, getApp());
-        cameraController.update(&world, (float)deltaTime);
+        if(!isPaused) 
+        {
+            movementSystem.update(&world, (float)deltaTime, getApp());
+            cameraController.update(&world, (float)deltaTime);
 
-        //TODO: Add more systems here
-        // system 1 : call update function of coin generation system
-        if(coinGenerationSystem) coinGenerationSystem->update(&world, (float)deltaTime);
-        // system 2 : call update function of road repeater system
-        if(roadRepeaterSystem) roadRepeaterSystem->update(&world, (float)deltaTime);
-        // system 3 : call update function of coin collection system
-        coinCollectionSystem.update(&world, (float)deltaTime);
+            //TODO: Add more systems here
+            // system 1 : call update function of coin generation system
+            if(coinGenerationSystem) coinGenerationSystem->update(&world, (float)deltaTime);
+            // system 2 : call update function of road repeater system
+            if(roadRepeaterSystem) roadRepeaterSystem->update(&world, (float)deltaTime);
+            // system 3 : call update function of coin collection system
+            coinCollectionSystem.update(&world, (float)deltaTime);
 
 
-        // And finally we use the renderer system to draw the scene
-        renderer.render(&world);
+        }
+            // And finally we use the renderer system to draw the scene
+            renderer.render(&world);
+        
 
         // Get a reference to the keyboard object
         auto& keyboard = getApp()->getKeyboard();
+        
+        if(keyboard.justPressed(GLFW_KEY_P)){
+            // If the P key is pressed in this frame, toggle the pause state
+            isPaused = !isPaused;
+            cout<<"P pressed\n";
+        }
 
         if(keyboard.justPressed(GLFW_KEY_ESCAPE)){
             // If the escape  key is pressed in this frame, go to the play state
