@@ -30,11 +30,11 @@
                 "road": "assets/textures/road_0.png",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
-                "ball": "assets/textures/glass-panels.png"
+                "ball": "assets/textures/toy_ball_01.png"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
-                "ball": "assets/models/volley_ball_OBJ.obj",
+                "ball": "assets/models/toy_ball.obj",
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/Coin 2.obj",
                 "coin": "assets/models/Coin 2.obj",
@@ -121,7 +121,7 @@
                 "name":"ball",
                 "position": [0, 0, 5],
                 "rotation": [0, 0, 0],
-                "scale": [2, 2, 2],
+                "scale": [0.03, 0.03, 0.03],
                 "components": [
                     {
                         "type": "Mesh Renderer",
