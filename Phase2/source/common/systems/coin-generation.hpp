@@ -78,7 +78,7 @@ namespace our
                 GainComponent *gain = it->getComponent<GainComponent>();
                 if (gain)
                 {
-                    cout<<"Gain : "<<gain<<'\n';
+                    // cout<<"Gain : "<<gain<<'\n';
                     // get the position of the entity
                     glm::vec3 &position = it->localTransform.position;
                     // if the position of the entity is greater than 10

@@ -2,6 +2,7 @@
 
 #include "../ecs/world.hpp"
 #include "../components/movement.hpp"
+#include "../components/gain.hpp"
 #include "../ecs/entity.hpp"
 
 #include <glm/glm.hpp>
@@ -42,7 +43,8 @@ namespace our
             glm::vec3 ball_position=ball->localTransform.position;
             for (auto it : entities)
             {
-                if (it->name == "coin")
+                GainComponent*gainComponent=it->getComponent<GainComponent>();
+                if (gainComponent)
                 {
                     // get the position of the entity
                     glm::vec3 position = it->localTransform.position;
@@ -50,6 +52,7 @@ namespace our
                     // if the distance between the coin and the player is less than the minimum distance
                     if (distance<=min_dist)
                     {
+                        cout<<gainComponent->gain<<'\n';
                         // cout<<"coin deleted : "<<it<<'\n';
                         // delete the entity
                         world->markForRemoval(it);
