@@ -74,6 +74,7 @@ namespace our
                 {
                     controller->velocity += deltaTime * controller->gravity;
                     position += up * (deltaTime * controller->velocity);
+                    position += front * (deltaTime * controller->jumpBoost);
                 }
             }
             else
@@ -82,10 +83,12 @@ namespace our
                 {
                     controller->velocity -= deltaTime * controller->gravity;
                     position -= up * (deltaTime * controller->velocity);
+                    position += front * (deltaTime * controller->jumpBoost);
                 }
                 else
                 {
                     position.y = 0.0f;
+                    controller->enabled = true;
                 }
             }
 
@@ -107,9 +110,10 @@ namespace our
             }
 
             // Space moves the player up
-            if (app->getKeyboard().isPressed(GLFW_KEY_SPACE))
+            if (app->getKeyboard().isPressed(GLFW_KEY_SPACE)&&controller->enabled)
             {
                 controller->jumpDirection = true;
+                controller->enabled = false;
             }
             // D & RIGHT moves the player right
             if (app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT))

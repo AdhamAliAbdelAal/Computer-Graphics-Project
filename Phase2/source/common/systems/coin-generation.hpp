@@ -52,18 +52,26 @@ namespace our
             if (time(NULL) - curr_time < delay)
                 return;
             curr_time = time(NULL);
+            // position of the coin or fire
+            glm::vec3 position;
             // create a new entity
             Entity *entity = nullptr;
             // deserialize the data of the coin or fire
-            if(rand()%2==0)
-                entity = world->objectDeserialize(fire);
-            else
+            if(rand()%2==0){
                 entity = world->objectDeserialize(coin);
+                // set the position of the coin by generating a random float in x axis in the range of -5.5 to 5.5
+                position=glm::vec3(generateRandomFloat(), 0, -10);
+            }
+            else{
+                entity = world->objectDeserialize(fire);
+                // set the position of the coin by generating a random float in x axis in the range of -5.5 to 5.5
+                position=glm::vec3(generateRandomFloat(), -1, -10);
+            }
             // cout<<"coin generated : "<<entity<<'\n';
             if (!entity)
                 return;
-            // set the position of the coin by generating a random float in x axis in the range of -5.5 to 5.5
-            glm::vec3 position = glm::vec3(generateRandomFloat(), 0, -10);
+            
+
             // cout << generateRandomFloat() << '\n';
             // change the position of the coin to the generated position
             entity->localTransform.position = position;
