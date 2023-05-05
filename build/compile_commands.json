@@ -1,0 +1,207 @@
+[
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\main.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\main.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\main.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\application.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\application.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\application.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\asset-loader.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\asset-loader.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\asset-loader.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\shader\\shader.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\shader\\shader.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\shader\\shader.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\mesh\\mesh-utils.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\mesh\\mesh-utils.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\mesh\\mesh-utils.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\texture\\sampler.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\texture\\sampler.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\texture\\sampler.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\texture\\texture-utils.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\texture\\texture-utils.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\texture\\texture-utils.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\texture\\screenshot.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\texture\\screenshot.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\texture\\screenshot.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\material\\pipeline-state.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\material\\pipeline-state.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\material\\pipeline-state.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\material\\material.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\material\\material.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\material\\material.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\ecs\\transform.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\ecs\\transform.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\ecs\\transform.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\ecs\\entity.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\ecs\\entity.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\ecs\\entity.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\ecs\\world.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\ecs\\world.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\ecs\\world.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\components\\camera.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\components\\camera.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\components\\camera.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\components\\mesh-renderer.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\components\\mesh-renderer.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\components\\mesh-renderer.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\components\\free-camera-controller.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\components\\free-camera-controller.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\components\\free-camera-controller.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\components\\movement.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\components\\movement.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\components\\movement.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\components\\gain.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\components\\gain.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\components\\gain.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\source\\common\\systems\\forward-renderer.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\systems\\forward-renderer.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\source\\common\\systems\\forward-renderer.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -o CMakeFiles\\GAME_APPLICATION.dir\\vendor\\glad\\src\\gl.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glad\\src\\gl.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glad\\src\\gl.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\vendor\\imgui\\imgui.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\vendor\\imgui\\imgui_demo.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui_demo.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui_demo.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\vendor\\imgui\\imgui_draw.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui_draw.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui_draw.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\vendor\\imgui\\imgui_widgets.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui_widgets.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui_widgets.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\vendor\\imgui\\imgui_impl\\imgui_impl_glfw.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui_impl\\imgui_impl_glfw.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui_impl\\imgui_impl_glfw.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/source/common\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glad/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glm\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/imgui\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/utils\" -g -std=c++17 -o CMakeFiles\\GAME_APPLICATION.dir\\vendor\\imgui\\imgui_impl\\imgui_impl_opengl3.cpp.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui_impl\\imgui_impl_opengl3.cpp\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\imgui\\imgui_impl\\imgui_impl_opengl3.cpp"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\context.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\context.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\context.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\init.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\init.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\init.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\input.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\input.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\input.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\monitor.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\monitor.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\monitor.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\vulkan.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\vulkan.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\vulkan.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\window.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\window.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\window.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\win32_init.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_init.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_init.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\win32_joystick.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_joystick.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_joystick.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\win32_monitor.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_monitor.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_monitor.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\win32_time.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_time.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_time.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\win32_thread.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_thread.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_thread.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\win32_window.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_window.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\win32_window.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\wgl_context.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\wgl_context.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\wgl_context.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\egl_context.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\egl_context.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\egl_context.c"
+},
+{
+  "directory": "C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -DUNICODE -DWINVER=0x0501 -D_GLFW_USE_CONFIG_H -D_UNICODE -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/include\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/Phase2/vendor/glfw/src\" -I\"C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src\" -g -Wall -std=gnu99 -Wdeclaration-after-statement -o vendor\\glfw\\src\\CMakeFiles\\glfw.dir\\osmesa_context.c.obj -c \"C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\osmesa_context.c\"",
+  "file": "C:\\Users\\Mustafa Hamzawy\\Desktop\\Computer-Graphics-Project\\Phase2\\vendor\\glfw\\src\\osmesa_context.c"
+}
+]

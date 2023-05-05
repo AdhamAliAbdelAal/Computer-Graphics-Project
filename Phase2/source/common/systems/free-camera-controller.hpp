@@ -23,7 +23,7 @@ namespace our
         Application *app;          // The application in which the state runs
         bool mouse_locked = false; // Is the mouse locked
         const float MAX_X_POSITION = 5.5;
-        const float MAX_FORWARD_POSITION = -2.f;
+        const float MAX_FORWARD_POSITION = 3.5;
         const float MAX_BACKWARD_POSITION = 5.5;
 
     public:
@@ -75,7 +75,8 @@ namespace our
                 {
                     controller->velocity += deltaTime * controller->gravity;
                     position += up * (deltaTime * controller->velocity);
-                    position += front * (deltaTime * controller->jumpBoost);
+                    if (position.z > MAX_FORWARD_POSITION)
+                        position += front * (deltaTime * controller->jumpBoost);
                 }
             }
             else
@@ -84,7 +85,8 @@ namespace our
                 {
                     controller->velocity -= deltaTime * controller->gravity;
                     position -= up * (deltaTime * controller->velocity);
-                    position += front * (deltaTime * controller->jumpBoost);
+                    if (position.z > MAX_FORWARD_POSITION)
+                        position += front * (deltaTime * controller->jumpBoost);
                 }
                 else
                 {

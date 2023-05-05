@@ -1,0 +1,8 @@
+C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/CMakeFiles/GAME_APPLICATION.dir
+C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/CMakeFiles/edit_cache.dir
+C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/CMakeFiles/rebuild_cache.dir
+C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/CMakeFiles/edit_cache.dir
+C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/CMakeFiles/rebuild_cache.dir
+C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src/CMakeFiles/glfw.dir
+C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src/CMakeFiles/edit_cache.dir
+C:/Users/Mustafa Hamzawy/Desktop/Computer-Graphics-Project/build/vendor/glfw/src/CMakeFiles/rebuild_cache.dir
