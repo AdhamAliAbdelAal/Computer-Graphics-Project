@@ -1,0 +1,11 @@
+# Material file for bg_jimmy_06_hi.obj
+
+newmtl bgjimmy06sset
+	Ns 12
+	d 1
+	illum 2
+	Kd 0.8 0.8 0.8
+	Ks 0.0 0.0 0.0
+	Ka 0.588235 0.588235 0.588235
+	map_Kd bgjimmy06sset.png
+
