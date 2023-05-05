@@ -8,6 +8,7 @@
 #include <systems/movement.hpp>
 #include <systems/coin-generation.hpp>
 #include <systems/coin-collection.hpp>
+#include <systems/road-generator.hpp>
 #include <systems/road-repeater.hpp>
 #include <asset-loader.hpp>
 #include<iostream>
@@ -29,6 +30,9 @@ class Playstate: public our::State {
     // coin collection system is responsible for collecting coins
     our::CoinCollectionSystem coinCollectionSystem;
 
+    // road generation system is responsible for generating roads
+    our::RoadGenerationSystem *roadGenerationSystem;
+
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];
@@ -39,12 +43,17 @@ class Playstate: public our::State {
         // If we have a world in the scene config, we use it to populate our world
         if(config.contains("world")){
             world.deserialize(config["world"]);
-            cout<<"world deserialized : "<<typeid(config["world"]).name()<<'\n';
+            //cout<<"world deserialized : "<<typeid(config["world"]).name()<<'\n';
         }
         // if we have a coin in the scene config, we use to hold the data of the coin
         if(config.contains("coin")&&config.contains("fire")){
             if(!config["coin"].is_object()) return;
             coinGenerationSystem=new our::CoinGenerationSystem(config["coin"],config["fire"]);
+        }
+
+        if(config.contains("road")){
+            if(!config["road"].is_object()) return;
+            roadGenerationSystem=new our::RoadGenerationSystem(config["road"],&world);
         }
 
         // create road repeater system
@@ -94,6 +103,11 @@ class Playstate: public our::State {
     }
 
     void onDestroy() override {
+
+        // delete all systems pointers
+        delete coinGenerationSystem;
+        delete roadRepeaterSystem;
+        delete roadGenerationSystem;
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked

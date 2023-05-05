@@ -21,9 +21,7 @@ typedef long long int ll;
 namespace our
 {
 
-    // The movement system is responsible for moving every entity which contains a MovementComponent.
-    // This system is added as a simple example for how use the ECS framework to implement logic.
-    // For more information, see "common/components/movement.hpp"
+    // The Coin generator system is responsible for generating coins and fires randomly
     class CoinGenerationSystem
     {
     private:
