@@ -51,9 +51,9 @@ class Playstate: public our::State {
             coinGenerationSystem=new our::CoinGenerationSystem(config["coin"],config["fire"]);
         }
 
-        if(config.contains("road")){
-            if(!config["road"].is_object()) return;
-            roadGenerationSystem=new our::RoadGenerationSystem(config["road"],&world);
+        if(config.contains("road")&&config.contains("fence")){
+            if(!config["road"].is_object()||!config["fence"].is_object()) return;
+            roadGenerationSystem=new our::RoadGenerationSystem(config["road"],config["fence"],&world);
         }
 
         // create road repeater system

@@ -16,20 +16,39 @@ using namespace std;
 namespace our
 {
     /**
-     * @brief This class is the Road generation system which is responsible for generating the roads
+     * @brief This class is the Road generation system which is responsible for generating the roads and fences and everything related to the road
      */
     class RoadGenerationSystem
     {
     private:
-        const nlohmann::json road; // the road data read from json
-        const int numberOfRoads = 6;   // the number of roads in the system
+        const nlohmann::json road;         // the road data read from json
+        const nlohmann::json fence;        // the fence data read from json
+        const int numberOfRoads = 6;       // the number of roads in the system
+        const int numberOfFences4Road = 2; // the number of fences in each road
     public:
-        RoadGenerationSystem(const nlohmann::json &road, World *world) : road(road)
+        RoadGenerationSystem(const nlohmann::json &road, const nlohmann::json &fence, World *world) : road(road), fence(fence)
         {
-            for (int i = 0; i < numberOfRoads ; ++i)
+            for (int i = 0; i < numberOfRoads; ++i)
             {
                 Entity *roadEntity = world->objectDeserialize(road);
-                roadEntity->localTransform.position.z = -float(i) * 14.0f;
+                float roadZ=-float(i) * 14.0f;
+                roadEntity->localTransform.position.z = roadZ;
+                // generate the right fence
+                for (int j = 0; j < numberOfFences4Road; j++)
+                {
+                    Entity *fenceEntity = world->objectDeserialize(fence);
+                    fenceEntity->localTransform.position.z = 4.0f + roadZ - float(j) * 7.0f ;
+                }
+                // generate the left fence
+                for (int j = 0; j < numberOfFences4Road; j++)
+                {
+                    Entity *fenceEntity = world->objectDeserialize(fence);
+                    fenceEntity->localTransform.position.z = 3.4f + roadZ - float(j) * 7.0f;
+                    fenceEntity->localTransform.position.x *= -1.0f;
+                    fenceEntity->localTransform.rotation.y += glm::pi<float>();
+                    cout<<"fenceEntity->localTransform.position.z: "<<fenceEntity->localTransform.rotation.y<<endl;
+                }
+
             }
         }
         /**

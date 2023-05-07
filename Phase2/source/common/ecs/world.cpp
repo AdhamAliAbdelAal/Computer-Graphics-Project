@@ -27,7 +27,7 @@ namespace our
             }
         }
     }
-    Entity * World::objectDeserialize(const nlohmann::json &data, Entity *parent)
+    Entity *World::objectDeserialize(const nlohmann::json &data, Entity *parent)
     {
         if (!data.is_object())
             return nullptr;
@@ -37,6 +37,13 @@ namespace our
         entity->parent = parent;
         // STEP 3: Call the entity's deserialize function
         entity->deserialize(data);
+
+        if (data.contains("children"))
+        {
+            // TODO: (Req 8) Recursively call this world's "deserialize" using the children data
+            //  and the current entity as the parent
+            deserialize(data["children"], entity);
+        }
 
         return entity;
     }
