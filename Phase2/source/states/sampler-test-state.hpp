@@ -15,7 +15,7 @@ class SamplerTestState: public our::State {
     our::Mesh* mesh;
     our::Texture2D* texture;
     our::Sampler* sampler;
-    void onResume() override {}
+   
     
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config

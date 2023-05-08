@@ -14,7 +14,7 @@ class TextureTestState: public our::State {
     our::Mesh* mesh;
     our::Texture2D* texture;
     
-    void onResume() override {}
+    
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];

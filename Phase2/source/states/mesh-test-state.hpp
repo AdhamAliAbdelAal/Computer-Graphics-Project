@@ -11,7 +11,7 @@ class MeshTestState: public our::State {
     our::ShaderProgram* shader;
     our::Mesh* mesh;
     
-    void onResume() override {}
+    
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];

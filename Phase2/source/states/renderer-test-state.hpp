@@ -12,7 +12,7 @@ class RendererTestState: public our::State {
 
     our::World world;
     our::ForwardRenderer renderer;
-    void onResume() override {}
+    
     
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config

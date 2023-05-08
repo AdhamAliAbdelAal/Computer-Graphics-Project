@@ -20,7 +20,7 @@ class EntityTestState: public our::State {
 
     our::World world;
 
-    void onResume() override {}
+    
 
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config

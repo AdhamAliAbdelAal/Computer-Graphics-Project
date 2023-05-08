@@ -19,7 +19,7 @@ class TransformTestState: public our::State {
     std::vector<our::Transform> transforms;
     glm::mat4 VP;
     
-    void onResume() override {}
+  
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];

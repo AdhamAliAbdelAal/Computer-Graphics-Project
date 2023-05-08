@@ -31,7 +31,6 @@ class Overstate: public our::State {
     std::string getName() override {
         return "over";
     }
-    void onResume() override {}
     void onInitialize() override {
         // First, we create a material for the menu's background
         menuMaterial = new our::TexturedMaterial();

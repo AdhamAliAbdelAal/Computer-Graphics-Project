@@ -21,7 +21,7 @@ class PipelineTestState: public our::State {
     glm::mat4 VP;
     our::PipelineState pipeline;
     
-    void onResume() override {}
+    
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];
