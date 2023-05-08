@@ -14,6 +14,7 @@ class TextureTestState: public our::State {
     our::Mesh* mesh;
     our::Texture2D* texture;
     
+    void onResume() override {}
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];
@@ -38,6 +39,9 @@ class TextureTestState: public our::State {
         
         // Then we create a texture and load an image into it
         texture = our::texture_utils::loadImage(config.value("texture", ""));
+    }
+     std::string getName() override {
+        return "Texture Test State";
     }
 
     void onDraw(double deltaTime) override {

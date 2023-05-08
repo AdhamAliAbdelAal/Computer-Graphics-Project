@@ -10,6 +10,7 @@ class ShaderTestState: public our::State {
     our::ShaderProgram* shader;
     GLuint vertex_array;
     
+    void onResume() override {}
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];
@@ -47,6 +48,9 @@ class ShaderTestState: public our::State {
 
         // We set the clear color to be black
         glClearColor(0.0, 0.0, 0.0, 1.0);
+    }
+     std::string getName() override {
+        return "Shader Test State";
     }
 
     void onDraw(double deltaTime) override {

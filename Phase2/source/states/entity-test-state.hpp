@@ -19,7 +19,9 @@ T* find(our::World *world){
 class EntityTestState: public our::State {
 
     our::World world;
-    
+
+    void onResume() override {}
+
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];
@@ -33,6 +35,9 @@ class EntityTestState: public our::State {
             world.deserialize(config["world"]);
         }
         
+    }
+    std::string getName() override {
+        return "entity-test";
     }
 
     void onDraw(double deltaTime) override {

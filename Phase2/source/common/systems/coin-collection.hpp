@@ -26,9 +26,11 @@ namespace our
         float fire_min_dist = 1.5f;
 
     public:
+        int accumulator = 0;
         // This should be called every frame to update all entities.
-        void update(World *world, float deltaTime)
+        bool update(World *world, float deltaTime)
         {
+            cout<<accumulator<<'\n';
             const unordered_set<Entity *> entities = world->getEntities();
             Entity *ball = nullptr;
             for (auto it : entities)
@@ -40,7 +42,7 @@ namespace our
                 }
             }
             if (!ball)
-                return;
+                return false;
             glm::vec3 ball_position=ball->localTransform.position;
             for (auto it : entities)
             {
@@ -54,14 +56,21 @@ namespace our
                     // if the distance between the coin and the player is less than the minimum distance
                     if (distance<=min_dist)
                     {
-                        cout<<gainComponent->gain<<'\n';
+                        accumulator += gainComponent->gain;
+
+                        if(accumulator<0) {
+                            return true;
+                        }
                         // cout<<"coin deleted : "<<it<<'\n';
                         // delete the entity
                         world->markForRemoval(it);
                         world->deleteMarkedEntities();
                     }
+                    
                 }
+            
             }
+            return false;
         }
     };
 

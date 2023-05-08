@@ -15,6 +15,7 @@ class SamplerTestState: public our::State {
     our::Mesh* mesh;
     our::Texture2D* texture;
     our::Sampler* sampler;
+    void onResume() override {}
     
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
@@ -47,7 +48,9 @@ class SamplerTestState: public our::State {
             sampler->deserialize(config["sampler"]);
         }
     }
-
+     std::string getName() override {
+        return "sampler-test";
+    }
     void onDraw(double deltaTime) override {
         glClear(GL_COLOR_BUFFER_BIT);
         shader->use();

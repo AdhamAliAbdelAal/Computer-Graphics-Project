@@ -12,6 +12,7 @@ class RendererTestState: public our::State {
 
     our::World world;
     our::ForwardRenderer renderer;
+    void onResume() override {}
     
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
@@ -29,7 +30,9 @@ class RendererTestState: public our::State {
         glm::ivec2 size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
     }
-
+     std::string getName() override {
+        return "renderer-test";
+    }
     void onDraw(double deltaTime) override {
         // We simply call the renderer's "render" function and it should do all the rendering work
         renderer.render(&world);

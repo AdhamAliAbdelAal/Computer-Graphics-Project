@@ -1,5 +1,6 @@
 #include "application.hpp"
 
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -239,6 +240,8 @@ int our::Application::run(int run_for_frames) {
     // The time at which the last frame started. But there was no frames yet, so we'll just pick the current time.
     double last_frame_time = glfwGetTime();
     int current_frame = 0;
+    State * playState = nullptr;
+
     //Game loop
     while(!glfwWindowShouldClose(window)){
         if(run_for_frames != 0 && current_frame >= run_for_frames) break;
@@ -312,16 +315,30 @@ int our::Application::run(int run_for_frames) {
         // Update the keyboard and mouse data
         keyboard.update();
         mouse.update();
-
+        
         // If a scene change was requested, apply it
         while(nextState){
             // If a scene was already running, destroy it (not delete since we can go back to it later)
-            if(currentState) currentState->onDestroy();
+            if(currentState&&currentState->getName()!="play") 
+            {   
+                cout<<"Current: "<<currentState->getName()<<endl;
+
+                currentState->onDestroy();
+            }
             // Switch scenes
             currentState = nextState;
             nextState = nullptr;
             // Initialize the new scene
-            currentState->onInitialize();
+            if(currentState->getName()!="play"||!playState)
+                currentState->onInitialize();
+
+            if(currentState->getName()=="play" && playState) {
+                currentState = playState;
+            }
+
+            if(currentState->getName()=="play" && !playState) {
+                playState = currentState;
+            }
         }
 
         ++current_frame;

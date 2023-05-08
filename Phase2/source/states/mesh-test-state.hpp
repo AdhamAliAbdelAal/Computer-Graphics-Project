@@ -11,6 +11,7 @@ class MeshTestState: public our::State {
     our::ShaderProgram* shader;
     our::Mesh* mesh;
     
+    void onResume() override {}
     void onInitialize() override {
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];
@@ -49,6 +50,9 @@ class MeshTestState: public our::State {
             };
             mesh = new our::Mesh(vertices, elements);
         }
+    }
+    std::string getName() override {
+        return "Mesh Test";
     }
 
     void onDraw(double deltaTime) override {

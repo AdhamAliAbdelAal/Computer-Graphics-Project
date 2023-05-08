@@ -33,7 +33,11 @@ class Playstate: public our::State {
     // road generation system is responsible for generating roads
     our::RoadGenerationSystem *roadGenerationSystem;
 
+    std::string getName() override {
+        return "play";
+    }
     void onInitialize() override {
+        cout<<"Initialize Playstate\n";
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];
         // If we have assets in the scene config, we deserialize them
@@ -68,21 +72,20 @@ class Playstate: public our::State {
 
     void onDraw(double deltaTime) override {
         // Here, we just run a bunch of systems to control the world logic
-        if(!isPaused) 
-        {
-            movementSystem.update(&world, (float)deltaTime, getApp());
-            cameraController.update(&world, (float)deltaTime);
+        
+        movementSystem.update(&world, (float)deltaTime, getApp());
+        cameraController.update(&world, (float)deltaTime);
 
-            //TODO: Add more systems here
-            // system 1 : call update function of coin generation system
-            if(coinGenerationSystem) coinGenerationSystem->update(&world, (float)deltaTime);
-            // system 2 : call update function of road repeater system
-            if(roadRepeaterSystem) roadRepeaterSystem->update(&world, (float)deltaTime);
-            // system 3 : call update function of coin collection system
-            coinCollectionSystem.update(&world, (float)deltaTime);
+        //TODO: Add more systems here
+        // system 1 : call update function of coin generation system
+        if(coinGenerationSystem) coinGenerationSystem->update(&world, (float)deltaTime);
+        // system 2 : call update function of road repeater system
+        if(roadRepeaterSystem) roadRepeaterSystem->update(&world, (float)deltaTime);
+        // system 3 : call update function of coin collection system
+        coinCollectionSystem.update(&world, (float)deltaTime);
 
 
-        }
+        
             // And finally we use the renderer system to draw the scene
             renderer.render(&world);
         
@@ -93,6 +96,7 @@ class Playstate: public our::State {
         if(keyboard.justPressed(GLFW_KEY_P)){
             // If the P key is pressed in this frame, toggle the pause state
             isPaused = !isPaused;
+            getApp()->changeState("menu");
             cout<<"P pressed\n";
         }
 
@@ -103,7 +107,8 @@ class Playstate: public our::State {
     }
 
     void onDestroy() override {
-
+        
+        cout<<"Destroy Playstate\n";
         // delete all systems pointers
         delete coinGenerationSystem;
         delete roadRepeaterSystem;

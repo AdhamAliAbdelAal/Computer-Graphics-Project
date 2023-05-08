@@ -46,7 +46,7 @@ namespace our
                     fenceEntity->localTransform.position.z = 3.4f + roadZ - float(j) * 7.0f;
                     fenceEntity->localTransform.position.x *= -1.0f;
                     fenceEntity->localTransform.rotation.y += glm::pi<float>();
-                    cout<<"fenceEntity->localTransform.position.z: "<<fenceEntity->localTransform.rotation.y<<endl;
+                    // cout<<"fenceEntity->localTransform.position.z: "<<fenceEntity->localTransform.rotation.y<<endl;
                 }
 
             }
