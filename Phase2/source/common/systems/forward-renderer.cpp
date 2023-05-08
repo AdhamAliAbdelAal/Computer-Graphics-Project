@@ -133,7 +133,7 @@ namespace our {
         }
     }
 
-    void ForwardRenderer::render(World* world){
+    void ForwardRenderer::render(World* world, string path){
         // First of all, we search for a camera and for all the mesh renderers
         CameraComponent* camera = nullptr;
         opaqueCommands.clear();
@@ -283,6 +283,12 @@ namespace our {
         // If there is a postprocess material, apply postprocessing
         if(postprocessMaterial){
             //TODO: (Req 11) Return to the default framebuffer
+            // Create the post processing shader
+            ShaderProgram* postprocessShader = new ShaderProgram();
+            postprocessShader->attach("assets/shaders/fullscreen.vert", GL_VERTEX_SHADER);
+            postprocessShader->attach(path, GL_FRAGMENT_SHADER);
+            postprocessShader->link();
+            postprocessMaterial->shader = postprocessShader;
             // Unbinding the framebuffer again.
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
             //TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle

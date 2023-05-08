@@ -15,8 +15,11 @@
 
 // This state shows how to use the ECS framework and deserialization.
 class Playstate: public our::State {
-    
+    string path;
     bool isHit = false;
+    bool timed = false; //Countdown to change state
+    float startTime = 0; // of the countdown to gameover
+    float pauseStartTime = 0; // Pausing the game should pause the countdown
     our::World world;
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
@@ -37,6 +40,7 @@ class Playstate: public our::State {
         return "play";
     }
     void onInitialize() override {
+
         cout<<"Initialize Playstate\n";
         // First of all, we get the scene configuration from the app config
         auto& config = getApp()->getConfig()["scene"];
@@ -68,7 +72,9 @@ class Playstate: public our::State {
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
+        path= "assets/shaders/postprocess/vignette.frag";
         isHit = false;
+        timed = false;
     }
 
     void onDraw(double deltaTime) override {
@@ -87,21 +93,33 @@ class Playstate: public our::State {
 
 
         
-            // And finally we use the renderer system to draw the scene
-            renderer.render(&world);
+        // And finally we use the renderer system to draw the scene
+        renderer.render(&world, path);
         
 
         // Get a reference to the keyboard object
         auto& keyboard = getApp()->getKeyboard();
 
-        if(isHit){
+        if(isHit && !timed){
             // If the player is hit, go to the over state
+            path = "assets/shaders/postprocess/radial-blur.frag";
+            timed = true;
+            cameraController.setReversed(true);
+            startTime = glfwGetTime();
+            // getApp()->changeState("over");
+        }
+
+        if(glfwGetTime() - pauseReturnTime > (5.0f - (pauseStartTime - startTime)) && timed){
+            path = "assets/shaders/postprocess/vignette.frag";
+            startTime = glfwGetTime();
+            timed = false;
             getApp()->changeState("over");
         }
 
         if(keyboard.justPressed(GLFW_KEY_P)){
             // If the P key is pressed in this frame, toggle the pause state
-            getApp()->changeState("pause", true);
+            pauseStartTime = glfwGetTime();
+            getApp()->changeState("pause", true); // True Passed to control the Clearing of the color buffer in the application class
         }
 
         if(keyboard.justPressed(GLFW_KEY_ESCAPE)){
@@ -129,3 +147,17 @@ class Playstate: public our::State {
         our::clearAllAssets();
     }
 };
+
+
+/*
+    Doom State: A state reached before losing, a countdown starts after which you'll lose, you can pause the game
+    during that countdown, pause time won't be considered in the countdown. The countdown will resume after the pause is over.
+    The countodown is 5 seconds.
+
+    Pause State: A state reached when you press the P key, you can resume the game by pressing the P key again.
+
+    Over State: A state reached when you lose, you can go back to the menu by pressing the escape key.
+
+    Menu State: A state reached when you hit the esc button, you can restart the game by pressing the space key.
+
+*/

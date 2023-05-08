@@ -340,7 +340,11 @@ int our::Application::run(int run_for_frames) {
                 currentState->onInitialize();
 
             if(currentState->getName()=="play") {
-                if(playState) currentState = playState;
+                if(playState){
+                  
+                  currentState = playState;
+                  currentState->setPauseReturnTime(glfwGetTime());  
+                } 
                 else playState = currentState;
             }
         }

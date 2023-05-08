@@ -34,6 +34,9 @@ namespace our {
         Application* application;
         friend Application;
     public:
+        float pauseReturnTime = 0.0f;   // If the scene is paused, this will store the time when it was paused
+
+        void setPauseReturnTime(float time) { pauseReturnTime = time; } // Sets the pause return time
         virtual void onInitialize(){}                   // Called once before the game loop.
         virtual void onImmediateGui(){}                 // Called every frame to draw the Immediate GUI (if any).
         virtual void onDraw(double deltaTime){}         // Called every frame in the game loop passing the time taken to draw the frame "Delta time".

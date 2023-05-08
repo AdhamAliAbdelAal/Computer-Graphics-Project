@@ -22,11 +22,16 @@ namespace our
     {
         Application *app;          // The application in which the state runs
         bool mouse_locked = false; // Is the mouse locked
+        bool reversed = false;     // Is the controllers reversed
         const float MAX_X_POSITION = 5.5;
         const float MAX_FORWARD_POSITION = 3.5;
         const float MAX_BACKWARD_POSITION = 5.5;
 
     public:
+        void setReversed(bool reversed)
+        {
+            this->reversed = reversed;
+        }
         // When a state enters, it should call this function and give it the pointer to the application
         void enter(Application *app)
         {
@@ -102,14 +107,18 @@ namespace our
             // W & UP moves the player forward
             if (app->getKeyboard().isPressed(GLFW_KEY_W) || app->getKeyboard().isPressed(GLFW_KEY_UP))
             {
-                if (position.z > MAX_FORWARD_POSITION)
+                if (position.z > MAX_FORWARD_POSITION && !reversed)
                     position += front * (deltaTime * current_sensitivity.z);
+                else if (position.z < MAX_BACKWARD_POSITION && reversed)
+                    position -= front * (deltaTime * current_sensitivity.z);
             }
             // S & DOWN moves the player backward
             if (app->getKeyboard().isPressed(GLFW_KEY_S) || app->getKeyboard().isPressed(GLFW_KEY_DOWN))
             {
-                if (position.z < MAX_BACKWARD_POSITION)
+                if (position.z < MAX_BACKWARD_POSITION && !reversed)
                     position -= front * (deltaTime * current_sensitivity.z);
+                else if (position.z > MAX_FORWARD_POSITION && reversed)
+                    position += front * (deltaTime * current_sensitivity.z);
             }
 
             // Space moves the player up
@@ -121,14 +130,18 @@ namespace our
             // D & RIGHT moves the player right
             if (app->getKeyboard().isPressed(GLFW_KEY_D) || app->getKeyboard().isPressed(GLFW_KEY_RIGHT))
             {
-                if (position.x < MAX_X_POSITION)
+                if (position.x < MAX_X_POSITION && !reversed)
                     position += right * (deltaTime * current_sensitivity.x);
+                else if (position.x > -MAX_X_POSITION && reversed)
+                    position -= right * (deltaTime * current_sensitivity.x);
             }
             // A & LEFT moves the player left
             if (app->getKeyboard().isPressed(GLFW_KEY_A) || app->getKeyboard().isPressed(GLFW_KEY_LEFT))
             {
-                if (position.x > -MAX_X_POSITION)
+                if (position.x > -MAX_X_POSITION && !reversed)
                     position -= right * (deltaTime * current_sensitivity.x);
+                else if (position.x < MAX_X_POSITION && reversed)
+                    position += right * (deltaTime * current_sensitivity.x);
             }
         }
 
@@ -140,6 +153,7 @@ namespace our
                 mouse_locked = false;
                 app->getMouse().unlockMouse(app->getWindow());
             }
+            reversed = false;
         }
     };
 
