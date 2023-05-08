@@ -30,7 +30,8 @@
                 "road": "assets/textures/road.jpg",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
-                "ball": "assets/textures/toy_ball_01.png"
+                "ball": "assets/textures/toy_ball_01.png",
+                "fence":"assets/textures/fence.jpg"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -64,8 +65,8 @@
                     "sampler": "default"
                 },
                 "fence":{
-                    "type": "tinted",
-                    "shader": "tinted",
+                    "type": "textured",
+                    "shader": "textured",
                     "pipelineState": {
                         "faceCulling":{
                             "enabled": false
@@ -74,7 +75,9 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1]
+                    "tint": [1, 1, 1, 1],
+                    "texture": "fence",
+                    "sampler": "default"
                 },
                 "ball":{
                     "type": "textured",
