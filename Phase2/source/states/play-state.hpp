@@ -106,7 +106,6 @@ class Playstate: public our::State {
             timed = true;
             cameraController.setReversed(true);
             startTime = glfwGetTime();
-            // getApp()->changeState("over");
         }
 
         if(glfwGetTime() - pauseReturnTime > (5.0f - (pauseStartTime - startTime)) && timed){
