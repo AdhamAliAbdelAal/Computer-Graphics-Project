@@ -32,7 +32,9 @@
                 "glass": "assets/textures/glass-panels.png",
                 "ball": "assets/textures/toy_ball_01.png",
                 "fence":"assets/textures/fence.jpg",
-                "grass": "assets/textures/grass_a.png"
+                "grass": "assets/textures/grass_a.png",
+                "flower": "assets/textures/flower.png",
+                "grasses": "assets/textures/grass_ground_d.jpg"                
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -79,6 +81,36 @@
                     },
                     "tint": [1, 1, 1, 1],
                     "texture": "grass",
+                    "sampler": "default"
+                },
+                "grasses":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "grasses",
+                    "sampler": "default"
+                },
+                "flower":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "flower",
                     "sampler": "default"
                 },
                 "fence":{
@@ -174,38 +206,6 @@
                     }
                 ]
             }
-            //,
-            // {
-            //     "name":"grass",
-            //     "position": [10, -1, 0],
-            //     "rotation": [0, 90, 0],
-            //     "scale": [0.25, 0.2, 0.25],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "grass",
-            //             "material": "grass"
-            //         }
-            //         //,
-            //         // {
-            //         //     "type": "Movement",
-            //         //     "linearVelocity": [0, 0, 5]
-            //         // }
-            //     ] 
-            // },
-            // {
-            //     "name":"grass",
-            //     "position": [10, -1, -1],
-            //     "rotation": [0, 90, 0],
-            //     "scale": [0.25, 0.2, 0.25],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "grass",
-            //             "material": "grass"
-            //         }
-            //     ] 
-            // }
         ],
         "coin":{
             "name":"coin",
@@ -305,7 +305,7 @@
                 ,
                 {
                     "name":"grass",
-                    "position": [-1, -1, 2],
+                    "position": [0.5, -1, 2],
                     "rotation": [0, 90, 0],
                     "scale": [0.25, 0.17, 0.1],
                     "components": [
@@ -318,7 +318,7 @@
                 },
                 {
                     "name":"grass",
-                    "position": [-2, -1, 2],
+                    "position": [1, -1, 2],
                     "rotation": [0, 90, 0],
                     "scale": [0.25, 0.17, 0.1],
                     "components": [
@@ -331,7 +331,7 @@
                 },
                 {
                     "name":"grass",
-                    "position": [-3, -1, 2],
+                    "position": [1.5, -1, 2],
                     "rotation": [0, 90, 0],
                     "scale": [0.25, 0.17, 0.1],
                     "components": [
@@ -339,6 +339,32 @@
                             "type": "Mesh Renderer",
                             "mesh": "grass",
                             "material": "grass"
+                        }
+                    ] 
+                },
+                {
+                    "name":"grass",
+                    "position": [0.75, -1, 2],
+                    "rotation": [0, 90, 0],
+                    "scale": [0.25, 0.17, 0.1],
+                    "components": [
+                        {
+                            "type": "Mesh Renderer",
+                            "mesh": "grass",
+                            "material": "grasses"
+                        }
+                    ] 
+                },
+                {
+                    "name":"grass",
+                    "position": [0.2, -1, 2],
+                    "rotation": [0, 90, 0],
+                    "scale": [0.25, 0.17, 0.1],
+                    "components": [
+                        {
+                            "type": "Mesh Renderer",
+                            "mesh": "grass",
+                            "material": "grasses"
                         }
                     ] 
                 }
