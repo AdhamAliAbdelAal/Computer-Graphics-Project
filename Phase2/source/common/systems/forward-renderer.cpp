@@ -157,10 +157,17 @@ namespace our {
                     opaqueCommands.push_back(command);
                 }
             }
+            // for light components add them to lights list
+            if (auto light = entity->getComponent<LightComponent>(); light)
+            {
+                lights.push_back(light);
+            }
         }
 
         // If there is no camera, we return (we cannot render without a camera)
         if(camera == nullptr) return;
+        glm::vec3 eyeTrans = camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1.0);
+        glm::vec3 centerTrans = camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 1.0);
 
         //TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         // HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
@@ -227,6 +234,56 @@ namespace our {
         {
             it.material->setup();
             it.material->shader->set("transform", VP*it.localToWorld);
+             if (auto light_material = dynamic_cast<LightMaterial *>(it.material); light_material)
+            {
+                light_material->shader->set("VP", VP);
+                light_material->shader->set("eye", eyeTrans);
+                light_material->shader->set("M", it.localToWorld);
+                light_material->shader->set("M_IT", glm::transpose(glm::inverse(it.localToWorld)));
+
+                // send the lights count and other data (pos, direc , ..) to the fragement shader
+                light_material->shader->set("light_count", (int)lights.size());
+
+                light_material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.middle", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
+
+                for (unsigned i = 0; i < lights.size(); i++)
+                {
+                    glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
+                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(lights[i]->direction, 0);
+
+                    std::string light_name = "lights[" + std::to_string(i) + "]";
+
+                    light_material->shader->set(light_name + ".type", (GLint)lights[i]->light_type);
+                    light_material->shader->set(light_name + ".diffuse", lights[i]->diffuse);
+                    light_material->shader->set(light_name + ".specular", lights[i]->specular);
+                    light_material->shader->set(light_name + ".attenuation", lights[i]->attenuation);
+
+
+                    switch (lights[i]->light_type)
+                    {
+                    case LIGHT_TYPE::DIRECTIONAL:
+                        light_material->shader->set(light_name + ".direction", light_direction);
+                        break;
+                    case LIGHT_TYPE::SPOT:
+                        light_material->shader->set(light_name + ".position", light_position);
+                        light_material->shader->set(light_name + ".direction", light_direction);
+                        light_material->shader->set(light_name + ".cone_angles", lights[i]->cone_angles);
+                        break;
+                    case LIGHT_TYPE::POINT:
+                        light_material->shader->set(light_name + ".position", light_position);
+
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                it.material->shader->set("transform", VP * it.localToWorld); // iam not sure that localToWorld is the transformation matrix we need.
+            }
+
+            // Then we draw a mesh instance
             it.mesh->draw();
         }
         
@@ -277,6 +334,56 @@ namespace our {
         {
             it.material->setup();
             it.material->shader->set("transform", VP*it.localToWorld);
+             if (auto light_material = dynamic_cast<LightMaterial *>(it.material); light_material)
+            {
+                light_material->shader->set("VP", VP);
+                light_material->shader->set("eye", eyeTrans);
+                light_material->shader->set("M", it.localToWorld);
+                light_material->shader->set("M_IT", glm::transpose(glm::inverse(it.localToWorld)));
+
+                // send the lights count and other data (pos, direc , ..) to the fragement shader
+                light_material->shader->set("light_count", (int)lights.size());
+
+                light_material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.middle", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
+
+                for (unsigned i = 0; i < lights.size(); i++)
+                {
+                    glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
+                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(lights[i]->direction, 0);
+
+                    std::string light_name = "lights[" + std::to_string(i) + "]";
+
+                    light_material->shader->set(light_name + ".type", (GLint)lights[i]->light_type);
+                    light_material->shader->set(light_name + ".diffuse", lights[i]->diffuse);
+                    light_material->shader->set(light_name + ".specular", lights[i]->specular);
+                    light_material->shader->set(light_name + ".attenuation", lights[i]->attenuation);
+
+
+                    switch (lights[i]->light_type)
+                    {
+                    case LIGHT_TYPE::DIRECTIONAL:
+                        light_material->shader->set(light_name + ".direction", light_direction);
+                        break;
+                    case LIGHT_TYPE::SPOT:
+                        light_material->shader->set(light_name + ".position", light_position);
+                        light_material->shader->set(light_name + ".direction", light_direction);
+                        light_material->shader->set(light_name + ".cone_angles", lights[i]->cone_angles);
+                        break;
+                    case LIGHT_TYPE::POINT:
+                        light_material->shader->set(light_name + ".position", light_position);
+
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                it.material->shader->set("transform", VP * it.localToWorld); // iam not sure that localToWorld is the transformation matrix we need.
+            }
+
+            // Then we draw a mesh instance
             it.mesh->draw();
         }
 

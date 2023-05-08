@@ -4,7 +4,7 @@
 #include "../components/camera.hpp"
 #include "../components/mesh-renderer.hpp"
 #include "../asset-loader.hpp"
-
+#include "../components/light.hpp"
 #include <glad/gl.h>
 #include <vector>
 #include <algorithm>
@@ -40,6 +40,7 @@ namespace our
         GLuint postprocessFrameBuffer, postProcessVertexArray;
         Texture2D *colorTarget, *depthTarget;
         TexturedMaterial* postprocessMaterial;
+        std::vector<LightComponent *> lights;
     public:
         // Initialize the renderer including the sky and the Postprocessing objects.
         // windowSize is the width & height of the window (in pixels).
