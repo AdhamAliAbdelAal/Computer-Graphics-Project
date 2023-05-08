@@ -95,7 +95,7 @@ class Playstate: public our::State {
         
         if(keyboard.justPressed(GLFW_KEY_P)){
             // If the P key is pressed in this frame, toggle the pause state
-            isPaused = !isPaused;
+            
             getApp()->changeState("menu");
             cout<<"P pressed\n";
         }

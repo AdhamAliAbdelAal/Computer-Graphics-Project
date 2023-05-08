@@ -56,11 +56,6 @@ namespace our
                     // if the distance between the coin and the player is less than the minimum distance
                     if (distance<=min_dist)
                     {
-                        accumulator += gainComponent->gain;
-
-                        if(accumulator<0) {
-                            return true;
-                        }
                         // cout<<"coin deleted : "<<it<<'\n';
                         // delete the entity
                         world->markForRemoval(it);
