@@ -27,10 +27,13 @@ namespace our
 
     public:
         int accumulator = 0;
+
+        void reset() {
+            accumulator = 0;
+        }
         // This should be called every frame to update all entities.
         bool update(World *world, float deltaTime)
         {
-            cout<<accumulator<<'\n';
             const unordered_set<Entity *> entities = world->getEntities();
             Entity *ball = nullptr;
             for (auto it : entities)
@@ -56,10 +59,17 @@ namespace our
                     // if the distance between the coin and the player is less than the minimum distance
                     if (distance<=min_dist)
                     {
+                        accumulator+= gainComponent->gain;
                         // cout<<"coin deleted : "<<it<<'\n';
                         // delete the entity
+                        cout<<accumulator<<'\n';
+
                         world->markForRemoval(it);
                         world->deleteMarkedEntities();
+
+                        if(accumulator<0){
+                            return true;
+                        }
                     }
                     
                 }

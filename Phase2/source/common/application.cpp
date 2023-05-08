@@ -319,11 +319,16 @@ int our::Application::run(int run_for_frames) {
         // If a scene change was requested, apply it
         while(nextState){
             // If a scene was already running, destroy it (not delete since we can go back to it later)
-            if(currentState&&currentState->getName()!="play") 
+            if((currentState&&currentState->getName()!="play")||nextState->getName()=="over") 
             {   
                 cout<<"Current: "<<currentState->getName()<<endl;
 
                 currentState->onDestroy();
+                if(nextState->getName()=="over")
+                {
+                    cout<<"playState Nulled"<<endl;
+                    playState = nullptr;  
+                }
             }
             // Switch scenes
             currentState = nextState;
@@ -332,12 +337,9 @@ int our::Application::run(int run_for_frames) {
             if(currentState->getName()!="play"||!playState)
                 currentState->onInitialize();
 
-            if(currentState->getName()=="play" && playState) {
-                currentState = playState;
-            }
-
-            if(currentState->getName()=="play" && !playState) {
-                playState = currentState;
+            if(currentState->getName()=="play") {
+                if(playState) currentState = playState;
+                else playState = currentState;
             }
         }
 
