@@ -16,7 +16,7 @@
 // This state shows how to use the ECS framework and deserialization.
 class Playstate: public our::State {
     
-    bool isPaused = false;
+    bool isHit = false;
     our::World world;
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
@@ -68,6 +68,7 @@ class Playstate: public our::State {
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
+        isHit = false;
     }
 
     void onDraw(double deltaTime) override {
@@ -82,7 +83,7 @@ class Playstate: public our::State {
         // system 2 : call update function of road repeater system
         if(roadRepeaterSystem) roadRepeaterSystem->update(&world, (float)deltaTime);
         // system 3 : call update function of coin collection system
-        coinCollectionSystem.update(&world, (float)deltaTime);
+        isHit = coinCollectionSystem.update(&world, (float)deltaTime);
 
 
         
@@ -92,7 +93,11 @@ class Playstate: public our::State {
 
         // Get a reference to the keyboard object
         auto& keyboard = getApp()->getKeyboard();
-        
+
+        if(isHit){
+            getApp()->changeState("over");
+        }
+
         if(keyboard.justPressed(GLFW_KEY_P)){
             // If the P key is pressed in this frame, toggle the pause state
             
@@ -113,6 +118,8 @@ class Playstate: public our::State {
         delete coinGenerationSystem;
         delete roadRepeaterSystem;
         delete roadGenerationSystem;
+        coinCollectionSystem.reset();
+        
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
