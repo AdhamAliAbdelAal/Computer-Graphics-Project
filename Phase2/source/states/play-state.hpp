@@ -95,14 +95,13 @@ class Playstate: public our::State {
         auto& keyboard = getApp()->getKeyboard();
 
         if(isHit){
+            // If the player is hit, go to the over state
             getApp()->changeState("over");
         }
 
         if(keyboard.justPressed(GLFW_KEY_P)){
             // If the P key is pressed in this frame, toggle the pause state
-            
-            getApp()->changeState("menu");
-            cout<<"P pressed\n";
+            getApp()->changeState("pause", true);
         }
 
         if(keyboard.justPressed(GLFW_KEY_ESCAPE)){

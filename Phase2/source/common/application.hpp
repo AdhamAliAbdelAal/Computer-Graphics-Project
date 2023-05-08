@@ -67,7 +67,7 @@ namespace our {
         std::unordered_map<std::string, State*> states;   // This will store all the states that the application can run
         State * currentState = nullptr;         // This will store the current scene that is being run
         State * nextState = nullptr;            // If it is requested to go to another scene, this will contain a pointer to that scene
-
+        bool pause = false;                    // If true, the current scene will not be updated
         
         // Virtual functions to be overrode and change the default behaviour of the application
         // according to the example needs.
@@ -102,11 +102,12 @@ namespace our {
 
         // Tells the application to change its current state
         // The change will not be applied until the current frame ends
-        void changeState(std::string name){
+        void changeState(std::string name, bool paused = false){
             auto it = states.find(name);
             if(it != states.end()){
                 nextState = it->second;
             }
+            pause = paused;
         }
 
         // Closes the Application

@@ -146,7 +146,6 @@ class Overstate: public our::State {
             rectangle->draw();
         }
         
-        
     }
 
     void onDestroy() override {
