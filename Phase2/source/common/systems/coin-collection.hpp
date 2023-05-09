@@ -24,7 +24,7 @@ namespace our
         // the minimum distance between the coin and the player
         float coin_min_dist = 1.0f;
         float fire_min_dist = 1.5f;
-
+        int coins_counter = 0;
     public:
         int accumulator = 0;
 
@@ -59,6 +59,8 @@ namespace our
                     // if the distance between the coin and the player is less than the minimum distance
                     if (distance<=min_dist)
                     {
+                        coins_counter = gainComponent->gain == 1  ? coins_counter + 1 : coins_counter;
+
                         accumulator+= gainComponent->gain;
                         // cout<<"coin deleted : "<<it<<'\n';
                         // delete the entity
@@ -77,6 +79,11 @@ namespace our
             }
             return false;
         }
+    
+        int get_num_of_collected_coins(){
+            return coins_counter;
+        }
+    
     };
 
 }
