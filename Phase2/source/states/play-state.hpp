@@ -10,6 +10,7 @@
 #include <systems/coin-collection.hpp>
 #include <systems/road-generator.hpp>
 #include <systems/road-repeater.hpp>
+#include <systems/battery-controller.hpp>
 #include <asset-loader.hpp>
 #include<iostream>
 
@@ -35,6 +36,9 @@ class Playstate: public our::State {
 
     // road generation system is responsible for generating roads
     our::RoadGenerationSystem *roadGenerationSystem;
+
+    // Battery system is responsible for collected coins
+    our::BatterySystem batteryController;
 
     std::string getName() override {
         return "play";
@@ -91,7 +95,8 @@ class Playstate: public our::State {
         // system 3 : call update function of coin collection system
         isHit = coinCollectionSystem.update(&world, (float)deltaTime);
 
-
+        // system 4 : call update function of the battery system
+        batteryController.update_battery(&world, coinCollectionSystem.get_num_of_collected_coins());
         
         // And finally we use the renderer system to draw the scene
         renderer.render(&world, path);
