@@ -34,7 +34,8 @@
                 "fence":"assets/textures/fence.jpg",
                 "grass": "assets/textures/grass_a.png",
                 "flower": "assets/textures/flower.png",
-                "grasses": "assets/textures/grass_ground_d.jpg"                
+                "grasses": "assets/textures/grass_ground_d.jpg",
+                "battery": "assets/textures/battery.jpeg"               
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -44,7 +45,8 @@
                 "coin": "assets/models/Coin 2.obj",
                 "fire": "assets/models/fire head.obj",
                 "fence":"assets/models/fence wood.obj",
-                "grass":"assets/models/sht_grass.obj"
+                "grass":"assets/models/sht_grass.obj",
+                "battery": "assets/models/battery.obj"
             },
             "samplers":{
                 "default":{},
@@ -170,6 +172,21 @@
                     "tint": [1, 1, 1, 1],
                     "texture": "fire",
                     "sampler": "default"
+                },
+                "battery": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "battery",
+                    "sampler": "default"
                 }
             }
         },
@@ -203,6 +220,86 @@
                         "type": "Movement",
                         "linearVelocity": [0, 0, 0],
                         "angularVelocity": [-200, 0, 0]
+                    }
+                ]
+            },
+            {
+                "name":"bar-1",
+                "position": [2, 4.5, 5],
+                "scale": [0.2, 0.1, 0.1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "battery",
+                        "material": "battery"
+                    },
+                    {
+                        "type": "Bar",
+                        "id": 1
+                    }
+                ]
+            },
+            {
+                "name":"bar-2",
+                "position": [2.4, 4.5, 5],
+                "scale": [0.2, 0.1, 0.1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "battery",
+                        "material": "battery"
+                    },
+                    {
+                        "type": "Bar",
+                        "id": 2
+                    }
+                ]
+            },
+            {
+                "name":"bar-3",
+                "position": [2.8, 4.5, 5],
+                "scale": [0.2, 0.1, 0.1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "battery",
+                        "material": "battery"
+                    },
+                    {
+                        "type": "Bar",
+                        "id": 3
+                    }
+                ]
+            },
+            {
+                "name":"bar-4",
+                "position": [3.2, 4.5, 5],
+                "scale": [0.2, 0.1, 0.1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "battery",
+                        "material": "battery"
+                    },
+                    {
+                        "type": "Bar",
+                        "id": 4
+                    }
+                ]
+            },
+            {
+                "name":"bar-5",
+                "position": [3.6, 4.5, 5],
+                "scale": [0.2, 0.1, 0.1],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "battery",
+                        "material": "battery"
+                    },
+                    {
+                        "type": "Bar",
+                        "id": 5
                     }
                 ]
             }
