@@ -30,6 +30,7 @@ namespace our
 
         void reset() {
             accumulator = 0;
+            coins_counter = 0;
         }
         // This should be called every frame to update all entities.
         bool update(World *world, float deltaTime)

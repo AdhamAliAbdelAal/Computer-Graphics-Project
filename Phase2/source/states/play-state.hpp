@@ -19,8 +19,11 @@ class Playstate: public our::State {
     string path;
     bool isHit = false;
     bool timed = false; //Countdown to change state
+    bool isWon = false; //If the player won
+
     float startTime = 0; // of the countdown to gameover
     float pauseStartTime = 0; // Pausing the game should pause the countdown
+
     our::World world;
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
@@ -79,6 +82,7 @@ class Playstate: public our::State {
         path= "assets/shaders/postprocess/vignette.frag";
         isHit = false;
         timed = false;
+        isWon = false;
     }
 
     void onDraw(double deltaTime) override {
@@ -96,7 +100,7 @@ class Playstate: public our::State {
         isHit = coinCollectionSystem.update(&world, (float)deltaTime);
 
         // system 4 : call update function of the battery system
-        batteryController.update_battery(&world, coinCollectionSystem.get_num_of_collected_coins());
+        isWon = batteryController.update_battery(&world, coinCollectionSystem.get_num_of_collected_coins());
         
         // And finally we use the renderer system to draw the scene
         renderer.render(&world, path);
@@ -105,8 +109,13 @@ class Playstate: public our::State {
         // Get a reference to the keyboard object
         auto& keyboard = getApp()->getKeyboard();
 
+        if(isWon){
+            // If the player won, go to the win state
+            getApp()->changeState("over");
+        }
+
         if(isHit && !timed){
-            // If the player is hit, go to the over state
+            // If the player is hit, go Berserk
             path = "assets/shaders/postprocess/radial-blur.frag";
             timed = true;
             cameraController.setReversed(true);
@@ -114,9 +123,7 @@ class Playstate: public our::State {
         }
 
         if(glfwGetTime() - pauseReturnTime > (5.0f - (pauseStartTime - startTime)) && timed){
-            path = "assets/shaders/postprocess/vignette.frag";
-            startTime = glfwGetTime();
-            timed = false;
+            // If the ocunt down is over, go to the over state
             getApp()->changeState("over");
         }
 

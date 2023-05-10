@@ -11,13 +11,13 @@
 #include <vector>
 #include <iostream>
 using namespace std;
+#define MAX_COINS_TO_WIN 5
 
 namespace our
 {
 
     class BatterySystem
     {
-        const int MAX_COINS_TO_WIN = 15;
         
     public:
 
@@ -36,7 +36,7 @@ namespace our
  
         }
 
-        void update_battery(World *world, int coins_counter){
+        bool update_battery(World *world, int coins_counter){
             string action;
             const int LEVEL_AMOUNT = 3;
             switch (coins_counter)
@@ -57,10 +57,13 @@ namespace our
                 action = "bar-5";
                 break;
             default:
-                return;
                 break;
             }
             this->update(world, action);
+            if(coins_counter >= MAX_COINS_TO_WIN){
+                return true;
+            }
+            return false;
         }
     };
 
