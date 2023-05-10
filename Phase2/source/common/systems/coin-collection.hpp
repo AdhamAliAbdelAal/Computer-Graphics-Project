@@ -25,6 +25,7 @@ namespace our
         float coin_min_dist = 1.0f;
         float fire_min_dist = 1.5f;
         int coins_counter = 0;
+        
     public:
         int accumulator = 0;
 
