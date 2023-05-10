@@ -11,7 +11,7 @@
 #include <vector>
 #include <iostream>
 using namespace std;
-#define MAX_COINS_TO_WIN 5
+#define MAX_COINS_TO_WIN 1
 
 namespace our
 {

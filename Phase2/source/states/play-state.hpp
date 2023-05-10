@@ -111,7 +111,7 @@ class Playstate: public our::State {
 
         if(isWon){
             // If the player won, go to the win state
-            getApp()->changeState("over");
+            getApp()->changeState("win");
         }
 
         if(isHit && !timed){
