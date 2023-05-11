@@ -41,7 +41,7 @@ class Playstate: public our::State {
     our::RoadGenerationSystem *roadGenerationSystem;
 
     // Battery system is responsible for collected coins
-    our::BatterySystem batteryController;
+    our::BatterySystem *batteryController;
 
     std::string getName() override {
         return "play";
@@ -83,6 +83,8 @@ class Playstate: public our::State {
         isHit = false;
         timed = false;
         isWon = false;
+
+        batteryController = new our::BatterySystem(config["world"], &world);
     }
 
     void onDraw(double deltaTime) override {
@@ -100,7 +102,7 @@ class Playstate: public our::State {
         isHit = coinCollectionSystem.update(&world, (float)deltaTime);
 
         // system 4 : call update function of the battery system
-        isWon = batteryController.update_battery(&world, coinCollectionSystem.get_num_of_collected_coins());
+        isWon = batteryController->update_battery(coinCollectionSystem.get_num_of_collected_coins()) == 1;
         
         // And finally we use the renderer system to draw the scene
         renderer.render(&world, path);

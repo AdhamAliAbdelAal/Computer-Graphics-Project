@@ -2,7 +2,6 @@
 
 #include "../ecs/world.hpp"
 #include "../components/movement.hpp"
-#include "../components/battery_bar.hpp"
 #include "../ecs/entity.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
@@ -11,59 +10,82 @@
 #include <vector>
 #include <iostream>
 using namespace std;
-#define MAX_COINS_TO_WIN 15
+#define MAX_LEVELS_TO_WIN 5
+#define LEVELS_COUNT 4.0    // weight of the level
 
 namespace our
 {
 
     class BatterySystem
     {
-        
-    public:
+        const nlohmann::json worldJson;
+        World *worldPtr;
+        int current_battery_level;
 
-        void update(World *world, string action)
+        void remove_bar(int bar_number)
         {
-            const unordered_set<Entity *> entities = world->getEntities();
-            for (auto entity : entities)
+            string bar_name = "bar-" + std::to_string(bar_number);
+            for (auto entity : this->worldPtr->getEntities())
             {
-                if (entity->name == action)
+                if (entity->name == bar_name)
                 {
-                    world->markForRemoval(entity);
-                    world->deleteMarkedEntities();
+                    this->worldPtr->markForRemoval(entity);
+                    this->worldPtr->deleteMarkedEntities();
 
                 }
             }
  
         }
 
-        bool update_battery(World *world, int coins_counter){
-            string action;
-            const int LEVEL_AMOUNT = 3;
-            switch (coins_counter)
-            {
-            case LEVEL_AMOUNT:
-                action = "bar-1";
-                break;
-            case 2 * LEVEL_AMOUNT:
-                action = "bar-2";
-                break;
-            case 3 * LEVEL_AMOUNT:
-                action = "bar-3";
-                break;
-            case 4 * LEVEL_AMOUNT:
-                action = "bar-4";
-                break;
-            case 5 * LEVEL_AMOUNT:
-                action = "bar-5";
-                break;
-            default:
-                break;
+        void remove_all_bars()
+        {
+            for(int i = 1; i <= 5; i++)
+                remove_bar(i);
+        }
+
+        void add_bar(int bar_number)
+        {
+            string bar_name = "bar-" + std::to_string(bar_number);
+            for (auto& obj : this->worldJson) {
+                if (obj["name"] == bar_name) {
+                    // cout << obj.dump(4) << std::endl; // print the object to console
+                    this->worldPtr->objectDeserialize(obj);
+                    break;
+                }
             }
-            this->update(world, action);
-            if(coins_counter >= MAX_COINS_TO_WIN){
-                return true;
-            }
-            return false;
+ 
+        }
+
+
+    public:
+
+
+        BatterySystem(const nlohmann::json &worldJson, World *worldPtr) : worldJson(worldJson), worldPtr(worldPtr)
+        {
+            this->remove_all_bars();
+            this->current_battery_level = 0;
+        }
+
+
+        int update_battery(int coins_accumulator){
+
+            this->current_battery_level = round(coins_accumulator / LEVELS_COUNT);
+
+
+            // wining state
+            if(this->current_battery_level >= MAX_LEVELS_TO_WIN)
+                return 1;
+
+            // game over state
+            if(this->current_battery_level <= 0)
+                return -1;
+
+            // normal logic
+            this->remove_all_bars();
+            for(int i = 1; i <= this->current_battery_level; i++)
+                this->add_bar(i);
+            
+            return 0;
         }
     };
 
