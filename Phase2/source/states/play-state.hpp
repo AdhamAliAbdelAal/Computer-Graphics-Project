@@ -19,7 +19,7 @@ class Playstate: public our::State {
     string path;
     bool isHit = false;
     bool timed = false; //Countdown to change state
-    bool isWon = false; //If the player won
+    int isWon = 0; //If the player won
 
     float startTime = 0; // of the countdown to gameover
     float pauseStartTime = 0; // Pausing the game should pause the countdown
@@ -82,7 +82,7 @@ class Playstate: public our::State {
         path= "assets/shaders/postprocess/vignette.frag";
         isHit = false;
         timed = false;
-        isWon = false;
+        isWon = 0;
 
         batteryController = new our::BatterySystem(config["world"], &world);
     }
@@ -99,10 +99,10 @@ class Playstate: public our::State {
         // system 2 : call update function of road repeater system
         if(roadRepeaterSystem) roadRepeaterSystem->update(&world, (float)deltaTime);
         // system 3 : call update function of coin collection system
-        isHit = coinCollectionSystem.update(&world, (float)deltaTime);
+        coinCollectionSystem.update(&world, (float)deltaTime);
 
         // system 4 : call update function of the battery system
-        isWon = batteryController->update_battery(coinCollectionSystem.get_num_of_collected_coins()) == 1;
+        isWon = batteryController->update_battery(coinCollectionSystem.get_num_of_collected_coins());
         
         // And finally we use the renderer system to draw the scene
         renderer.render(&world, path);
@@ -111,12 +111,12 @@ class Playstate: public our::State {
         // Get a reference to the keyboard object
         auto& keyboard = getApp()->getKeyboard();
 
-        if(isWon){
+        if(isWon == 1){
             // If the player won, go to the win state
             getApp()->changeState("win");
         }
 
-        if(isHit && !timed){
+        if(isWon == -1 && !timed){
             // If the player is hit, go Berserk
             path = "assets/shaders/postprocess/radial-blur.frag";
             timed = true;

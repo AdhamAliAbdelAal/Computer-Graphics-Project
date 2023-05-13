@@ -32,7 +32,7 @@ namespace our
             accumulator = 0;
         }
         // This should be called every frame to update all entities.
-        bool update(World *world, float deltaTime)
+        void update(World *world, float deltaTime)
         {
             const unordered_set<Entity *> entities = world->getEntities();
             Entity *ball = nullptr;
@@ -45,7 +45,7 @@ namespace our
                 }
             }
             if (!ball)
-                return false;
+                return;
             glm::vec3 ball_position=ball->localTransform.position;
             for (auto it : entities)
             {
@@ -66,16 +66,10 @@ namespace our
 
                         world->markForRemoval(it);
                         world->deleteMarkedEntities();
-
-                        if(accumulator<0){
-                            return true;
-                        }
                     }
                     
                 }
-            
             }
-            return false;
         }
     
         int get_num_of_collected_coins(){
