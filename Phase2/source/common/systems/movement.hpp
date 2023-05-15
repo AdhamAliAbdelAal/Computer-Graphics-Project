@@ -29,9 +29,15 @@ namespace our
         ll delay;
 
     public:
+
         MovementSystem()
         {
             srand(time(0));
+            delay = time(0);
+        }
+        
+        void reset() {
+            speedBooster = 0.0f;
             delay = time(0);
         }
         // This should be called every frame to update all entities containing a MovementComponent.

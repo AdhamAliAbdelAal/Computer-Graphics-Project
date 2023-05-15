@@ -17,12 +17,15 @@
 // This state shows how to use the ECS framework and deserialization.
 class Playstate: public our::State {
     string path;
+    bool alternateSky = false;
     bool isHit = false;
     bool timed = false; //Countdown to change state
     int isWon = 0; //If the player won
 
+    float backgroundTime = 0; // of the current background
     float startTime = 0; // of the countdown to gameover
     float pauseStartTime = 0; // Pausing the game should pause the countdown
+
 
     our::World world;
     our::ForwardRenderer renderer;
@@ -82,6 +85,7 @@ class Playstate: public our::State {
         path= "assets/shaders/postprocess/vignette.frag";
         isHit = false;
         timed = false;
+        alternateSky = false;
         isWon = 0;
 
         batteryController = new our::BatterySystem(config["world"], &world);
@@ -104,10 +108,10 @@ class Playstate: public our::State {
         // system 4 : call update function of the battery system
         isWon = batteryController->update_battery(coinCollectionSystem.get_num_of_collected_coins());
         
-        // And finally we use the renderer system to draw the scene
-        renderer.render(&world, path);
+        // And finally we use the renderer system to draw the scene (if 10 seconds passed, we change the background)
+        renderer.render(&world, path, alternateSky);
         
-
+        
         // Get a reference to the keyboard object
         auto& keyboard = getApp()->getKeyboard();
 
@@ -128,6 +132,7 @@ class Playstate: public our::State {
             cameraController.setReversed(true);
             startTime = glfwGetTime();
         }
+        
 
         if(glfwGetTime() - pauseReturnTime > (5.0f - (pauseStartTime - startTime)) && timed){
             // If the ocunt down is over, go to the over state
@@ -135,6 +140,12 @@ class Playstate: public our::State {
             isHit = false;
             cameraController.setReversed(false);
             path = "assets/shaders/postprocess/vignette.frag";
+        }
+
+        //Check if sky should be replaced
+        if(glfwGetTime() - backgroundTime > 10.0f){
+            backgroundTime = glfwGetTime();
+            alternateSky = !alternateSky;
         }
 
         if(keyboard.justPressed(GLFW_KEY_P)){
@@ -157,7 +168,7 @@ class Playstate: public our::State {
         delete roadRepeaterSystem;
         delete roadGenerationSystem;
         coinCollectionSystem.reset();
-        
+        movementSystem.reset();
         // Don't forget to destroy the renderer
         renderer.destroy();
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
