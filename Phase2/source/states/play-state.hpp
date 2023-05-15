@@ -61,9 +61,9 @@ class Playstate: public our::State {
             //cout<<"world deserialized : "<<typeid(config["world"]).name()<<'\n';
         }
         // if we have a coin in the scene config, we use to hold the data of the coin
-        if(config.contains("coin")&&config.contains("fire")&&config.contains("monster")){
+        if(config.contains("coin")&&config.contains("fire")&&config.contains("monster")&&config.contains("turbo")){
             if(!config["coin"].is_object()) return;
-            coinGenerationSystem=new our::CoinGenerationSystem(config["coin"],config["fire"],config["monster"]);
+            coinGenerationSystem=new our::CoinGenerationSystem(config["coin"],config["fire"],config["monster"],config["turbo"]);
         }
 
         if(config.contains("road")&&config.contains("fence")){

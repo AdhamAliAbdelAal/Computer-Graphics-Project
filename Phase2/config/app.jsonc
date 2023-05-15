@@ -37,7 +37,10 @@
                 "grasses": "assets/textures/grass_ground_d.jpg",
                 "battery_bar": "assets/textures/yellow.jpeg",
                 "battery_frame": "assets/textures/battery_frame.png",
-                "monster": "assets/textures/egg (1).png"
+                "monster": "assets/textures/egg (1).png",
+                "coin":"assets/textures/tex_coin_tails_bmp.png",
+                "turbo":"assets/textures/spcbonturbo.png"
+
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -49,7 +52,8 @@
                 "fence":"assets/models/fence wood.obj",
                 "grass":"assets/models/sht_grass.obj",
                 "battery": "assets/models/battery.obj",
-                "monster":"assets/models/egg.obj"
+                "monster":"assets/models/egg.obj",
+                "turbo":"assets/models/turbo.obj"
             },
             "samplers":{
                 "default":{},
@@ -160,6 +164,21 @@
                         }
                     },
                     "tint": [0.85, 0.65, 0, 1]
+                },
+                "turbo":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": true
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "turbo",
+                    "sampler": "default"
                 },
                 "fire":{
                     "type": "textured",
@@ -434,7 +453,28 @@
                     "gain": 0
                 }
             ]
-
+        },
+        "turbo":{
+            "name":"turbo",
+            "position": [0, 0, -10],
+            "rotation": [0, 0, 0],
+            "scale": [0.55, 0.55, 0.55],
+            "components": [
+                {
+                    "type": "Mesh Renderer",
+                    "mesh": "turbo",
+                    "material": "turbo"
+                },
+                {
+                    "type": "Movement",
+                    "angularVelocity": [0, 300, 0],
+                    "linearVelocity": [0, 0, 5]
+                },
+                {
+                    "type":"Gain",
+                    "gain": 2
+                }
+            ]
         },
         "road":{
             
