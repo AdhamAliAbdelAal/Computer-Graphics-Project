@@ -27,6 +27,7 @@ namespace our
     private:
         float speedBooster = 0.0f;
         ll delay;
+        bool updateSpeeds=false;
 
     public:
 
@@ -43,12 +44,13 @@ namespace our
         // This should be called every frame to update all entities containing a MovementComponent.
         void update(World *world, float deltaTime, Application *app)
         {
-            if (time(0) - delay > 2)
+            if (time(0) - delay > 10)
             {
                 speedBooster += 1.0f;
                 // cout<<"speedBooster: "<<speedBooster<<'\n';
                 cout << "delay: "<<speedBooster<< '\n';
                 delay = time(0);
+                updateSpeeds=true;
             }
             // For each entity in the world
             for (auto entity : world->getEntities())
@@ -75,10 +77,15 @@ namespace our
                         currentLinearVelocity.z *= 5.0f;
                         currentAngularVelocity.x *= 5.0f;
                     }
-
                     // Change the position and rotation based on the linear & angular velocity and delta time.
                     entity->localTransform.position += deltaTime * currentLinearVelocity;
                     entity->localTransform.rotation += deltaTime * currentAngularVelocity;
+                    if(updateSpeeds)
+                    {
+                        movement->linearVelocity=currentLinearVelocity;
+                        movement->angularVelocity=currentAngularVelocity;
+                        updateSpeeds=false;
+                    }
                     // cnt+=(deltaTime*movement->angularVelocity.x);
                     // cout<<"rotate("<<movement->angularVelocity.x<< " , "<<movement->angularVelocity.y<<')'<<'\n';
                     // cout<<"rotate("<<entity->localTransform.rotation.x<< " , "<<entity->localTransform.rotation.y<<')'<<'\n';
