@@ -33,7 +33,7 @@ namespace our
             accumulator = 0;
         }
         // This should be called every frame to update all entities.
-        void update(World *world, float deltaTime)
+        bool update(World *world, float deltaTime)
         {
             const unordered_set<Entity *> entities = world->getEntities();
             Entity *ball = nullptr;
@@ -46,7 +46,7 @@ namespace our
                 }
             }
             if (!ball)
-                return;
+                return false;
             glm::vec3 ball_position=ball->localTransform.position;
             for (auto it : entities)
             {
@@ -58,19 +58,29 @@ namespace our
                     float distance=glm::distance(position,ball_position);
                     float min_dist = gainComponent->gain == 1 ? coin_min_dist :(gainComponent->gain == -1)? fire_min_dist: monster_min_dist;
                     // if the distance between the coin and the player is less than the minimum distance
+                    
+
                     if (distance<=min_dist)
                     {
+                        if (gainComponent->gain == 0 ) {
+                            world->markForRemoval(it);
+                            world->deleteMarkedEntities();
+                            return true;
+                        }
+
                         accumulator+= gainComponent->gain;
                         // cout<<"coin deleted : "<<it<<'\n';
                         // delete the entity
                         cout<<accumulator<<'\n';
 
                         world->markForRemoval(it);
-                        world->deleteMarkedEntities();
                     }
-                    
+
                 }
             }
+            
+            world->deleteMarkedEntities();
+            return false;
         }
     
         int get_num_of_collected_coins(){

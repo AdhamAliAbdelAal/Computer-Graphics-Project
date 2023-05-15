@@ -99,7 +99,7 @@ class Playstate: public our::State {
         // system 2 : call update function of road repeater system
         if(roadRepeaterSystem) roadRepeaterSystem->update(&world, (float)deltaTime);
         // system 3 : call update function of coin collection system
-        coinCollectionSystem.update(&world, (float)deltaTime);
+        isHit = coinCollectionSystem.update(&world, (float)deltaTime);
 
         // system 4 : call update function of the battery system
         isWon = batteryController->update_battery(coinCollectionSystem.get_num_of_collected_coins());
@@ -116,7 +116,12 @@ class Playstate: public our::State {
             getApp()->changeState("win");
         }
 
-        if(isWon == -1 && !timed){
+        if(isWon == -1){
+            // If the player lost, go to the over state
+            getApp()->changeState("over");
+        }
+
+        if(isHit && !timed){
             // If the player is hit, go Berserk
             path = "assets/shaders/postprocess/radial-blur.frag";
             timed = true;
@@ -126,7 +131,10 @@ class Playstate: public our::State {
 
         if(glfwGetTime() - pauseReturnTime > (5.0f - (pauseStartTime - startTime)) && timed){
             // If the ocunt down is over, go to the over state
-            getApp()->changeState("over");
+            timed = false;
+            isHit = false;
+            cameraController.setReversed(false);
+            path = "assets/shaders/postprocess/vignette.frag";
         }
 
         if(keyboard.justPressed(GLFW_KEY_P)){
