@@ -6,6 +6,7 @@
 #include "free-camera-controller.hpp"
 #include "movement.hpp"
 #include "gain.hpp"
+#include "light.hpp"
 #include <iostream>
 using namespace std;
 namespace our {
@@ -31,6 +32,9 @@ namespace our {
         }
         else if(type== GainComponent::getID()){
             component = entity->addComponent<GainComponent>();
+        }
+        else if(type== LightComponent::getID()){
+            component = entity->addComponent<LightComponent>();
         }
         if(component) component->deserialize(data);
     }

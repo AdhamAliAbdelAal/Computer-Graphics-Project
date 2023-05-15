@@ -12,7 +12,6 @@ namespace our
     {
         if (!data.is_object())return;
         std::string type = data.value("lightType", "Directional");  // read the type of the light and set the default to be directional.
-
         if (type == "Directional")
         {
             light_type = LIGHT_TYPE::DIRECTIONAL;

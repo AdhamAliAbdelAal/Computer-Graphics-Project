@@ -23,6 +23,10 @@
                 "textured":{
                     "vs":"assets/shaders/textured.vert",
                     "fs":"assets/shaders/textured.frag"
+                },
+                "lighted": {
+                    "vs": "assets/shaders/light.vert",
+                    "fs": "assets/shaders/light.frag"
                 }
             },
             "textures":{
@@ -129,23 +133,26 @@
                     "sampler": "default"
                 },
                 "ball":{
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "lighted",
                     "pipelineState": {
-                        "faceCulling":{
+                        "faceCulling": {
                             "enabled": false
                         },
-                        "depthTesting":{
+                        "depthTesting": {
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "ball",
-                    "sampler": "default"
+                    "albedo": "ball",
+                    "sampler": "default",
+                    "specular": "white",
+                    "emissive": "yellow",
+                    "ambient_occlusion": "ball",
+                    "roughness": "yellow"
                 },
                 "coin":{
-                    "type": "tinted",
-                    "shader": "tinted",
+                    "type": "lighted",
+                    "shader": "lighted",
                     "pipelineState": {
                         "faceCulling":{
                             "enabled": false
@@ -154,7 +161,12 @@
                             "enabled": true
                         }
                     },
-                    "tint": [0.85, 0.65, 0, 1]
+                    "albedo": "coin",
+                    "sampler": "default",
+                    "specular": "white",
+                    "emissive": "yellow",
+                    "ambient_occlusion": "coin",
+                    "roughness": "yellow"
                 },
                 "fire":{
                     "type": "textured",
@@ -203,6 +215,10 @@
                         "type": "Movement",
                         "linearVelocity": [0, 0, 0],
                         "angularVelocity": [-200, 0, 0]
+                    },
+                    {
+                        "type": "Light",
+                        "lightType":"Directional"
                     }
                 ]
             }
