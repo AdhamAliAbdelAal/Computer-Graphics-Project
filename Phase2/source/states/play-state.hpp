@@ -84,7 +84,7 @@ class Playstate: public our::State {
         timed = false;
         isWon = 0;
 
-        batteryController = new our::BatterySystem(config["world"], &world);
+        batteryController = new our::BatterySystem(config["world"], config["assets"]["textures"], &world);
     }
 
     void onDraw(double deltaTime) override {

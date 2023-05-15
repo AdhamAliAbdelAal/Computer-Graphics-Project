@@ -11,16 +11,20 @@
 #include <iostream>
 using namespace std;
 #define MAX_LEVELS_TO_WIN 5
-#define LEVELS_COUNT 4.0    // weight of the level
+#define LEVEL_WEIGHT 4.0    // weight of the level
+#define LOW_ENERGY_BAR_COLOR "battery_bar_red"
+#define MEDIUM_ENERGY_BAR_COLOR "battery_bar_yellow"
+#define HIGH_ENERGY_BAR_COLOR "battery_bar_green"
 
 namespace our
 {
 
     class BatterySystem
     {
-        const nlohmann::json worldJson;
+        nlohmann::json worldJson;
         World *worldPtr;
         int current_battery_level;
+        nlohmann::json texturesJson;
 
         void remove_bar(int bar_number)
         {
@@ -50,6 +54,7 @@ namespace our
             for (auto& obj : this->worldJson) {
                 if (obj["name"] == bar_name) {
                     // cout << obj.dump(4) << std::endl; // print the object to console
+                    obj.at("components")[0].at("material") = this->change_bar_color();
                     this->worldPtr->objectDeserialize(obj);
                     break;
                 }
@@ -57,11 +62,35 @@ namespace our
  
         }
 
+         string change_bar_color(){
+            switch (this->current_battery_level)
+            {
+            case 1:
+                return LOW_ENERGY_BAR_COLOR;
+                break;
+
+            case 2:
+            case 3:
+                return MEDIUM_ENERGY_BAR_COLOR;
+                break;
+            
+            case 4:
+            case 5:
+                return HIGH_ENERGY_BAR_COLOR;
+                break;
+
+            default:
+                return LOW_ENERGY_BAR_COLOR;
+                break;
+            }
+            
+        }
+
 
     public:
 
 
-        BatterySystem(const nlohmann::json &worldJson, World *worldPtr) : worldJson(worldJson), worldPtr(worldPtr)
+        BatterySystem(const nlohmann::json &worldJson, const nlohmann::json &texturesJson, World *worldPtr) : worldJson(worldJson), texturesJson(texturesJson), worldPtr(worldPtr)
         {
             this->remove_all_bars();
             this->current_battery_level = 0;
@@ -70,15 +99,14 @@ namespace our
 
         int update_battery(int coins_accumulator){
 
-            this->current_battery_level = floor(coins_accumulator / LEVELS_COUNT);
-
-
             // wining state
-            if(this->current_battery_level >= MAX_LEVELS_TO_WIN)
+            if(coins_accumulator > MAX_LEVELS_TO_WIN * LEVEL_WEIGHT)
                 return 1;
 
+            this->current_battery_level = ceil(coins_accumulator / LEVEL_WEIGHT);
+
             // game over state
-            if(this->current_battery_level < 0)
+            if(coins_accumulator < 0)
                 return -1;
 
             // normal logic
