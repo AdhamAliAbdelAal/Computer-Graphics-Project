@@ -37,9 +37,9 @@ namespace our
     public:
         // this is the data for the coin
         // to hold the data of the coin read from app config to use it later in the update function
-        const nlohmann::json coin, fire;
+        const nlohmann::json coin, fire, monster;
 
-        CoinGenerationSystem(const nlohmann::json &coin,const nlohmann::json &fire) : coin(coin),fire(fire), curr_time(0), delay(1)
+        CoinGenerationSystem(const nlohmann::json &coin, const nlohmann::json &fire, const nlohmann::json &monster) : coin(coin), fire(fire), monster(monster), curr_time(0), delay(1)
         {
             srand(time(0));
         }
@@ -55,31 +55,42 @@ namespace our
             // create a new entity
             Entity *entity = nullptr;
             // deserialize the data of the coin or fire
-            if(rand()%2==0){
-                entity = world->objectDeserialize(coin);
-                // set the position of the coin by generating a random float in x axis in the range of -5.5 to 5.5
-                position=glm::vec3(generateRandomFloat(), 0, -10);
+            if (rand() % 3 != 0)
+            {
+                if (rand() % 2 == 0)
+                {
+                    entity = world->objectDeserialize(coin);
+                    // set the position of the coin by generating a random float in x axis in the range of -5.5 to 5.5
+                    position = glm::vec3(generateRandomFloat(), 0, -10);
+                }
+                else
+                {
+                    entity = world->objectDeserialize(fire);
+                    // set the position of the coin by generating a random float in x axis in the range of -5.5 to 5.5
+                    position = glm::vec3(generateRandomFloat(), -1, -10);
+                }
             }
             else{
-                entity = world->objectDeserialize(fire);
+                entity = world->objectDeserialize(monster);
                 // set the position of the coin by generating a random float in x axis in the range of -5.5 to 5.5
-                position=glm::vec3(generateRandomFloat(), -1, -10);
+                position = glm::vec3(generateRandomFloat(), 0, -10);
             }
+
             // cout<<"coin generated : "<<entity<<'\n';
             if (!entity)
                 return;
-            
 
             // cout << generateRandomFloat() << '\n';
             // change the position of the coin to the generated position
             entity->localTransform.position = position;
 
             // delete all coins that are out of the screen
-            const unordered_set<Entity*> entities = world->getEntities();
+            const unordered_set<Entity *> entities = world->getEntities();
             for (auto it : entities)
             {
                 // cout<<"entity : "<<it<<'\n';
-                if(!it) continue;
+                if (!it)
+                    continue;
                 // if the entity has a gain component
                 GainComponent *gain = it->getComponent<GainComponent>();
                 if (gain)
