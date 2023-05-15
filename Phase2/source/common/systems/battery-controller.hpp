@@ -69,7 +69,7 @@ namespace our
 
         int update_battery(int coins_accumulator){
 
-            this->current_battery_level = round(coins_accumulator / LEVELS_COUNT);
+            this->current_battery_level = floor(coins_accumulator / LEVELS_COUNT);
 
 
             // wining state
@@ -77,7 +77,7 @@ namespace our
                 return 1;
 
             // game over state
-            if(this->current_battery_level <= 0)
+            if(this->current_battery_level < 0)
                 return -1;
 
             // normal logic
