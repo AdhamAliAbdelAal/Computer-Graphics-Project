@@ -14,7 +14,7 @@
 using namespace std;
 #include <ctime>
 
-typedef long long int ll;
+typedef unsigned long long int ll;
 
 #define MAX_RANGE 5.5f
 
@@ -43,7 +43,7 @@ namespace our
         // const nlohmann::json coin, fire, monster, turbo;
         nlohmann::json objects[4];
 
-        CoinGenerationSystem(const nlohmann::json &coin, const nlohmann::json &fire, const nlohmann::json &monster, const nlohmann::json &turbo) : curr_time(0), delay(1)
+        CoinGenerationSystem(const nlohmann::json &coin, const nlohmann::json &fire, const nlohmann::json &monster, const nlohmann::json &turbo) : curr_time(0), delay(500)
         {
             srand(time(0));
             objects[0] = coin;
@@ -58,9 +58,11 @@ namespace our
         void update(World *world, float deltaTime)
         {
             // check if the time passed is less than the delay
-            if (time(NULL) - curr_time < delay)
+            // cout<<delay<<'\n';
+            ll now=glfwGetTime()*1000;
+            if (now - curr_time < delay)
                 return;
-            curr_time = time(NULL);
+            curr_time = glfwGetTime()*1000;;
             // position of the coin or fire
             glm::vec3 position;
             // create a new entity
@@ -103,10 +105,17 @@ namespace our
                         // cout<<"coin deleted : "<<it<<'\n';
                         // delete the entity
                         world->markForRemoval(it);
-                        world->deleteMarkedEntities();
+                    }
+                }
+                if(it->name=="ball"){
+                    MovementComponent *ball = it->getComponent<MovementComponent>();
+                    if(ball){
+                        delay=(ball->angularVelocity.x-glm::radians(-200.0f))*10+1000.0f;
+                        cout<<delay<<" , "<<ball->angularVelocity.x<<'\n';
                     }
                 }
             }
+            world->deleteMarkedEntities();
         }
     };
 
