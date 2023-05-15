@@ -35,7 +35,9 @@
                 "grass": "assets/textures/grass_a.png",
                 "flower": "assets/textures/flower.png",
                 "grasses": "assets/textures/grass_ground_d.jpg",
-                "battery_bar": "assets/textures/yellow.jpeg",
+                "battery_bar_green": "assets/textures/green.png",
+                "battery_bar_yellow": "assets/textures/yellow.png",
+                "battery_bar_red": "assets/textures/red.png",
                 "battery_frame": "assets/textures/battery_frame.png",
                 "monster": "assets/textures/egg (1).png",
                 "coin":"assets/textures/tex_coin_tails_bmp.png",
@@ -233,15 +235,19 @@
                             "enabled": false
                         },
                         "depthTesting": {
+                            "enabled": false
+                        }, "blending": {
                             "enabled": true
+                            ,"sourceFactor": "GL_SRC_ALPHA",
+                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA "
                         }
-                        // ,"depthMask": false
                     },
+                    "transparent": true,
                     "tint": [1, 1, 1, 1],
                     "texture": "battery_frame",
                     "sampler": "default"
                 },
-                "battery_bar": {
+                "battery_bar_green": {
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -253,7 +259,37 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "battery_bar",
+                    "texture": "battery_bar_green",
+                    "sampler": "default"
+                },
+                "battery_bar_yellow": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "battery_bar_yellow",
+                    "sampler": "default"
+                },
+                "battery_bar_red": {
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "battery_bar_red",
                     "sampler": "default"
                 }
             }
@@ -293,8 +329,8 @@
             },
             {
                 "name":"battery-frame",
-                "position": [2.5, 4.57, 5],
-                "scale": [0.8, 0.3, 0.1],
+                "position": [2.8, 4.7, 5],
+                "scale": [0.7, 0.2, -2],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -309,13 +345,13 @@
             },
             {
                 "name":"bar-5",
-                "position": [2, 4.4, 5],
-                "scale": [0.15, 0.077, 0.1],
+                "position": [2.4, 4.7, 5],
+                "scale": [0.12, 0.128, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "battery",
-                        "material": "battery_bar"
+                        "mesh": "plane",
+                        "material": "battery_bar_green"
                     },
                     {
                         "type": "Bar",
@@ -325,13 +361,14 @@
             },
             {
                 "name":"bar-4",
-                "position": [2.25, 4.4, 5],
-                "scale": [0.15, 0.077, 0.1],
+                "position": [2.6, 4.7, 5],
+                "scale": [0.12, 0.128, 1],
+                "mesh": "plane",
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "battery",
-                        "material": "battery_bar"
+                        "mesh": "plane",
+                        "material": "battery_bar_green"
                     },
                     {
                         "type": "Bar",
@@ -341,13 +378,13 @@
             },
             {
                 "name":"bar-3",
-                "position": [2.5, 4.4, 5],
-                "scale": [0.15, 0.077, 0.1],
+                "position": [2.8, 4.7, 5],
+                "scale": [0.12, 0.128, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "battery",
-                        "material": "battery_bar"
+                        "mesh": "plane",
+                        "material": "battery_bar_green"
                     },
                     {
                         "type": "Bar",
@@ -357,13 +394,13 @@
             },
             {
                 "name":"bar-2",
-                "position": [2.75, 4.4, 5],
-                "scale": [0.15, 0.077, 0.1],
+                "position": [3, 4.7, 5],
+                "scale": [0.12, 0.128, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "battery",
-                        "material": "battery_bar"
+                        "mesh": "plane",
+                        "material": "battery_bar_green"
                     },
                     {
                         "type": "Bar",
@@ -373,13 +410,13 @@
             },
             {
                 "name":"bar-1",
-                "position": [3.02, 4.4, 5],
-                "scale": [0.15, 0.077, 0.1],
+                "position": [3.2, 4.7, 5],
+                "scale": [0.12, 0.128, 1],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "battery",
-                        "material": "battery_bar"
+                        "mesh": "plane",
+                        "material": "battery_bar_green"
                     },
                     {
                         "type": "Bar",
