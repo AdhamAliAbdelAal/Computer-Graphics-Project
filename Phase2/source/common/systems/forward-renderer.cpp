@@ -137,6 +137,7 @@ namespace our {
         // First of all, we search for a camera and for all the mesh renderers
         CameraComponent* camera = nullptr;
         opaqueCommands.clear();
+        lights.clear();
         transparentCommands.clear();
         for(auto entity : world->getEntities()){
             // If we hadn't found a camera yet, we look for a camera in this entity
@@ -251,8 +252,8 @@ namespace our {
                 for (unsigned i = 0; i < lights.size(); i++)
                 {
                     glm::vec3 light_position = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
-                    glm::vec3 light_direction = lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(lights[i]->direction, 0);
-
+                    glm::vec3 light_direction = (lights[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(lights[i]->direction, 0));
+                    light_direction=glm::normalize(light_direction);
                     std::string light_name = "lights[" + std::to_string(i) + "]";
 
                     light_material->shader->set(light_name + ".type", (GLint)lights[i]->light_type);
