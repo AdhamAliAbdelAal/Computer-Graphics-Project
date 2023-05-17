@@ -95,6 +95,7 @@ include_directories(
         vendor/glm
         vendor/imgui
         vendor/utils
+        vendor/irrklang/include
 )
 
 
@@ -121,3 +122,5 @@ set(STATES_SOURCES
 # Then we link GLFW with each target
 add_executable(GAME_APPLICATION source/main.cpp ${STATES_SOURCES} ${COMMON_SOURCES} ${VENDOR_SOURCES})
 target_link_libraries(GAME_APPLICATION glfw)
+# Link the irrKlang.lib library to the target
+target_link_libraries(GAME_APPLICATION ${CMAKE_SOURCE_DIR}/libs/irrKlang.lib)

@@ -4,6 +4,7 @@
 #include <json/json.hpp>
 
 #include <application.hpp>
+#include <irrKlang.h>
 
 #include "states/menu-state.hpp"
 #include "states/play-state.hpp"
@@ -20,8 +21,11 @@
 #include "states/entity-test-state.hpp"
 #include "states/renderer-test-state.hpp"
 using namespace std;
+using namespace irrklang;
 
 int main(int argc, char** argv) {
+    ISoundEngine *SoundEngine = createIrrKlangDevice();
+    SoundEngine->play2D("music.mp3", true);
     
     flags::args args(argc, argv); // Parse the command line arguments
     // config_path is the path to the json file containing the application configuration
