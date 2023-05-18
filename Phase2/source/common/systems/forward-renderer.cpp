@@ -6,6 +6,7 @@
 using namespace std;
 namespace our {
 
+    
     void ForwardRenderer::initialize(glm::ivec2 windowSize, const nlohmann::json& config){
         // First, we store the window size for later use
         this->windowSize = windowSize;
@@ -40,7 +41,10 @@ namespace our {
             
             // Load the sky texture (note that we don't need mipmaps since we want to avoid any unnecessary blurring while rendering the sky)
             std::string skyTextureFile = config.value<std::string>("sky", "");
-            Texture2D* skyTexture = texture_utils::loadImage(skyTextureFile, false);
+            skyTexture = texture_utils::loadImage(skyTextureFile, false);
+
+            std::string skyTextureFile2 = config.value<std::string>("alternateSky", "");
+            alternateSkyTexture = texture_utils::loadImage(skyTextureFile2, false);
 
             // Setup a sampler for the sky 
             Sampler* skySampler = new Sampler();
@@ -133,7 +137,7 @@ namespace our {
         }
     }
 
-    void ForwardRenderer::render(World* world){
+    void ForwardRenderer::render(World* world, string path, bool alternateSky){
         // First of all, we search for a camera and for all the mesh renderers
         CameraComponent* camera = nullptr;
         opaqueCommands.clear();
@@ -292,6 +296,11 @@ namespace our {
         if(this->skyMaterial){
             //TODO: (Req 10) setup the sky material
             // We setup the sky material to bind the needed elements
+            if(!alternateSky) {
+                this->skyMaterial->texture = skyTexture;
+            } else {
+                this->skyMaterial->texture = alternateSkyTexture;
+            }
             this->skyMaterial->setup();
 
             //TODO: (Req 10) Get the camera position
@@ -391,6 +400,12 @@ namespace our {
         // If there is a postprocess material, apply postprocessing
         if(postprocessMaterial){
             //TODO: (Req 11) Return to the default framebuffer
+            // Create the post processing shader
+            ShaderProgram* postprocessShader = new ShaderProgram();
+            postprocessShader->attach("assets/shaders/fullscreen.vert", GL_VERTEX_SHADER);
+            postprocessShader->attach(path, GL_FRAGMENT_SHADER);
+            postprocessShader->link();
+            postprocessMaterial->shader = postprocessShader;
             // Unbinding the framebuffer again.
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
             //TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
