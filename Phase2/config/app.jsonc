@@ -370,8 +370,8 @@
                     {
                         "type": "Light",
                         "lightType":"Point",
-                        "diffuse" :[10, 8, 5],
-                        "specular" : [10, 8, 5],
+                        "diffuse" :[2, 2, 2],
+                        "specular" : [2, 2, 2],
                         "attenuation" : [0, 1, 0]
                     }
                 ]
@@ -391,9 +391,9 @@
                     {
                         "type": "Light",
                         "lightType":"Directional",
-                        "diffuse": [0.3, 0.4, 0.5],
-                        "specular": [0.3, 0.4, 0.5],
-                        "attenuation": [0.00095, 0.00095, 0.000095],
+                        "diffuse": [0.01, 0.01, 0.01],
+                        "specular": [0.01, 0.01, 0.01],
+                        "attenuation": [1, 1, 1],
                         "cone_angles.inner": 20,
                         "cone-angles.outer": 50
                     }
@@ -515,11 +515,15 @@
                 },
                 {
                     "type":"Gain",
+                    "effect":"score",
                     "gain": 1
                 },
                 {
                     "type": "Light",
-                    "lightType":"Spot"
+                    "lightType":"Spot",
+                    "diffuse": [0.01, 0.01, 0.01],
+                    "specular": [0.01, 0.01, 0.01],
+                    "attenuation": [1, 1, 1]
                 }
             ]
         },

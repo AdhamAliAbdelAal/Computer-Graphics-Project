@@ -29,7 +29,7 @@ namespace our
         ll curr_time;
         ll delay;
         // coins, fire, monster, turbo
-        float ratios[4]={0.4,0.4,0.1,0.1};
+        float ratios[4]={0.3,0.3,0.2,0.2};
         float y_pos[4]= {0, -1, 0, 0};
 
         float generateRandomFloat(float min = -MAX_RANGE, float max = MAX_RANGE)

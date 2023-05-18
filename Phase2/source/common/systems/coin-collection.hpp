@@ -10,8 +10,10 @@
 #include <glm/trigonometric.hpp>
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <iostream>
+#include <irrKlang.h>
 
 using namespace std;
+using namespace irrklang;
 
 namespace our
 {
@@ -25,10 +27,16 @@ namespace our
         float coin_min_dist = 1.0f;
         float fire_min_dist = 1.5f;
         float monster_min_dist = 1.0f;
+        ll effect_delay = 0;
+        ISoundEngine *SoundEngine;
 
     public:
         int score = 0;
         int battery_charge = 5;
+        CoinCollectionSystem()
+        {
+            SoundEngine = createIrrKlangDevice();
+        }
 
         void reset()
         {
@@ -38,6 +46,10 @@ namespace our
         // This should be called every frame to update all entities.
         bool update(World *world, float deltaTime)
         {
+            // if (time(0) - effect_delay == 1)
+            // {
+            //     SoundEngine->stopAllSounds();
+            // }
             const unordered_set<Entity *> entities = world->getEntities();
             Entity *ball = nullptr;
             for (auto it : entities)
@@ -64,12 +76,27 @@ namespace our
                     // if the distance between the coin and the player is less than the minimum distance
                     if (distance <= min_dist)
                     {
+
                         if (gainComponent->effect == "score")
                         {
+                            // effect_delay = time(0);
+                            if (gainComponent->gain == 1)
+                            {
+                                SoundEngine->play2D("assets/sounds/coin.wav", false, false, true);
+                            }
+                            else{
+                                SoundEngine->play2D("assets/sounds/fire.mp3", false, false, true);
+                            }
                             score += gainComponent->gain;
                         }
                         else if (gainComponent->effect == "battery")
                         {
+                            if(gainComponent->gain == 1){
+                                SoundEngine->play2D("assets/sounds/electric.wav", false, false, true);
+                            }
+                            else{
+                                SoundEngine->play2D("assets/sounds/egg.mp3", false, false, true);
+                            }
                             battery_charge += gainComponent->gain;
                             if (gainComponent->gain == -1)
                             {
@@ -79,11 +106,12 @@ namespace our
                             }
                         }
                         world->markForRemoval(it);
+                        // SoundEngine->drop();
                     }
                 }
             }
-
             world->deleteMarkedEntities();
+
             return false;
         }
 
