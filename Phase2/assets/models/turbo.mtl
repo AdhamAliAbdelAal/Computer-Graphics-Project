@@ -1,0 +1,11 @@
+# Material file for turbo.obj
+
+newmtl spcbonturbomat
+	Ns 12
+	d 1
+	illum 2
+	Kd 1.0 1.0 1.0
+	Ks 0.0 0.0 0.0
+	Ka 1.0 1.0 1.0
+	map_Kd spcbonturbo.png
+

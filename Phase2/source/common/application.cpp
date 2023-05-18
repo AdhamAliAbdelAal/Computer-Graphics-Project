@@ -246,7 +246,9 @@ int our::Application::run(int run_for_frames) {
     while(!glfwWindowShouldClose(window)){
         if(run_for_frames != 0 && current_frame >= run_for_frames) break;
         glfwPollEvents(); // Read all the user events and call relevant callbacks.
-        glClear(GL_COLOR_BUFFER_BIT);
+        if(!pause) {
+            glClear(GL_COLOR_BUFFER_BIT);
+        }
 
         // Start a new ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -319,11 +321,17 @@ int our::Application::run(int run_for_frames) {
         // If a scene change was requested, apply it
         while(nextState){
             // If a scene was already running, destroy it (not delete since we can go back to it later)
-            if(currentState&&currentState->getName()!="play") 
+            if((currentState&&currentState->getName()!="play")||nextState->getName()=="over"||nextState->getName()=="menu"
+            ||nextState->getName()=="win") 
             {   
                 cout<<"Current: "<<currentState->getName()<<endl;
 
                 currentState->onDestroy();
+                if(nextState->getName()=="over" || nextState->getName()=="menu"|| nextState->getName()=="win")
+                {
+                    cout<<"playState Nulled"<<endl;
+                    playState = nullptr;  
+                }
             }
             // Switch scenes
             currentState = nextState;
@@ -332,12 +340,13 @@ int our::Application::run(int run_for_frames) {
             if(currentState->getName()!="play"||!playState)
                 currentState->onInitialize();
 
-            if(currentState->getName()=="play" && playState) {
-                currentState = playState;
-            }
-
-            if(currentState->getName()=="play" && !playState) {
-                playState = currentState;
+            if(currentState->getName()=="play") {
+                if(playState){
+                  
+                  currentState = playState;
+                  currentState->setPauseReturnTime(glfwGetTime());  
+                } 
+                else playState = currentState;
             }
         }
 
