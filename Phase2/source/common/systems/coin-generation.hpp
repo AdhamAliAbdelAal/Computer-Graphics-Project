@@ -29,7 +29,7 @@ namespace our
         ll curr_time;
         ll delay;
         // coins, fire, monster, turbo
-        float ratios[4]={0.3,0.3,0.2,0.2};
+        float ratios[4]={0.4,0.4,0.1,0.1};
         float y_pos[4]= {0, -1, 0, 0};
 
         float generateRandomFloat(float min = -MAX_RANGE, float max = MAX_RANGE)
@@ -110,7 +110,7 @@ namespace our
                 if(it->name=="ball"){
                     MovementComponent *ball = it->getComponent<MovementComponent>();
                     if(ball){
-                        delay=max((ball->angularVelocity.x-glm::radians(-200.0f))*10+1000.0f, 400.0f);
+                        delay=max((ball->angularVelocity.x-glm::radians(-200.0f))*10+1000.0f, 300.0f);
                         cout<<delay<<" , "<<ball->angularVelocity.x<<'\n';
                     }
                 }

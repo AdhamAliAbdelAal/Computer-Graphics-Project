@@ -24,20 +24,20 @@ namespace our
 
     class MovementSystem
     {
-    private:
-        float speedBooster = 0.0f;
-        ll delay;
-        bool updateSpeeds=false;
 
     public:
+        float speedBooster = 0.0f;
+        ll delay;
+        bool updateSpeeds = false;
 
         MovementSystem()
         {
             srand(time(0));
             delay = time(0);
         }
-        
-        void reset() {
+
+        void reset()
+        {
             speedBooster = 0.0f;
             delay = time(0);
         }
@@ -48,9 +48,9 @@ namespace our
             {
                 speedBooster += 1.0f;
                 // cout<<"speedBooster: "<<speedBooster<<'\n';
-                cout << "delay: "<<speedBooster<< '\n';
+                cout << "delay: " << speedBooster << '\n';
                 delay = time(0);
-                updateSpeeds=true;
+                updateSpeeds = true;
             }
             // For each entity in the world
             for (auto entity : world->getEntities())
@@ -63,20 +63,19 @@ namespace our
                 if (movement)
                 {
                     glm::vec3 currentLinearVelocity = movement->linearVelocity;
-                    currentLinearVelocity.x += (currentLinearVelocity.x) ? speedBooster*currentLinearVelocity.x/abs(currentLinearVelocity.x) : 0;
-                    currentLinearVelocity.y += (currentLinearVelocity.y) ? speedBooster*currentLinearVelocity.y/abs(currentLinearVelocity.y) : 0;
-                    currentLinearVelocity.z += (currentLinearVelocity.z) ? speedBooster*currentLinearVelocity.z/abs(currentLinearVelocity.z) : 0;
-
+                    currentLinearVelocity.x += (currentLinearVelocity.x) ? speedBooster * currentLinearVelocity.x / abs(currentLinearVelocity.x) : 0;
+                    currentLinearVelocity.y += (currentLinearVelocity.y) ? speedBooster * currentLinearVelocity.y / abs(currentLinearVelocity.y) : 0;
+                    currentLinearVelocity.z += (currentLinearVelocity.z) ? speedBooster * currentLinearVelocity.z / abs(currentLinearVelocity.z) : 0;
 
                     glm::vec3 currentAngularVelocity = movement->angularVelocity;
-                    currentAngularVelocity.x += (currentAngularVelocity.x) ? speedBooster*currentAngularVelocity.x/abs(currentAngularVelocity.x) : 0;
-                    currentAngularVelocity.y += (currentAngularVelocity.y) ? speedBooster*currentAngularVelocity.y/abs(currentAngularVelocity.y) : 0;
-                    currentAngularVelocity.z += (currentAngularVelocity.z) ? speedBooster*currentAngularVelocity.z/abs(currentAngularVelocity.z) : 0;
-                    if(updateSpeeds)
+                    currentAngularVelocity.x += (currentAngularVelocity.x) ? speedBooster * currentAngularVelocity.x / abs(currentAngularVelocity.x) : 0;
+                    currentAngularVelocity.y += (currentAngularVelocity.y) ? speedBooster * currentAngularVelocity.y / abs(currentAngularVelocity.y) : 0;
+                    currentAngularVelocity.z += (currentAngularVelocity.z) ? speedBooster * currentAngularVelocity.z / abs(currentAngularVelocity.z) : 0;
+                    if (updateSpeeds)
                     {
-                        movement->linearVelocity=currentLinearVelocity;
-                        movement->angularVelocity=currentAngularVelocity;
-                        updateSpeeds=false;
+                        movement->linearVelocity = currentLinearVelocity;
+                        movement->angularVelocity = currentAngularVelocity;
+                        updateSpeeds = false;
                     }
                     if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
                     {

@@ -25,12 +25,15 @@ namespace our
         float coin_min_dist = 1.0f;
         float fire_min_dist = 1.5f;
         float monster_min_dist = 1.0f;
-        
-    public:
-        int accumulator = 0;
 
-        void reset() {
-            accumulator = 0;
+    public:
+        int score = 0;
+        int battery_charge = 5;
+
+        void reset()
+        {
+            score = 0;
+            battery_charge = 5;
         }
         // This should be called every frame to update all entities.
         bool update(World *world, float deltaTime)
@@ -47,46 +50,47 @@ namespace our
             }
             if (!ball)
                 return false;
-            glm::vec3 ball_position=ball->localTransform.position;
+            glm::vec3 ball_position = ball->localTransform.position;
             for (auto it : entities)
             {
-                GainComponent*gainComponent=it->getComponent<GainComponent>();
+                GainComponent *gainComponent = it->getComponent<GainComponent>();
                 if (gainComponent)
                 {
                     // get the position of the entity
                     glm::vec3 position = it->localTransform.position;
-                    float distance=glm::distance(position,ball_position);
-                    float min_dist = gainComponent->gain == 1 ? coin_min_dist :(gainComponent->gain == -1)? fire_min_dist: monster_min_dist;
+                    float distance = glm::distance(position, ball_position);
+                    float min_dist = gainComponent->gain == 1 ? coin_min_dist : (gainComponent->gain == -1) ? fire_min_dist
+                                                                                                            : monster_min_dist;
                     // if the distance between the coin and the player is less than the minimum distance
-                    
-
-                    if (distance<=min_dist)
+                    if (distance <= min_dist)
                     {
-                        if (gainComponent->gain == 0 ) {
-                            world->markForRemoval(it);
-                            world->deleteMarkedEntities();
-                            return true;
+                        if (gainComponent->effect == "score")
+                        {
+                            score += gainComponent->gain;
                         }
-
-                        accumulator+= gainComponent->gain;
-                        // cout<<"coin deleted : "<<it<<'\n';
-                        // delete the entity
-                        cout<<accumulator<<'\n';
-
+                        else if (gainComponent->effect == "battery")
+                        {
+                            battery_charge += gainComponent->gain;
+                            if (gainComponent->gain == -1)
+                            {
+                                world->markForRemoval(it);
+                                world->deleteMarkedEntities();
+                                return true;
+                            }
+                        }
                         world->markForRemoval(it);
                     }
-
                 }
             }
-            
+
             world->deleteMarkedEntities();
             return false;
         }
-    
-        int get_num_of_collected_coins(){
-            return accumulator;
+
+        int get_num_of_collected_coins()
+        {
+            return score;
         }
-    
     };
 
 }

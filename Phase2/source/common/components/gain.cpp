@@ -8,5 +8,6 @@ namespace our {
     void GainComponent::deserialize(const nlohmann::json& data){
         if(!data.is_object()) return;
         gain = data.value("gain", gain);
+        effect = data.value("effect", effect);
     }
 }

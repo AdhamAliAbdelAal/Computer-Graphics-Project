@@ -444,7 +444,8 @@
                 },
                 {
                     "type":"Gain",
-                    "gain": 1
+                    "gain": 1,
+                    "effect":"score"
                 }
             ]
         },
@@ -466,7 +467,8 @@
                 },
                 {
                     "type":"Gain",
-                    "gain": -1
+                    "gain": -1,
+                    "effect":"score"
                 }
             ]
         },
@@ -488,7 +490,8 @@
                 },
                 {
                     "type":"Gain",
-                    "gain": 0
+                    "gain": -1,
+                    "effect":"battery"
                 }
             ]
         },
@@ -510,7 +513,8 @@
                 },
                 {
                     "type":"Gain",
-                    "gain": 2
+                    "gain": 1,
+                    "effect":"battery"
                 }
             ]
         },
