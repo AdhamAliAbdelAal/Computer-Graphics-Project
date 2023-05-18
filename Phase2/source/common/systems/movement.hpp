@@ -72,6 +72,12 @@ namespace our
                     currentAngularVelocity.x += (currentAngularVelocity.x) ? speedBooster*currentAngularVelocity.x/abs(currentAngularVelocity.x) : 0;
                     currentAngularVelocity.y += (currentAngularVelocity.y) ? speedBooster*currentAngularVelocity.y/abs(currentAngularVelocity.y) : 0;
                     currentAngularVelocity.z += (currentAngularVelocity.z) ? speedBooster*currentAngularVelocity.z/abs(currentAngularVelocity.z) : 0;
+                    if(updateSpeeds)
+                    {
+                        movement->linearVelocity=currentLinearVelocity;
+                        movement->angularVelocity=currentAngularVelocity;
+                        updateSpeeds=false;
+                    }
                     if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
                     {
                         currentLinearVelocity.z *= 5.0f;
@@ -80,12 +86,6 @@ namespace our
                     // Change the position and rotation based on the linear & angular velocity and delta time.
                     entity->localTransform.position += deltaTime * currentLinearVelocity;
                     entity->localTransform.rotation += deltaTime * currentAngularVelocity;
-                    if(updateSpeeds)
-                    {
-                        movement->linearVelocity=currentLinearVelocity;
-                        movement->angularVelocity=currentAngularVelocity;
-                        updateSpeeds=false;
-                    }
                     // cnt+=(deltaTime*movement->angularVelocity.x);
                     // cout<<"rotate("<<movement->angularVelocity.x<< " , "<<movement->angularVelocity.y<<')'<<'\n';
                     // cout<<"rotate("<<entity->localTransform.rotation.x<< " , "<<entity->localTransform.rotation.y<<')'<<'\n';
