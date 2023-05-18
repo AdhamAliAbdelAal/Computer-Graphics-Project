@@ -19,8 +19,7 @@ using namespace irrklang;
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
-    string path;
-    int isWon = 0;      // If the player won
+    string path;            //For the path of the shader used in post processing
 
     float startTime = 0;      // of the countdown to gameover
     float pauseStartTime = 0; // Pausing the game should pause the countdown
@@ -93,7 +92,6 @@ class Playstate : public our::State
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
         path = "assets/shaders/postprocess/vignette.frag";
-        isWon = 0;
 
         batteryController = new our::BatterySystem(config["world"], config["assets"]["textures"], &world);
     }

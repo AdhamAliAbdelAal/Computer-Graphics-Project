@@ -26,7 +26,7 @@ namespace our
     {
 
     public:
-        float speedBooster = 5.0f;
+        float speedBooster = 1.0f;
         ll delay;
         bool updateSpeeds = false;
 

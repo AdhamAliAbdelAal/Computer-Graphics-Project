@@ -422,7 +422,6 @@ int our::Application::run(int run_for_frames) {
                 {
                     cout<<"playState Nulled"<<endl;
                     playState = nullptr;
-                    // score = 0;
                     timer = false;
                     countdown = 5;
                     countdownTime = 0.0f;
