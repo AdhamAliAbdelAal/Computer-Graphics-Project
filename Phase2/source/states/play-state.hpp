@@ -20,7 +20,6 @@ using namespace irrklang;
 class Playstate : public our::State
 {
     string path;
-    bool alternateSky = false;
     bool isHit = false;
     int isWon = 0;      // If the player won
 
@@ -97,7 +96,6 @@ class Playstate : public our::State
         renderer.initialize(size, config["renderer"]);
         path = "assets/shaders/postprocess/vignette.frag";
         isHit = false;
-        alternateSky = false;
         isWon = 0;
 
         batteryController = new our::BatterySystem(config["world"], config["assets"]["textures"], &world);
@@ -163,12 +161,6 @@ class Playstate : public our::State
             path = "assets/shaders/postprocess/vignette.frag";
         }
 
-        // Check if sky should be replaced
-        if (glfwGetTime() - backgroundTime > 10.0f)
-        {
-            backgroundTime = glfwGetTime();
-            alternateSky = !alternateSky;
-        }
 
         if (keyboard.justPressed(GLFW_KEY_P))
         {
