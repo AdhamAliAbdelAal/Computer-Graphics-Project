@@ -321,6 +321,31 @@ int our::Application::run(int run_for_frames) {
 
         }
 
+        else if (currentState->getName() == "over")
+        {
+            ImGui::SetNextWindowSize(ImVec2(800, 200));
+            ImGui::Begin(" ", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
+            ImGui::SetWindowPos(" ", ImVec2(0, 0));
+
+            ImGuiStyle *style = &ImGui::GetStyle();
+
+            ImVec4 *colors = style->Colors;
+            colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
+            colors[ImGuiCol_Border] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
+
+            ImGui::SetCursorPosX(30);
+            ImGui::SetCursorPosY(0);
+
+            ImGui::PushFont(font2);
+            string l1 = "Score: ";
+            string l2 = to_string(score);
+            string totalLine = l1 + l2;
+            ImGui::Text(totalLine.c_str());
+            ImGui::PopFont();
+
+            ImGui::End();
+        }
+
 
 
         // If ImGui is using the mouse or keyboard, then we don't want the captured events to affect our keyboard and mouse objects.
@@ -397,7 +422,7 @@ int our::Application::run(int run_for_frames) {
                 {
                     cout<<"playState Nulled"<<endl;
                     playState = nullptr;
-                    score = 0;
+                    // score = 0;
                     timer = false;
                     countdown = 5;
                     countdownTime = 0.0f;
@@ -412,7 +437,7 @@ int our::Application::run(int run_for_frames) {
 
             if(currentState->getName()=="play") {
                 if(playState){
-                  
+                    
                   currentState = playState;
                   currentState->setPauseReturnTime(glfwGetTime());  
                 } 
