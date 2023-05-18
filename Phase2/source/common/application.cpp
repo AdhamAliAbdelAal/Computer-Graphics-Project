@@ -202,10 +202,14 @@ int our::Application::run(int run_for_frames) {
     keyboard.enable(window);
     mouse.enable(window);
 
-    // Start the ImGui context and set dark style (just my preference :D)
+    // ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
+
+    ImFont *font = io.Fonts->AddFontFromFileTTF("assets\\fonts\\HoltwoodOneSC.ttf", 100.0f);
+    ImFont *font2 = io.Fonts->AddFontFromFileTTF("assets\\fonts\\HoltwoodOneSC.ttf", 80.0f);
+
     ImGui::StyleColorsDark();
 
     // Initialize ImGui for GLFW and OpenGL
@@ -256,6 +260,68 @@ int our::Application::run(int run_for_frames) {
         ImGui::NewFrame();
 
         if(currentState) currentState->onImmediateGui(); // Call to run any required Immediate GUI.
+
+        if(currentState->getName() == "play") {
+
+            ImGui::SetNextWindowSize(ImVec2(win_config.size.x, win_config.size.y));
+            ImGui::Begin(" ", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
+            ImGui::SetWindowPos(" ", ImVec2(0, 0));
+
+            ImGuiStyle *style = &ImGui::GetStyle();
+
+            ImVec4 *colors = style->Colors;
+            colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
+            colors[ImGuiCol_Border] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
+
+            ImGui::SetCursorPosX(60);
+            ImGui::SetCursorPosY(0);
+
+            ImGui::PushFont(font);
+            string l1 = "Score: ";
+            string l2 = to_string(score);
+            string totalLine = l1 + l2;
+            ImGui::Text(totalLine.c_str());
+            ImGui::PopFont();
+
+            if(timer)
+            {
+                if(tick || Alpha >= 255)
+                {
+                    tick = true;
+                    if(Alpha > 0) {
+                        Alpha -= fadingSpeed;
+                    }
+                    else tick = false;
+                }
+                else if (!tick || Alpha != 255)
+                {
+                    tick = false;
+                    if(Alpha < 255) {
+                        Alpha += fadingSpeed;
+                    }
+                    else tick = true;
+                }
+
+
+                ImGui::SetCursorPosX(580);
+                ImGui::SetCursorPosY(40);
+
+                ImGui::PushFont(font2);
+                string l = to_string(countdown);
+                ImGui::TextColored(ImColor(255,255,255, (int)Alpha),l.c_str());
+                ImGui::PopFont();
+                
+                if(glfwGetTime() - countdownTime > 1.0f){
+                    countdownTime = glfwGetTime();
+                    countdown--;
+                }
+            }
+
+            ImGui::End();
+
+        }
+
+
 
         // If ImGui is using the mouse or keyboard, then we don't want the captured events to affect our keyboard and mouse objects.
         // For example, if you're focusing on an input and writing "W", the keyboard object shouldn't record this event.
@@ -330,7 +396,11 @@ int our::Application::run(int run_for_frames) {
                 if(nextState->getName()=="over" || nextState->getName()=="menu"|| nextState->getName()=="win")
                 {
                     cout<<"playState Nulled"<<endl;
-                    playState = nullptr;  
+                    playState = nullptr;
+                    score = 0;
+                    timer = false;
+                    countdown = 5;
+                    countdownTime = 0.0f;
                 }
             }
             // Switch scenes

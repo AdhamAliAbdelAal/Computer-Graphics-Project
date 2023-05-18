@@ -22,7 +22,6 @@ class Playstate : public our::State
     string path;
     bool alternateSky = false;
     bool isHit = false;
-    bool timed = false; // Countdown to change state
     int isWon = 0;      // If the player won
 
     float backgroundTime = 0; // of the current background
@@ -98,7 +97,6 @@ class Playstate : public our::State
         renderer.initialize(size, config["renderer"]);
         path = "assets/shaders/postprocess/vignette.frag";
         isHit = false;
-        timed = false;
         alternateSky = false;
         isWon = 0;
 
@@ -126,7 +124,10 @@ class Playstate : public our::State
         isWon = batteryController->update_battery(coinCollectionSystem.get_num_of_collected_coins());
 
         // And finally we use the renderer system to draw the scene (if 10 seconds passed, we change the background)
-        renderer.render(&world, path, alternateSky);
+        renderer.render(&world, path);
+
+        // Set Score
+        getApp()->setScore(coinCollectionSystem.get_num_of_collected_coins());
 
         // Get a reference to the keyboard object
         auto &keyboard = getApp()->getKeyboard();
@@ -143,19 +144,20 @@ class Playstate : public our::State
             getApp()->changeState("over");
         }
 
-        if (isHit && !timed)
+        if (isHit && !getApp()->getTimer())
         {
             // If the player is hit, go Berserk
             path = "assets/shaders/postprocess/radial-blur.frag";
-            timed = true;
+            getApp()->setTimer(true);
             cameraController.setReversed(true);
             startTime = glfwGetTime();
+            getApp()->setCountdownTime(startTime);
         }
 
-        if (glfwGetTime() - pauseReturnTime > (5.0f - (pauseStartTime - startTime)) && timed)
+        if (glfwGetTime() - pauseReturnTime > (5.0f - (pauseStartTime - startTime)) && getApp()->getTimer())
         {
             // If the ocunt down is over, go to the over state
-            timed = false;
+            getApp()->setTimer(false);
             isHit = false;
             cameraController.setReversed(false);
             path = "assets/shaders/postprocess/vignette.frag";

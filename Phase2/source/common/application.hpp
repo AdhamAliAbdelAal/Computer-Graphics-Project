@@ -71,7 +71,14 @@ namespace our {
         State * currentState = nullptr;         // This will store the current scene that is being run
         State * nextState = nullptr;            // If it is requested to go to another scene, this will contain a pointer to that scene
         bool pause = false;                    // If true, the current scene will not be updated
-        
+        bool timer = false;                    // If true, the timer will be updated
+        int countdown = 5;                      // The countdown of the timer
+        int score = 0;                          // The score of the player
+        float countdownTime = 0;                //Time the countdown was last changed
+
+        float fadingSpeed = 15.0f;              // The speed of the fading effect
+        float Alpha = 255.0f;                  // The alpha value of the fading effect
+        bool tick = false;
         // Virtual functions to be overrode and change the default behaviour of the application
         // according to the example needs.
         virtual void configureOpenGL();                             // This function sets OpenGL Window Hints in GLFW.
@@ -81,7 +88,12 @@ namespace our {
     public:
 
         // Create an application with following configuration
-        Application(const nlohmann::json& app_config) : app_config(app_config) {}
+        Application(const nlohmann::json& app_config) : app_config(app_config) {
+            score = 0;
+            timer = false;
+            countdown = 5;
+            countdownTime = 0.0f;
+        }
         // On destruction, delete all the states
         ~Application(){ for (auto &it : states) delete it.second; }
 
@@ -116,6 +128,31 @@ namespace our {
         // Closes the Application
         void close(){
             glfwSetWindowShouldClose(window, GLFW_TRUE);
+        }
+
+        // set the score
+        void setScore(int score) { 
+            this->score = score; 
+        }
+
+        // get the score
+        int getScore() { 
+            return score; 
+        }
+
+        // set Timer
+        void setTimer(bool time) { 
+            this->timer = time; 
+        }
+
+        // get Timer
+        bool getTimer() { 
+            return timer; 
+        }
+
+        // set countdownTime
+        void setCountdownTime(float time) {
+            this->countdownTime = time;
         }
 
         // Class Getters.

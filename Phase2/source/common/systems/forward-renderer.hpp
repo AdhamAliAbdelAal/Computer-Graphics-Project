@@ -40,7 +40,7 @@ namespace our
         GLuint postprocessFrameBuffer, postProcessVertexArray;
         TexturedMaterial* postprocessMaterial;
         std::vector<LightComponent *> lights;
-        Texture2D *colorTarget, *depthTarget, *skyTexture, *alternateSkyTexture;
+        Texture2D *colorTarget, *depthTarget, *skyTexture;
     public:
         // Initialize the renderer including the sky and the Postprocessing objects.
         // windowSize is the width & height of the window (in pixels).
@@ -48,7 +48,7 @@ namespace our
         // Clean up the renderer
         void destroy();
         // This function should be called every frame to draw the given world
-         void render(World* world, std::string path, bool alternateSky);
+         void render(World* world, std::string path);
 
 
     };

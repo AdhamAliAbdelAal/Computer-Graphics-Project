@@ -11,8 +11,7 @@
     },
     "scene": {
         "renderer":{
-            "sky": "assets/textures/morning.jpeg",
-            "alternateSky": "assets/textures/night.jpg",
+            "sky": "assets/textures/night.jpg",
             "postprocess": "assets/shaders/postprocess/vignette.frag"
         },
         "assets":{
