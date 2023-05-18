@@ -38,13 +38,18 @@ namespace our
         {
             SoundEngine = createIrrKlangDevice();
         }
-
+        ~CoinCollectionSystem()
+        {
+            SoundEngine->drop();
+        }
         void reset()
         {
             score = 0;
             battery_charge = 5;
             egg = false;
         }
+
+
         // This should be called every frame to update all entities.
         void update(World *world, float deltaTime)
         {
@@ -78,7 +83,7 @@ namespace our
                     // if the distance between the coin and the player is less than the minimum distance
                     if (distance <= min_dist)
                     {
-
+                        SoundEngine->stopAllSounds();
                         if (gainComponent->effect == "score")
                         {
                             // effect_delay = time(0);
