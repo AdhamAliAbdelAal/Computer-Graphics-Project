@@ -126,8 +126,8 @@
                     "sampler": "default"
                 },
                 "fence":{
-                    "type": "lighted",
-                    "shader": "lighted",
+                    "type": "textured",
+                    "shader": "textured",
                     "pipelineState": {
                         "faceCulling":{
                             "enabled": false
@@ -195,8 +195,8 @@
                     "roughness": "white"
                 },
                 "fire":{
-                    "type": "textured",
-                    "shader": "textured",
+                    "type": "lighted",
+                    "shader": "lighted",
                     "pipelineState": {
                         "faceCulling":{
                             "enabled": false
@@ -205,9 +205,15 @@
                             "enabled": true
                         }
                     },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "fire",
-                    "sampler": "default"
+                    // "tint": [1, 1, 1, 1],
+                    // "texture": "fire",
+                    // "sampler": "default"
+                    "albedo": "fire",
+                    "sampler": "default",
+                    "specular": "white",
+                    "emissive": "red",
+                    "ambient_occlusion": "fire",
+                    "roughness": "red"
                 }
             }
         },
@@ -320,6 +326,10 @@
                 {
                     "type":"Gain",
                     "gain": -1
+                },
+                {
+                    "type": "Light",
+                    "lightType":"Spot"
                 }
             ]
         },
