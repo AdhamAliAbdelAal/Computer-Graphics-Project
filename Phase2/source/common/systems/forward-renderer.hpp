@@ -5,8 +5,6 @@
 #include "../components/mesh-renderer.hpp"
 #include "../asset-loader.hpp"
 #include "../components/light.hpp"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 #include <glad/gl.h>
 #include <vector>
 #include <algorithm>
@@ -40,7 +38,7 @@ namespace our
         TexturedMaterial* skyMaterial;
         // Objects used for Postprocessing
         GLuint postprocessFrameBuffer, postProcessVertexArray;
-        Texture2D *colorTarget, *depthTarget, *skyTexture, *alternateSkyTexture;
+        Texture2D *colorTarget, *depthTarget;
         TexturedMaterial* postprocessMaterial;
         std::vector<LightComponent *> lights;
     public:
@@ -50,7 +48,7 @@ namespace our
         // Clean up the renderer
         void destroy();
         // This function should be called every frame to draw the given world
-        void render(World* world, std::string path, bool alternateSky);
+        void render(World* world);
 
 
     };

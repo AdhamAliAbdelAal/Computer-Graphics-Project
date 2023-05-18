@@ -4,13 +4,10 @@
 #include <json/json.hpp>
 
 #include <application.hpp>
-#include <irrKlang.h>
 
 #include "states/menu-state.hpp"
 #include "states/play-state.hpp"
 #include "states/game-over-state.hpp"
-#include "states/pause-menu-state.hpp"
-#include "states/win-state.hpp"
 #include "states/shader-test-state.hpp"
 #include "states/mesh-test-state.hpp"
 #include "states/transform-test-state.hpp"
@@ -21,11 +18,8 @@
 #include "states/entity-test-state.hpp"
 #include "states/renderer-test-state.hpp"
 using namespace std;
-using namespace irrklang;
 
 int main(int argc, char** argv) {
-    ISoundEngine *SoundEngine = createIrrKlangDevice();
-    SoundEngine->play2D("music.mp3", true);
     
     flags::args args(argc, argv); // Parse the command line arguments
     // config_path is the path to the json file containing the application configuration
@@ -54,8 +48,6 @@ int main(int argc, char** argv) {
     app.registerState<Menustate>("menu");
     app.registerState<Playstate>("play");
     app.registerState<Overstate>("over");
-    app.registerState<Pausestate>("pause");
-    app.registerState<Winstate>("win");
     app.registerState<ShaderTestState>("shader-test");
     app.registerState<MeshTestState>("mesh-test");
     app.registerState<TransformTestState>("transform-test");

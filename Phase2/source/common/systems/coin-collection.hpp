@@ -24,17 +24,13 @@ namespace our
         // the minimum distance between the coin and the player
         float coin_min_dist = 1.0f;
         float fire_min_dist = 1.5f;
-        float monster_min_dist = 1.0f;
-        
+
     public:
         int accumulator = 0;
-
-        void reset() {
-            accumulator = 0;
-        }
         // This should be called every frame to update all entities.
         bool update(World *world, float deltaTime)
         {
+            cout<<accumulator<<'\n';
             const unordered_set<Entity *> entities = world->getEntities();
             Entity *ball = nullptr;
             for (auto it : entities)
@@ -56,37 +52,21 @@ namespace our
                     // get the position of the entity
                     glm::vec3 position = it->localTransform.position;
                     float distance=glm::distance(position,ball_position);
-                    float min_dist = gainComponent->gain == 1 ? coin_min_dist :(gainComponent->gain == -1)? fire_min_dist: monster_min_dist;
+                    float min_dist = gainComponent->gain == 1 ? coin_min_dist : fire_min_dist;
                     // if the distance between the coin and the player is less than the minimum distance
-                    
-
                     if (distance<=min_dist)
                     {
-                        if (gainComponent->gain == 0 ) {
-                            world->markForRemoval(it);
-                            world->deleteMarkedEntities();
-                            return true;
-                        }
-
-                        accumulator+= gainComponent->gain;
                         // cout<<"coin deleted : "<<it<<'\n';
                         // delete the entity
-                        cout<<accumulator<<'\n';
-
                         world->markForRemoval(it);
+                        world->deleteMarkedEntities();
                     }
-
+                    
                 }
-            }
             
-            world->deleteMarkedEntities();
+            }
             return false;
         }
-    
-        int get_num_of_collected_coins(){
-            return accumulator;
-        }
-    
     };
 
 }

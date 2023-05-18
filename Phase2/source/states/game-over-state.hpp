@@ -6,7 +6,7 @@
 #include <texture/texture-utils.hpp>
 #include <material/material.hpp>
 #include <mesh/mesh.hpp>
-#include "menu-state.hpp"
+#include "states/menu-state.hpp"
 #include <iostream>
 
 #include <functional>
@@ -26,7 +26,7 @@ class Overstate: public our::State {
     // A variable to record the time since the state is entered (it will be used for the fading effect).
     float time;
     // An array of the button that we can interact with
-    Button button;
+    std::array<Button, 2> buttons;
 
     std::string getName() override {
         return "over";
@@ -83,9 +83,9 @@ class Overstate: public our::State {
         // - The argument list () which is the arguments that the lambda should receive when it is called.
         //      We leave it empty since button actions receive no input.
         // - The body {} which contains the code to be executed. 
-        button.position = {300.0f, 622.0f};
-        button.size = {600.0f, 40.0f};
-        button.action = [this](){this->getApp()->changeState("play");};
+        buttons[0].position = {300.0f, 622.0f};
+        buttons[0].size = {600.0f, 40.0f};
+        buttons[0].action = [this](){this->getApp()->changeState("play");};
 
     }
 
@@ -109,8 +109,10 @@ class Overstate: public our::State {
         // If the mouse left-button is just pressed, check if the mouse was inside
         // any menu button. If it was inside a menu button, run the action of the button.
         if(mouse.justPressed(0)){
-            if(button.isInside(mousePosition))
-                button.action();
+            for(auto& button: buttons){
+                if(button.isInside(mousePosition))
+                    button.action();
+            }
         }
 
         // Get the framebuffer size to set the viewport and the create the projection matrix.
@@ -139,11 +141,12 @@ class Overstate: public our::State {
         rectangle->draw();
 
         // For every button, check if the mouse is inside it. If the mouse is inside, we draw the highlight rectangle over it.
-       
-        if(button.isInside(mousePosition)){
-            highlightMaterial->setup();
-            highlightMaterial->shader->set("transform", VP*button.getLocalToWorld());
-            rectangle->draw();
+        for(auto& button: buttons){
+            if(button.isInside(mousePosition)){
+                highlightMaterial->setup();
+                highlightMaterial->shader->set("transform", VP*button.getLocalToWorld());
+                rectangle->draw();
+            }
         }
         
     }

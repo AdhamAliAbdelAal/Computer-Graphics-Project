@@ -34,9 +34,6 @@ namespace our {
         Application* application;
         friend Application;
     public:
-        float pauseReturnTime = 0.0f;   // If the scene is paused, this will store the time when it was paused
-
-        void setPauseReturnTime(float time) { pauseReturnTime = time; } // Sets the pause return time
         virtual void onInitialize(){}                   // Called once before the game loop.
         virtual void onImmediateGui(){}                 // Called every frame to draw the Immediate GUI (if any).
         virtual void onDraw(double deltaTime){}         // Called every frame in the game loop passing the time taken to draw the frame "Delta time".
@@ -70,7 +67,7 @@ namespace our {
         std::unordered_map<std::string, State*> states;   // This will store all the states that the application can run
         State * currentState = nullptr;         // This will store the current scene that is being run
         State * nextState = nullptr;            // If it is requested to go to another scene, this will contain a pointer to that scene
-        bool pause = false;                    // If true, the current scene will not be updated
+
         
         // Virtual functions to be overrode and change the default behaviour of the application
         // according to the example needs.
@@ -105,12 +102,11 @@ namespace our {
 
         // Tells the application to change its current state
         // The change will not be applied until the current frame ends
-        void changeState(std::string name, bool paused = false){
+        void changeState(std::string name){
             auto it = states.find(name);
             if(it != states.end()){
                 nextState = it->second;
             }
-            pause = paused;
         }
 
         // Closes the Application

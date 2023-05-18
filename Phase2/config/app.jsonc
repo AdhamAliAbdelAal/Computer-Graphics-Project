@@ -11,8 +11,7 @@
     },
     "scene": {
         "renderer":{
-            "sky": "assets/textures/morning.jpeg",
-            "alternateSky": "assets/textures/night.jpg",
+            "sky": "assets/textures/a-cartoon-of-a-town-4nkenjjo.jpeg",
             "postprocess": "assets/shaders/postprocess/vignette.frag"
         },
         "assets":{
@@ -39,15 +38,8 @@
                 "fence":"assets/textures/fence.jpg",
                 "grass": "assets/textures/grass_a.png",
                 "flower": "assets/textures/flower.png",
-                "moon": "assets/textures/moon.jpg"    ,          
-                "grasses": "assets/textures/grass_ground_d.jpg",
-                "battery_bar_green": "assets/textures/green.png",
-                "battery_bar_yellow": "assets/textures/yellow.png",
-                "battery_bar_red": "assets/textures/red.png",
-                "battery_frame": "assets/textures/battery_frame.png",
-                "monster": "assets/textures/egg (1).png",
-                "coin":"assets/textures/tex_coin_tails_bmp.png",
-                "turbo":"assets/textures/spcbonturbo.png"
+                "grasses": "assets/textures/grass_ground_d.jpg"  ,
+                "moon": "assets/textures/moon.jpg"              
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -58,11 +50,7 @@
                 "fire": "assets/models/fire head.obj",
                 "fence":"assets/models/fence wood.obj",
                 "grass":"assets/models/sht_grass.obj",
-
-                "moon": "assets/models/sphere.obj",
-                "battery": "assets/models/battery.obj",
-                "monster":"assets/models/egg.obj",
-                "turbo":"assets/models/turbo.obj"
+                "moon": "assets/models/sphere.obj"
             },
             "samplers":{
                 "default":{},
@@ -206,21 +194,6 @@
                     "ambient_occlusion": "moon",
                     "roughness": "white"
                 },
-                "turbo":{
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling":{
-                            "enabled": true
-                        },
-                        "depthTesting":{
-                            "enabled": true
-                        }
-                    },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "turbo",
-                    "sampler": "default"
-                },
                 "fire":{
                     "type": "textured",
                     "shader": "textured",
@@ -234,101 +207,6 @@
                     },
                     "tint": [1, 1, 1, 1],
                     "texture": "fire",
-                    "sampler": "default"
-                },
-                "monster":{
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling":{
-                            "enabled": false
-                        },
-                        "depthTesting":{
-                            "enabled": true
-                        }
-                    },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "monster",
-                    "sampler": "default"
-                },
-                "battery": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "battery",
-                    "sampler": "default"
-                },
-                "battery_frame": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": false
-                        }, "blending": {
-                            "enabled": true
-                            ,"sourceFactor": "GL_SRC_ALPHA",
-                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA "
-                        }
-                    },
-                    "transparent": true,
-                    "tint": [1, 1, 1, 1],
-                    "texture": "battery_frame",
-                    "sampler": "default"
-                },
-                "battery_bar_green": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "battery_bar_green",
-                    "sampler": "default"
-                },
-                "battery_bar_yellow": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "battery_bar_yellow",
-                    "sampler": "default"
-                },
-                "battery_bar_red": {
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling": {
-                            "enabled": false
-                        },
-                        "depthTesting": {
-                            "enabled": true
-                        }
-                    },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "battery_bar_red",
                     "sampler": "default"
                 }
             }
@@ -395,103 +273,6 @@
                     "attenuation" : [0, 1, 0]
                 }
                 ]
-            },
-            {
-                "name":"battery-frame",
-                "position": [2.8, 4.7, 5],
-                "scale": [0.7, 0.2, -2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "battery_frame"
-                    },
-                    {
-                        "type": "Bar",
-                        "id": 1
-                    }
-                ]
-            },
-            {
-                "name":"bar-5",
-                "position": [2.4, 4.7, 5],
-                "scale": [0.12, 0.128, 1],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "battery_bar_green"
-                    },
-                    {
-                        "type": "Bar",
-                        "id": 1
-                    }
-                ]
-            },
-            {
-                "name":"bar-4",
-                "position": [2.6, 4.7, 5],
-                "scale": [0.12, 0.128, 1],
-                "mesh": "plane",
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "battery_bar_green"
-                    },
-                    {
-                        "type": "Bar",
-                        "id": 2
-                    }
-                ]
-            },
-            {
-                "name":"bar-3",
-                "position": [2.8, 4.7, 5],
-                "scale": [0.12, 0.128, 1],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "battery_bar_green"
-                    },
-                    {
-                        "type": "Bar",
-                        "id": 3
-                    }
-                ]
-            },
-            {
-                "name":"bar-2",
-                "position": [3, 4.7, 5],
-                "scale": [0.12, 0.128, 1],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "battery_bar_green"
-                    },
-                    {
-                        "type": "Bar",
-                        "id": 4
-                    }
-                ]
-            },
-            {
-                "name":"bar-1",
-                "position": [3.2, 4.7, 5],
-                "scale": [0.12, 0.128, 1],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "battery_bar_green"
-                    },
-                    {
-                        "type": "Bar",
-                        "id": 5
-                    }
-                ]
             }
         ],
         "coin":{
@@ -539,50 +320,6 @@
                 {
                     "type":"Gain",
                     "gain": -1
-                }
-            ]
-        },
-        "monster":{
-            "name":"monster",
-            "position": [0, 0, -10],
-            "rotation": [0, 0, 0],
-            "scale": [0.65, 0.65, 0.65],
-            "components": [
-                {
-                    "type": "Mesh Renderer",
-                    "mesh": "monster",
-                    "material": "monster"
-                },
-                {
-                    "type": "Movement",
-                    "angularVelocity": [0, 300, 0],
-                    "linearVelocity": [0, 0, 5]
-                },
-                {
-                    "type":"Gain",
-                    "gain": 0
-                }
-            ]
-        },
-        "turbo":{
-            "name":"turbo",
-            "position": [0, 0, -10],
-            "rotation": [0, 0, 0],
-            "scale": [0.55, 0.55, 0.55],
-            "components": [
-                {
-                    "type": "Mesh Renderer",
-                    "mesh": "turbo",
-                    "material": "turbo"
-                },
-                {
-                    "type": "Movement",
-                    "angularVelocity": [0, 300, 0],
-                    "linearVelocity": [0, 0, 5]
-                },
-                {
-                    "type":"Gain",
-                    "gain": 2
                 }
             ]
         },

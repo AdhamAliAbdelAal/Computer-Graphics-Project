@@ -126,6 +126,9 @@ class Menustate: public our::State {
         } else if(keyboard.justPressed(GLFW_KEY_ESCAPE)) {
             // If the escape key is pressed in this frame, exit the game
             getApp()->close();
+        } else if(keyboard.justPressed(GLFW_KEY_P)) {
+            // If the P key is pressed in this frame, go to the play state
+            getApp()->changeState("play");
         }
 
         // Get a reference to the mouse object and get the current mouse position
