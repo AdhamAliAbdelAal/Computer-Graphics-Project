@@ -7,6 +7,7 @@
 #include "movement.hpp"
 #include "gain.hpp"
 #include <iostream>
+#include "light.hpp"
 using namespace std;
 namespace our {
 
@@ -31,6 +32,9 @@ namespace our {
         }
         else if(type== GainComponent::getID()){
             component = entity->addComponent<GainComponent>();
+        }
+         else if(type== LightComponent::getID()){
+            component = entity->addComponent<LightComponent>();
         }
         if(component) component->deserialize(data);
     }

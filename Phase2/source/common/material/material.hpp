@@ -53,12 +53,23 @@ namespace our {
         void deserialize(const nlohmann::json& data) override;
     };
 
+     class LightMaterial : public Material {
+    public:
+        Texture2D  *albedo, *specular , *emissive , *roughness , *ambient_occlusion;
+        Sampler* sampler;
+
+        void setup() const override;
+        void deserialize(const nlohmann::json& data) override;
+    };
+
     // This function returns a new material instance based on the given type
     inline Material* createMaterialFromType(const std::string& type){
         if(type == "tinted"){
             return new TintedMaterial();
         } else if(type == "textured"){
             return new TexturedMaterial();
+        } else if(type == "lighted"){      // if the given type is lighted 
+            return new LightMaterial();
         } else {
             return new Material();
         }

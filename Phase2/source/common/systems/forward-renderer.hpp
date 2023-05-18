@@ -4,10 +4,7 @@
 #include "../components/camera.hpp"
 #include "../components/mesh-renderer.hpp"
 #include "../asset-loader.hpp"
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
+#include "../components/light.hpp"
 #include <glad/gl.h>
 #include <vector>
 #include <algorithm>
@@ -41,9 +38,9 @@ namespace our
         TexturedMaterial* skyMaterial;
         // Objects used for Postprocessing
         GLuint postprocessFrameBuffer, postProcessVertexArray;
-        Texture2D *colorTarget, *depthTarget, *skyTexture, *alternateSkyTexture;
         TexturedMaterial* postprocessMaterial;
-        
+        std::vector<LightComponent *> lights;
+        Texture2D *colorTarget, *depthTarget, *skyTexture, *alternateSkyTexture;
     public:
         // Initialize the renderer including the sky and the Postprocessing objects.
         // windowSize is the width & height of the window (in pixels).
@@ -51,7 +48,7 @@ namespace our
         // Clean up the renderer
         void destroy();
         // This function should be called every frame to draw the given world
-        void render(World* world, std::string path, bool alternateSky);
+         void render(World* world, std::string path, bool alternateSky);
 
 
     };
