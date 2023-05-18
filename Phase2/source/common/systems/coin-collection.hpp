@@ -29,10 +29,11 @@ namespace our
         float monster_min_dist = 1.0f;
         ll effect_delay = 0;
         ISoundEngine *SoundEngine;
-
+        
     public:
         int score = 0;
         int battery_charge = 5;
+        bool egg = false;
         CoinCollectionSystem()
         {
             SoundEngine = createIrrKlangDevice();
@@ -42,9 +43,10 @@ namespace our
         {
             score = 0;
             battery_charge = 5;
+            egg = false;
         }
         // This should be called every frame to update all entities.
-        bool update(World *world, float deltaTime)
+        void update(World *world, float deltaTime)
         {
             // if (time(0) - effect_delay == 1)
             // {
@@ -61,7 +63,7 @@ namespace our
                 }
             }
             if (!ball)
-                return false;
+                return;
             glm::vec3 ball_position = ball->localTransform.position;
             for (auto it : entities)
             {
@@ -98,26 +100,39 @@ namespace our
                                 SoundEngine->play2D("assets/sounds/egg.mp3", false, false, true);
                             }
                             battery_charge += gainComponent->gain;
+                            battery_charge = clamp(battery_charge, 0, 5);
+
                             if (gainComponent->gain == -1)
                             {
-                                world->markForRemoval(it);
-                                world->deleteMarkedEntities();
-                                return true;
+                                egg = true;
                             }
                         }
                         world->markForRemoval(it);
-                        // SoundEngine->drop();
                     }
                 }
             }
             world->deleteMarkedEntities();
-
-            return false;
+            return;
         }
 
         int get_num_of_collected_coins()
         {
             return score;
+        }
+
+        // get batterycharge
+        int get_battery_charge() {
+            return battery_charge;
+        }
+
+        // get Egg
+        bool getEgg() {
+            return egg;
+        }
+
+        // set egg
+        void setEgg(bool Egg) {
+            egg = Egg;
         }
     };
 

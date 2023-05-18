@@ -53,7 +53,7 @@ namespace our
             string bar_name = "bar-" + std::to_string(bar_number);
             for (auto& obj : this->worldJson) {
                 if (obj["name"] == bar_name) {
-                    // cout << obj.dump(4) << std::endl; // print the object to console
+                    
                     obj.at("components")[0].at("material") = this->change_bar_color();
                     this->worldPtr->objectDeserialize(obj);
                     break;
@@ -97,24 +97,16 @@ namespace our
         }
 
 
-        int update_battery(int coins_accumulator){
+        void update_battery(int level){
 
-            // wining state
-            if(coins_accumulator > MAX_LEVELS_TO_WIN * LEVEL_WEIGHT)
-                return 1;
-
-            this->current_battery_level = ceil(coins_accumulator / LEVEL_WEIGHT);
-
-            // game over state
-            if(coins_accumulator < 0)
-                return -1;
+            this->current_battery_level = level;
 
             // normal logic
             this->remove_all_bars();
             for(int i = 1; i <= this->current_battery_level; i++)
                 this->add_bar(i);
             
-            return 0;
+            return;
         }
     };
 

@@ -26,7 +26,7 @@ namespace our
     {
 
     public:
-        float speedBooster = 0.0f;
+        float speedBooster = 5.0f;
         ll delay;
         bool updateSpeeds = false;
 
@@ -38,7 +38,7 @@ namespace our
 
         void reset()
         {
-            speedBooster = 0.0f;
+            speedBooster = 5.0f;
             delay = time(0);
         }
         // This should be called every frame to update all entities containing a MovementComponent.
@@ -47,7 +47,6 @@ namespace our
             if (time(0) - delay > 10)
             {
                 speedBooster += 1.0f;
-                // cout<<"speedBooster: "<<speedBooster<<'\n';
                 cout << "delay: " << speedBooster << '\n';
                 delay = time(0);
                 updateSpeeds = true;

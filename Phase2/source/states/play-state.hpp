@@ -20,10 +20,8 @@ using namespace irrklang;
 class Playstate : public our::State
 {
     string path;
-    bool isHit = false;
     int isWon = 0;      // If the player won
 
-    float backgroundTime = 0; // of the current background
     float startTime = 0;      // of the countdown to gameover
     float pauseStartTime = 0; // Pausing the game should pause the countdown
 
@@ -95,7 +93,6 @@ class Playstate : public our::State
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
         path = "assets/shaders/postprocess/vignette.frag";
-        isHit = false;
         isWon = 0;
 
         batteryController = new our::BatterySystem(config["world"], config["assets"]["textures"], &world);
@@ -104,7 +101,6 @@ class Playstate : public our::State
     void onDraw(double deltaTime) override
     {
         // Here, we just run a bunch of systems to control the world logic
-
         movementSystem.update(&world, (float)deltaTime, getApp());
         cameraController.update(&world, (float)deltaTime);
 
@@ -116,10 +112,10 @@ class Playstate : public our::State
         if (roadRepeaterSystem)
             roadRepeaterSystem->update(&world, (float)deltaTime);
         // system 3 : call update function of coin collection system
-        isHit = coinCollectionSystem.update(&world, (float)deltaTime);
+        coinCollectionSystem.update(&world, (float)deltaTime);
 
         // system 4 : call update function of the battery system
-        isWon = batteryController->update_battery(coinCollectionSystem.get_num_of_collected_coins());
+        batteryController->update_battery(coinCollectionSystem.get_battery_charge());
 
         // And finally we use the renderer system to draw the scene (if 10 seconds passed, we change the background)
         renderer.render(&world, path);
@@ -130,19 +126,19 @@ class Playstate : public our::State
         // Get a reference to the keyboard object
         auto &keyboard = getApp()->getKeyboard();
 
-        if (isWon == 1)
+        if (coinCollectionSystem.get_num_of_collected_coins()>=25)
         {
             // If the player won, go to the win state
             getApp()->changeState("win");
         }
 
-        if (isWon == -1)
+        if (coinCollectionSystem.get_battery_charge() == 0)
         {
             // If the player lost, go to the over state
             getApp()->changeState("over");
         }
 
-        if (isHit && !getApp()->getTimer())
+        if (coinCollectionSystem.getEgg() && !getApp()->getTimer())
         {
             // If the player is hit, go Berserk
             path = "assets/shaders/postprocess/radial-blur.frag";
@@ -156,7 +152,8 @@ class Playstate : public our::State
         {
             // If the ocunt down is over, go to the over state
             getApp()->setTimer(false);
-            isHit = false;
+            getApp()->setCountdown(5);
+            coinCollectionSystem.setEgg(false);
             cameraController.setReversed(false);
             path = "assets/shaders/postprocess/vignette.frag";
         }

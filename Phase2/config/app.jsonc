@@ -401,7 +401,7 @@
             {
                 "name":"battery-frame",
                 "position": [2.8, 4.7, 5],
-                "scale": [0.7, 0.2, -2],
+                "scale": [0.6, 0.2, -2],
                 "components": [
                     {
                         "type": "Mesh Renderer",

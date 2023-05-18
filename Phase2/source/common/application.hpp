@@ -155,6 +155,11 @@ namespace our {
             this->countdownTime = time;
         }
 
+        // set countDown
+        void setCountdown(int count) {
+            this->countdown = count;
+        }
+
         // Class Getters.
         GLFWwindow* getWindow(){ return window; }
         [[nodiscard]] const GLFWwindow* getWindow() const { return window; }
