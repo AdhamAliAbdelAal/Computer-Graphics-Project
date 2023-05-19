@@ -1,30 +1,24 @@
 #version 330
-
-// The texture holding the scene pixels
 uniform sampler2D tex;
-
-// Read "assets/shaders/fullscreen.vert" to know what "tex_coord" holds;
+uniform float time;
 in vec2 tex_coord;
-
 out vec4 frag_color;
 
-// Grain parameters
-float grain_amount = 0.1; // Adjust this value to control the intensity of the grain effect
-float grain_size = 3;   // Adjust this value to control the size of the grain particles
-
 void main() {
-    // Get the original color of the pixel
-    vec4 original_color = texture(tex, tex_coord);
+    // Define the wave parameters
+    float frequency = 5.0;   // Controls the frequency of the waves
+    float amplitude = 0.1;   // Controls the amplitude of the waves
+    float speed = 1.0;       // Controls the speed of the waves
 
-    // Generate random noise based on texture coordinate
-    float random_value = fract(sin(dot(tex_coord, vec2(12.9898, 78.233))) * 43758.5453);
+    // Calculate the displacement based on time and texture coordinates
+    float displacement = amplitude * sin(frequency * tex_coord.x + time * speed);
 
-    // Apply grain effect by adding noise to the original color
-    vec4 grain_color = original_color + vec4(random_value * grain_amount);
+    // Apply the displacement to the texture coordinates
+    vec2 distorted_coord = vec2(tex_coord.x, tex_coord.y + displacement);
 
-    // Apply grain size by reducing color variation
-    grain_color = floor(grain_color * grain_size) / grain_size;
+    // Sample the color from the original texture using the distorted coordinates
+    vec4 color = texture(tex, distorted_coord);
 
-    // Set the final color with grain effect
-    frag_color = grain_color;
+    // Set the final color
+    frag_color = color;
 }

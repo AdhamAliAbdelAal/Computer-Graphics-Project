@@ -6,6 +6,8 @@
 #include <glad/gl.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <GLFW/glfw3.h>
+
 
 namespace our {
 
@@ -91,7 +93,9 @@ namespace our {
             // the third parameter is a boolean that indicates if the matrix should be transposed
             // the fourth parameter is the pointer to the matrix
         }
-
+        void setTime(const std::string &uniform){
+            glUniform1f(getUniformLocation(uniform),float(glfwGetTime()));
+        }
         // ************** I can't found the copy constructor and assignment operator in the code **************
         //TODO: (Req 1) Delete the copy constructor and assignment operator.
         ShaderProgram(const ShaderProgram&) = delete;
