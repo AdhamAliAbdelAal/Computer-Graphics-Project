@@ -21,4 +21,5 @@ void main(){
         frag_color += texture(tex, tex_coord + step_vector * i);    
     }
     frag_color /= STEPS;
+    
 }

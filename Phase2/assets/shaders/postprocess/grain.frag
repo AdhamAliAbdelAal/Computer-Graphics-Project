@@ -1,6 +1,9 @@
 #version 330
 uniform sampler2D tex;
 uniform float time;
+uniform float speed=5;
+uniform float amplitude=0.05;
+uniform float frequency=3;
 in vec2 tex_coord;
 out vec4 frag_color;
 
@@ -11,23 +14,31 @@ float endValue = 0.9;
 // Battery charge color
 vec3 battery_color = vec3(0.0, 1.0, 0.0);
 
+// The number of samples we read to compute the blurring effect
+#define STEPS 16
+// The strength of the blurring effect
+#define STRENGTH 0.2
+
 void main() {
 
-    // Interpolation factor
-    float t = clamp(sin(time), startValue, endValue); // Clamp time
+    // To apply radial blur, we compute the direction outward from the center to the current pixel
+    vec2 step_vector = (tex_coord - 0.5) * (STRENGTH / STEPS);
 
-    // Interpolation Value
-    float battery_level = t;
-    
-    // Get the original scene color
-    vec4 original_color = texture(tex, tex_coord);
-    
-    // Calculate the blend factor based on the battery level
-    float blend_factor = 1.0 - battery_level;
-    
-    // Create a color gradient based on the battery level
-    vec3 blended_color = mix(original_color.rgb, battery_color, blend_factor);
-    
-    // Apply the color to the final output
-    frag_color = vec4(blended_color, original_color.a);
+    // Then we sample multiple pixels along that direction and compute the average
+    for(int i = 0; i < STEPS; i++){
+        // Calculate the displacement based on time and texture coordinates
+        float displacement = amplitude * sin(frequency * tex_coord.y + time * speed);
+
+        // Apply the displacement to the horizontal position
+        float x = tex_coord.x + displacement;
+
+        // Sample the color from the original texture using the modified coordinates
+        frag_color += texture(tex, vec2(x, tex_coord.y));
+        
+        frag_color += texture(tex, tex_coord + step_vector * i);    
+    }
+
+    frag_color /= STEPS;
+
+
 }
