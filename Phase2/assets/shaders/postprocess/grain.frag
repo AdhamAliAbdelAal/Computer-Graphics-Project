@@ -8,23 +8,22 @@ in vec2 tex_coord;
 
 out vec4 frag_color;
 
-// Grain parameters
-float grain_amount = 0.1; // Adjust this value to control the intensity of the grain effect
-float grain_size = 3;   // Adjust this value to control the size of the grain particles
+// Battery charge level (between 0.0 and 1.0)
+float battery_level = 0.8;
+
+// Battery charge color
+vec3 battery_color = vec3(0.0, 1.0, 0.0);
 
 void main() {
-    // Get the original color of the pixel
+    // Get the original scene color
     vec4 original_color = texture(tex, tex_coord);
-
-    // Generate random noise based on texture coordinate
-    float random_value = fract(sin(dot(tex_coord, vec2(12.9898, 78.233))) * 43758.5453);
-
-    // Apply grain effect by adding noise to the original color
-    vec4 grain_color = original_color + vec4(random_value * grain_amount);
-
-    // Apply grain size by reducing color variation
-    grain_color = floor(grain_color * grain_size) / grain_size;
-
-    // Set the final color with grain effect
-    frag_color = grain_color;
+    
+    // Calculate the blend factor based on the battery level
+    float blend_factor = 1.0 - battery_level;
+    
+    // Create a color gradient based on the battery level
+    vec3 blended_color = mix(original_color.rgb, battery_color, blend_factor);
+    
+    // Apply the color to the final output
+    frag_color = vec4(blended_color, original_color.a);
 }
