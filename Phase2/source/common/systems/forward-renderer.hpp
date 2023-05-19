@@ -7,6 +7,7 @@
 #include "../components/light.hpp"
 #include <glad/gl.h>
 #include <vector>
+#include <string>
 #include <algorithm>
 
 namespace our
@@ -41,6 +42,7 @@ namespace our
         TexturedMaterial* postprocessMaterial;
         std::vector<LightComponent *> lights;
         Texture2D *colorTarget, *depthTarget, *skyTexture;
+        std::string path;
     public:
         // Initialize the renderer including the sky and the Postprocessing objects.
         // windowSize is the width & height of the window (in pixels).
@@ -50,6 +52,10 @@ namespace our
         // This function should be called every frame to draw the given world
          void render(World* world, std::string path);
 
+        // Set Path of the shader
+        void setPath(std::string path) {
+            this->path = path;
+        }
 
     };
 
