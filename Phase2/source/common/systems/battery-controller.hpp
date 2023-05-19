@@ -19,6 +19,13 @@ using namespace std;
 namespace our
 {
 
+    /**
+     * This class represents a system for managing the battery.
+     * It allows for updating the battery level by adding or removing battery level bars.
+     * 
+     * The class uses a World object to create and manipulate entities for the battery bars.
+     * It also utilizes a JSON configuration for the world and textures.
+     */
     class BatterySystem
     {
         nlohmann::json worldJson;
@@ -26,6 +33,11 @@ namespace our
         int current_battery_level;
         nlohmann::json texturesJson;
 
+        /**
+            * To remove a single battery level bar entity from the World.
+            * 
+            * @param bar_number The number of the bar to remove
+        */
         void remove_bar(int bar_number)
         {
             string bar_name = "bar-" + std::to_string(bar_number);
@@ -42,12 +54,20 @@ namespace our
  
         }
 
+        /**
+            * To Remove all the battery level bar entities from the World.
+        */
         void remove_all_bars()
         {
             for(int i = 1; i <= 5; i++)
                 remove_bar(i);
         }
 
+        /**
+            * To add a single battery level bar entity to the World.
+            * 
+            * @param bar_number The number of the bar to add
+        */
         void add_bar(int bar_number)
         {
             string bar_name = "bar-" + std::to_string(bar_number);
@@ -62,6 +82,11 @@ namespace our
  
         }
 
+        /**
+            * To determine the color for the battery level bar based on the current battery level.
+            * 
+            * @return The color for the battery level bar
+        */
          string change_bar_color(){
             switch (this->current_battery_level)
             {
@@ -86,17 +111,24 @@ namespace our
             
         }
 
-
     public:
 
-
+        /**
+           * @param worldJson The JSON configuration for the world
+           * @param texturesJson The JSON configuration for the textures used for the battery bars
+           * @param worldPtr A pointer to the World object for managing entities
+        */
         BatterySystem(const nlohmann::json &worldJson, const nlohmann::json &texturesJson, World *worldPtr) : worldJson(worldJson), texturesJson(texturesJson), worldPtr(worldPtr)
         {
             this->remove_all_bars();
             this->current_battery_level = 0;
         }
 
-
+        /**
+           * Updates the battery level by adding or removing battery level bar entities.
+           * 
+           * @param level The new battery level
+        */
         void update_battery(int level){
 
             this->current_battery_level = level;
