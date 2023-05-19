@@ -155,6 +155,8 @@ class Playstate : public our::State
             renderer.setDoomed(false);
         }
 
+        
+
 
         if (keyboard.justPressed(GLFW_KEY_P))
         {
