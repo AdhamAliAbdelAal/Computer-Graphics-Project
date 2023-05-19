@@ -110,7 +110,7 @@ namespace our
                 if(it->name=="ball"){
                     MovementComponent *ball = it->getComponent<MovementComponent>();
                     if(ball){
-                        delay=max((ball->angularVelocity.x-glm::radians(-200.0f))*10+1000.0f, 300.0f);
+                        delay=max((ball->angularVelocity.x-glm::radians(-100.0f))*10+1000.0f, 200.0f);
                         // cout<<delay<<" , "<<ball->angularVelocity.x<<'\n';
                     }
                 }
