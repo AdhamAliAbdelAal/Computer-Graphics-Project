@@ -401,6 +401,7 @@ namespace our {
                 postprocessShader->attach(normalPath, GL_FRAGMENT_SHADER);
 
             postprocessShader->link();
+            postprocessShader->setTime("time");
             postprocessMaterial->shader = postprocessShader;
             // Unbinding the framebuffer again.
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);

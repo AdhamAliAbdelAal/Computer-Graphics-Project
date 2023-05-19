@@ -1,20 +1,24 @@
 #version 330
-
-// The texture holding the scene pixels
 uniform sampler2D tex;
-
-// Read "assets/shaders/fullscreen.vert" to know what "tex_coord" holds;
+uniform float time;
 in vec2 tex_coord;
-
 out vec4 frag_color;
 
 // Battery charge level (between 0.0 and 1.0)
-float battery_level = 0.8;
+float startValue = 0.4;
+float endValue = 0.9;
 
 // Battery charge color
 vec3 battery_color = vec3(0.0, 1.0, 0.0);
 
 void main() {
+
+    // Interpolation factor
+    float t = clamp(sin(time), startValue, endValue); // Clamp time
+
+    // Interpolation Value
+    float battery_level = t;
+    
     // Get the original scene color
     vec4 original_color = texture(tex, tex_coord);
     
