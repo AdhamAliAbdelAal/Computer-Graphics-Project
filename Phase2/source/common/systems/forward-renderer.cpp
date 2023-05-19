@@ -61,6 +61,9 @@ namespace our {
 
         // Then we check if there is a postprocessing shader in the configuration
         if(config.contains("postprocess")){
+
+            doomPath = config.value<std::string>("doomed", "");
+            normalPath = config.value<std::string>("postprocess", "");
             //TODO: (Req 11) Create a framebuffer
             // Generating the frame buffer in the postprocessFrameBuffer variable, and binding it
             glGenFramebuffers(1, &postprocessFrameBuffer);
@@ -129,6 +132,7 @@ namespace our {
             delete postprocessMaterial->sampler;
             delete postprocessMaterial->shader;
             delete postprocessMaterial;
+            doomed = false;
         }
     }
 
@@ -389,14 +393,15 @@ namespace our {
         // If there is a postprocess material, apply postprocessing
         if(postprocessMaterial){
             //TODO: (Req 11) Return to the default framebuffer
-            if(path!="") 
-            {
-                ShaderProgram* postprocessShader = new ShaderProgram();
-                postprocessShader->attach("assets/shaders/fullscreen.vert", GL_VERTEX_SHADER);
-                postprocessShader->attach(path, GL_FRAGMENT_SHADER);
-                postprocessShader->link();
-                postprocessMaterial->shader = postprocessShader;
-            }
+            ShaderProgram* postprocessShader = new ShaderProgram();
+            postprocessShader->attach("assets/shaders/fullscreen.vert", GL_VERTEX_SHADER);
+            if(doomed) 
+                postprocessShader->attach(doomPath, GL_FRAGMENT_SHADER);
+            else
+                postprocessShader->attach(normalPath, GL_FRAGMENT_SHADER);
+
+            postprocessShader->link();
+            postprocessMaterial->shader = postprocessShader;
             // Unbinding the framebuffer again.
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
             //TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle

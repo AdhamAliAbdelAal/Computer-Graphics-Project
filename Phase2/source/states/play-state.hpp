@@ -137,7 +137,7 @@ class Playstate : public our::State
         if (coinCollectionSystem.getEgg() && !getApp()->getTimer())
         {
             // If the player is hit, go Berserk
-            renderer.setPath("assets/shaders/postprocess/radial-blur.frag");
+            renderer.setDoomed(true);
             getApp()->setTimer(true);
             cameraController.setReversed(true);
             startTime = glfwGetTime();
@@ -146,12 +146,13 @@ class Playstate : public our::State
 
         if (glfwGetTime() - pauseReturnTime > (5.0f - (pauseStartTime - startTime)) && getApp()->getTimer())
         {
+            cout<<"called\n";
             // If the ocunt down is over, go to the over state
             getApp()->setTimer(false);
             getApp()->setCountdown(5);
             coinCollectionSystem.setEgg(false);
             cameraController.setReversed(false);
-            renderer.setPath("assets/shaders/postprocess/vignette.frag");
+            renderer.setDoomed(false);
         }
 
 
