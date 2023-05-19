@@ -313,7 +313,7 @@ int our::Application::run(int run_for_frames) {
                 
                 if(glfwGetTime() - countdownTime > 1.0f){
                     countdownTime = glfwGetTime();
-                    countdown--;
+                    countdown = max(0, countdown-1);
                 }
             }
 
@@ -332,13 +332,20 @@ int our::Application::run(int run_for_frames) {
             ImVec4 *colors = style->Colors;
             colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
             colors[ImGuiCol_Border] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
-
-            ImGui::SetCursorPosX(560);
+            
+            if(abs(score)>=10) {
+                if(score<0)
+                    ImGui::SetCursorPosX(560);
+                else 
+                    ImGui::SetCursorPosX(570);
+            }
+            else if(score<0)
+                ImGui::SetCursorPosX(570);
+            else 
+                ImGui::SetCursorPosX(580);
             ImGui::SetCursorPosY(285);
 
             ImGui::PushFont(font2);
-            // string l1 = "Score: ";
-            string l2 = to_string(score);
             string totalLine = to_string(score);
             ImGui::Text(totalLine.c_str());
             ImGui::PopFont();
