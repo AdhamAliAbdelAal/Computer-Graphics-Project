@@ -323,7 +323,7 @@ int our::Application::run(int run_for_frames) {
 
         else if (currentState->getName() == "over")
         {
-            ImGui::SetNextWindowSize(ImVec2(800, 200));
+            ImGui::SetNextWindowSize(ImVec2(1280, 400));
             ImGui::Begin(" ", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
             ImGui::SetWindowPos(" ", ImVec2(0, 0));
 
@@ -333,13 +333,13 @@ int our::Application::run(int run_for_frames) {
             colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
             colors[ImGuiCol_Border] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
 
-            ImGui::SetCursorPosX(30);
-            ImGui::SetCursorPosY(0);
+            ImGui::SetCursorPosX(560);
+            ImGui::SetCursorPosY(285);
 
             ImGui::PushFont(font2);
-            string l1 = "Score: ";
+            // string l1 = "Score: ";
             string l2 = to_string(score);
-            string totalLine = l1 + l2;
+            string totalLine = to_string(score);
             ImGui::Text(totalLine.c_str());
             ImGui::PopFont();
 
