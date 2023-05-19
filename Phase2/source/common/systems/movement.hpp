@@ -38,7 +38,7 @@ namespace our
 
         void reset()
         {
-            speedBooster = 5.0f;
+            speedBooster = 1.0f;
             delay = time(0);
         }
         // This should be called every frame to update all entities containing a MovementComponent.
