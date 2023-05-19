@@ -18,7 +18,6 @@
 #include "states/sampler-test-state.hpp"
 #include "states/material-test-state.hpp"
 #include "states/entity-test-state.hpp"
-#include "states/renderer-test-state.hpp"
 using namespace std;
 
 int main(int argc, char** argv) {
@@ -62,7 +61,6 @@ int main(int argc, char** argv) {
     app.registerState<SamplerTestState>("sampler-test");
     app.registerState<MaterialTestState>("material-test");
     app.registerState<EntityTestState>("entity-test");
-    app.registerState<RendererTestState>("renderer-test");
     // Then choose the state to run based on the option "start-scene" in the config
     if(app_config.contains(std::string{"start-scene"})){
         cout<<app_config["start-scene"].get<std::string>()<<'\n';

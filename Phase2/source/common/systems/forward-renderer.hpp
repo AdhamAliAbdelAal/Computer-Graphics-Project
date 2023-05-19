@@ -50,7 +50,7 @@ namespace our
         // Clean up the renderer
         void destroy();
         // This function should be called every frame to draw the given world
-         void render(World* world, std::string path);
+         void render(World* world);
 
         // Set Path of the shader
         void setPath(std::string path) {

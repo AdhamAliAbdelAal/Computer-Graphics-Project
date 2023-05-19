@@ -19,7 +19,6 @@ using namespace irrklang;
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
-    string path;            //For the path of the shader used in post processing
 
     float startTime = 0;      // of the countdown to gameover
     float pauseStartTime = 0; // Pausing the game should pause the countdown
@@ -91,7 +90,6 @@ class Playstate : public our::State
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
-        path = "assets/shaders/postprocess/vignette.frag";
 
         batteryController = new our::BatterySystem(config["world"], config["assets"]["textures"], &world);
     }
@@ -116,7 +114,7 @@ class Playstate : public our::State
         batteryController->update_battery(coinCollectionSystem.get_battery_charge());
 
         // And finally we use the renderer system to draw the scene (if 10 seconds passed, we change the background)
-        renderer.render(&world, path);
+        renderer.render(&world);
 
         // Set Score
         getApp()->setScore(coinCollectionSystem.get_num_of_collected_coins());
@@ -139,7 +137,7 @@ class Playstate : public our::State
         if (coinCollectionSystem.getEgg() && !getApp()->getTimer())
         {
             // If the player is hit, go Berserk
-            path = "assets/shaders/postprocess/radial-blur.frag";
+            renderer.setPath("assets/shaders/postprocess/radial-blur.frag");
             getApp()->setTimer(true);
             cameraController.setReversed(true);
             startTime = glfwGetTime();
@@ -153,7 +151,7 @@ class Playstate : public our::State
             getApp()->setCountdown(5);
             coinCollectionSystem.setEgg(false);
             cameraController.setReversed(false);
-            path = "assets/shaders/postprocess/vignette.frag";
+            renderer.setPath("assets/shaders/postprocess/vignette.frag");
         }
 
 
