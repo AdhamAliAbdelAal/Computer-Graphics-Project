@@ -9,7 +9,7 @@
 #include <glm/trigonometric.hpp>
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <iostream>
-
+#include <set>
 using namespace std;
 #include <ctime>
 
@@ -32,6 +32,8 @@ namespace our
             
             int sign = (x > 0) ? 1 : -1;
             if((linear&&abs(x)>10)||(!linear&&abs(x)>glm::pi<float>()*2)){
+                // cout<<"hello\n";
+                // cout<<(!linear&&abs(x)>glm::pi<float>()*2)<<'\n';
                 return 0;
             }
             return sign * this->speedBooster;
@@ -56,10 +58,11 @@ namespace our
         // This should be called every frame to update all entities containing a MovementComponent.
         void update(World *world, float deltaTime, Application *app)
         {
+            set<string>s;
             if (time(0) - delay > 2)
             {
                 speedBooster += 1.0f;
-                cout << "delay: " << speedBooster << '\n';
+                // cout << "delay: " << speedBooster << '\n';
                 delay = time(0);
                 updateSpeeds = true;
             }
@@ -86,9 +89,9 @@ namespace our
                     
                     if (updateSpeeds)
                     {
+                        s.insert(entity->name);
                         movement->linearVelocity = currentLinearVelocity;
                         movement->angularVelocity = currentAngularVelocity;
-                        updateSpeeds = false;
                     }
                     if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
                     {
@@ -104,6 +107,9 @@ namespace our
                     // cout<<cnt<<'\n';
                 }
             }
+            if(s.size()!=0)
+                cout<<"cnt: "<<s.size()<<'\n';
+            updateSpeeds = false;
         }
     };
 

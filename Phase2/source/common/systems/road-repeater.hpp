@@ -81,6 +81,7 @@ namespace our
             if (dq.empty())
                 return;
             Road road1 = dq.front();
+            // cout<<"road : "<<road1.road->localTransform.position.z<<"\n fence1 : "<<road1.fence_left[0]->localTransform.position.z<<"\n fence2 : "<<road1.fence_left[1]->localTransform.position.z<<"\n fence3 : "<<road1.fence_right[0]->localTransform.position.z<<"\n fence4 : "<<road1.fence_right[1]->localTransform.position.z<<"\n";
 
             // cout << "deque size : " << dq.front()->localTransform.position.z << '\n';
             if (road1.road->localTransform.position.z > 15)

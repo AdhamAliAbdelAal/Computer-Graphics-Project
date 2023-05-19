@@ -23,7 +23,7 @@ namespace our
     private:
         const nlohmann::json road;         // the road data read from json
         const nlohmann::json fence;        // the fence data read from json
-        const int numberOfRoads = 10;       // the number of roads in the system
+        const int numberOfRoads = 6;       // the number of roads in the system
         const int numberOfFences4Road = 2; // the number of fences in each road
     public:
         RoadGenerationSystem(const nlohmann::json &road, const nlohmann::json &fence, World *world) : road(road), fence(fence)
