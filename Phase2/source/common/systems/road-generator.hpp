@@ -23,7 +23,7 @@ namespace our
     private:
         const nlohmann::json road;         // the road data read from json
         const nlohmann::json fence;        // the fence data read from json
-        const int numberOfRoads = 6;       // the number of roads in the system
+        const int numberOfRoads = 10;       // the number of roads in the system
         const int numberOfFences4Road = 2; // the number of fences in each road
     public:
         RoadGenerationSystem(const nlohmann::json &road, const nlohmann::json &fence, World *world) : road(road), fence(fence)
@@ -37,12 +37,14 @@ namespace our
                 for (int j = 0; j < numberOfFences4Road; j++)
                 {
                     Entity *fenceEntity = world->objectDeserialize(fence);
+                    fenceEntity->name = "right fence";
                     fenceEntity->localTransform.position.z = 4.0f + roadZ - float(j) * 7.0f ;
                 }
                 // generate the left fence
                 for (int j = 0; j < numberOfFences4Road; j++)
                 {
                     Entity *fenceEntity = world->objectDeserialize(fence);
+                    fenceEntity->name = "left fence";
                     fenceEntity->localTransform.position.z = 3.4f + roadZ - float(j) * 7.0f;
                     fenceEntity->localTransform.position.x *= -1.0f;
                     fenceEntity->localTransform.rotation.y += glm::pi<float>();

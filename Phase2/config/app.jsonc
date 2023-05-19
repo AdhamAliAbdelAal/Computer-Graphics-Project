@@ -76,7 +76,7 @@
                     "shader": "lighted",
                     "pipelineState": {
                         "faceCulling":{
-                            "enabled": false
+                            "enabled": true
                         },
                         "depthTesting":{
                             "enabled": true
@@ -160,7 +160,7 @@
                     "shader": "textured",
                     "pipelineState": {
                         "faceCulling":{
-                            "enabled": false
+                            "enabled": true
                         },
                         "depthTesting":{
                             "enabled": true
@@ -175,7 +175,7 @@
                     "shader": "lighted",
                     "pipelineState": {
                         "faceCulling": {
-                            "enabled": false
+                            "enabled": true
                         },
                         "depthTesting": {
                             "enabled": true
@@ -193,7 +193,7 @@
                     "shader": "lighted",
                     "pipelineState": {
                         "faceCulling":{
-                            "enabled": false
+                            "enabled": true
                         },
                         "depthTesting":{
                             "enabled": true
@@ -226,7 +226,7 @@
                     "shader": "lighted",
                     "pipelineState": {
                         "faceCulling":{
-                            "enabled": false
+                            "enabled": true
                         },
                         "depthTesting":{
                             "enabled": true
@@ -244,7 +244,7 @@
                     "shader": "textured",
                     "pipelineState": {
                         "faceCulling":{
-                            "enabled": false
+                            "enabled": true
                         },
                         "depthTesting":{
                             "enabled": true
@@ -259,7 +259,7 @@
                     "shader": "textured",
                     "pipelineState": {
                         "faceCulling": {
-                            "enabled": false
+                            "enabled": true
                         },
                         "depthTesting": {
                             "enabled": true

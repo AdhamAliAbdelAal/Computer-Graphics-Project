@@ -39,34 +39,38 @@ namespace our
         {
             const unordered_set<Entity *> entities = world->getEntities();
             vector<Entity *> roads;
-            vector<Entity *> fences;
+            vector<Entity *> left_fences, right_fences;
             for (auto it : entities)
             {
-                // if the entity has a movement component
                 if (it->name == "road")
                 {
                     roads.push_back(it);
                 }
-                // if the entity has a gain component
-                if (it->name == "fence")
+                if (it->name == "left fence")
                 {
-                    fences.push_back(it);
+                    left_fences.push_back(it);
+                }
+                if (it->name == "right fence")
+                {
+                    right_fences.push_back(it);
                 }
             }
             // sorting the roads according to their z position
             sort(roads.begin(), roads.end(), cmp);
             // sorting the fences according to their z position
-            sort(fences.begin(), fences.end(), cmp);
+            sort(left_fences.begin(), left_fences.end(), cmp);
+            sort(right_fences.begin(), right_fences.end(), cmp);
 
             for (int i = 0; i < roads.size(); i++)
             {
                 Road road;
                 road.road = roads[i];
-                int fenceIndex = 4 * i;
+                int fenceIndex = 2 * i;
+                // every road has 2 fences
                 for (int j = 0; j < 2; ++j)
                 {
-                    road.fence_left[j] = fences[fenceIndex + 2 * j];
-                    road.fence_right[j] = fences[fenceIndex + 2 * j + 1];
+                    road.fence_left[j] = left_fences[fenceIndex + j];
+                    road.fence_right[j] = right_fences[fenceIndex + j];
                 }
                 dq.push_back(road);
             }

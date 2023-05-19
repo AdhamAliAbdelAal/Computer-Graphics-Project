@@ -24,27 +24,39 @@ namespace our
 
     class MovementSystem
     {
+    private:
+        float boost_speed(float x,bool linear)
+        {
+            if (x == 0)
+                return 0;
+            
+            int sign = (x > 0) ? 1 : -1;
+            if((linear&&abs(x)>10)||(!linear&&abs(x)>glm::pi<float>()*2)){
+                return 0;
+            }
+            return sign * this->speedBooster;
+        }
 
     public:
-        float speedBooster = 1.0f;
+        float speedBooster = 0.0f;
         ll delay;
         bool updateSpeeds = false;
 
         MovementSystem()
         {
-            srand(time(0));
             delay = time(0);
         }
 
         void reset()
         {
-            speedBooster = 1.0f;
+            updateSpeeds = false;
+            speedBooster = 0.0f;
             delay = time(0);
         }
         // This should be called every frame to update all entities containing a MovementComponent.
         void update(World *world, float deltaTime, Application *app)
         {
-            if (time(0) - delay > 10)
+            if (time(0) - delay > 2)
             {
                 speedBooster += 1.0f;
                 cout << "delay: " << speedBooster << '\n';
@@ -62,14 +74,16 @@ namespace our
                 if (movement)
                 {
                     glm::vec3 currentLinearVelocity = movement->linearVelocity;
-                    currentLinearVelocity.x += (currentLinearVelocity.x) ? speedBooster * currentLinearVelocity.x / abs(currentLinearVelocity.x) : 0;
-                    currentLinearVelocity.y += (currentLinearVelocity.y) ? speedBooster * currentLinearVelocity.y / abs(currentLinearVelocity.y) : 0;
-                    currentLinearVelocity.z += (currentLinearVelocity.z) ? speedBooster * currentLinearVelocity.z / abs(currentLinearVelocity.z) : 0;
+                    currentLinearVelocity.x += this->boost_speed(currentLinearVelocity.x,false);
+                    currentLinearVelocity.y += this->boost_speed(currentLinearVelocity.y,false);
+                    currentLinearVelocity.z += this->boost_speed(currentLinearVelocity.z,false);
+                    
 
                     glm::vec3 currentAngularVelocity = movement->angularVelocity;
-                    currentAngularVelocity.x += (currentAngularVelocity.x) ? speedBooster * currentAngularVelocity.x / abs(currentAngularVelocity.x) : 0;
-                    currentAngularVelocity.y += (currentAngularVelocity.y) ? speedBooster * currentAngularVelocity.y / abs(currentAngularVelocity.y) : 0;
-                    currentAngularVelocity.z += (currentAngularVelocity.z) ? speedBooster * currentAngularVelocity.z / abs(currentAngularVelocity.z) : 0;
+                    currentAngularVelocity.x += this->boost_speed(currentAngularVelocity.x,true);
+                    currentAngularVelocity.y += this->boost_speed(currentAngularVelocity.y,true);
+                    currentAngularVelocity.z += this->boost_speed(currentAngularVelocity.z,true);
+                    
                     if (updateSpeeds)
                     {
                         movement->linearVelocity = currentLinearVelocity;
