@@ -31,7 +31,7 @@ namespace our
                 return 0;
             
             int sign = (x > 0) ? 1 : -1;
-            if((!linear&&abs(x)>10)||(linear&&abs(x)>glm::pi<float>()*1.5)){
+            if((!linear&&abs(x)>20)||(linear&&abs(x)>glm::pi<float>()*2.5)){
                 // cout<<"hello\n";
                 // cout<<(!linear&&abs(x)>glm::pi<float>()*2)<<'\n';
                 // cout<<"hello\n";
@@ -63,7 +63,7 @@ namespace our
         void update(World *world, float deltaTime, Application *app)
         {
             // set<string>s;
-            if (time(0) - delay > 2)
+            if (time(0) - delay > 5)
             {
                 speedBooster += 1.0f;
                 // cout << "delay: " << speedBooster << '\n';
