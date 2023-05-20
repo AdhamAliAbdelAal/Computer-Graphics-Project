@@ -25,13 +25,14 @@ namespace our
     class MovementSystem
     {
     private:
-        float boost_speed(float x,bool linear)
+        float boost_speed(float x, bool linear)
         {
             if (x == 0)
                 return 0;
-            
+
             int sign = (x > 0) ? 1 : -1;
-            if((!linear&&abs(x)>20)||(linear&&abs(x)>glm::pi<float>()*2.5)){
+            if ((!linear && abs(x) > 20) || (linear && abs(x) > glm::pi<float>() * 3))
+            {
                 // cout<<"hello\n";
                 // cout<<(!linear&&abs(x)>glm::pi<float>()*2)<<'\n';
                 // cout<<"hello\n";
@@ -48,7 +49,7 @@ namespace our
 
         MovementSystem()
         {
-            generalSpeed=5;
+            generalSpeed = 5;
             delay = time(0);
         }
 
@@ -57,13 +58,14 @@ namespace our
             updateSpeeds = false;
             speedBooster = 0.0f;
             delay = time(0);
-            generalSpeed=5;
+            generalSpeed = 5;
         }
         // This should be called every frame to update all entities containing a MovementComponent.
         void update(World *world, float deltaTime, Application *app)
         {
             // set<string>s;
-            if (time(0) - delay > 5)
+            // cout << "general speed: " << generalSpeed << '\n';
+            if (time(0) - delay > 3)
             {
                 speedBooster += 1.0f;
                 // cout << "delay: " << speedBooster << '\n';
@@ -71,7 +73,7 @@ namespace our
                 updateSpeeds = true;
             }
             // For each entity in the world
-            float speedMax=generalSpeed;
+            float speedMax = generalSpeed;
             for (auto entity : world->getEntities())
             {
 
@@ -81,34 +83,31 @@ namespace our
                 // If the movement component exists
                 if (movement)
                 {
-                    glm::vec3 currentLinearVelocity=glm::vec3(0.0f,0.0f,0.0f);
-                    if(movement->linearVelocity.z>0)
+                    glm::vec3 currentLinearVelocity = glm::vec3(0.0f, 0.0f, 0.0f);
+                    if (movement->linearVelocity.z > 0)
                     {
                         // cout<<"hello\n";
-                        currentLinearVelocity = glm::vec3(0.0f,0.0f,generalSpeed);
+                        currentLinearVelocity = glm::vec3(0.0f, 0.0f, generalSpeed);
                     }
-                    currentLinearVelocity.x += this->boost_speed(currentLinearVelocity.x,false);
-                    currentLinearVelocity.y += this->boost_speed(currentLinearVelocity.y,false);
-                    // cout<<"speed: "<<generalSpeed<<'\n';
-
-                    currentLinearVelocity.z += this->boost_speed(currentLinearVelocity.z,false);
-                    // cout<<"speed: "<<currentLinearVelocity.z<<'\n';
-                    
-
                     glm::vec3 currentAngularVelocity = movement->angularVelocity;
-                    currentAngularVelocity.x += this->boost_speed(currentAngularVelocity.x,true);
-                    currentAngularVelocity.y += this->boost_speed(currentAngularVelocity.y,true);
-                    currentAngularVelocity.z += this->boost_speed(currentAngularVelocity.z,true);
-                    
                     if (updateSpeeds)
                     {
+                        currentLinearVelocity.x += this->boost_speed(currentLinearVelocity.x, false);
+                        currentLinearVelocity.y += this->boost_speed(currentLinearVelocity.y, false);
+                        // cout<<"speed: "<<generalSpeed<<'\n';
+                        currentLinearVelocity.z += this->boost_speed(currentLinearVelocity.z, false);
+                        // cout<<"speed: "<<currentLinearVelocity.z<<'\n';
+
+                        currentAngularVelocity.x += this->boost_speed(currentAngularVelocity.x, true);
+                        currentAngularVelocity.y += this->boost_speed(currentAngularVelocity.y, true);
+                        currentAngularVelocity.z += this->boost_speed(currentAngularVelocity.z, true);
                         // s.insert(entity->name);
                         movement->linearVelocity = currentLinearVelocity;
                         movement->angularVelocity = currentAngularVelocity;
                         // if(currentLinearVelocity.z)
                         //     generalSpeed=currentLinearVelocity.z;
                     }
-                    speedMax=max(speedMax,currentLinearVelocity.z);
+                    speedMax = max(speedMax, currentLinearVelocity.z);
                     if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
                     {
                         currentLinearVelocity.z *= 5.0f;
@@ -118,8 +117,8 @@ namespace our
                     entity->localTransform.position += deltaTime * currentLinearVelocity;
                     entity->localTransform.rotation += deltaTime * currentAngularVelocity;
 
-
-                    if(entity->name=="coin"){
+                    if (entity->name == "coin")
+                    {
                         // cout<<"speed: "<<currentLinearVelocity.z<<'\n';
                     }
                     // cnt+=(deltaTime*movement->angularVelocity.x);
@@ -131,7 +130,7 @@ namespace our
             // if(s.size()!=0)
             //     cout<<"cnt: "<<s.size()<<'\n';
             updateSpeeds = false;
-            generalSpeed=speedMax;
+            generalSpeed = speedMax;
         }
     };
 
