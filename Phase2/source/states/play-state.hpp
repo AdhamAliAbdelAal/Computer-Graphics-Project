@@ -19,9 +19,9 @@ using namespace irrklang;
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
 {
-
     float startTime = 0;      // of the countdown to gameover
     float pauseStartTime = 0; // Pausing the game should pause the countdown
+    float chargeStartTime = 0;  // of the charge effect
 
     ISoundEngine *SoundEngine = nullptr;
 
@@ -139,15 +139,44 @@ class Playstate : public our::State
             // If the player lost, go to the over state
             getApp()->changeState("over");
         }
+
+        // If the player picks up a charge, apply the charge effect
+        if (coinCollectionSystem.getCharge() && !renderer.getCharge())
+        {
+            // If the countdown is over, reset everything   (resets the doom mode)
+            getApp()->setTimer(false);
+            getApp()->setCountdown(5);
+            coinCollectionSystem.setEgg(false);
+            cameraController.setReversed(false);
+            renderer.setDoomed(false);
+
+
+            chargeStartTime = glfwGetTime();    // The start time of the charge effect
+            renderer.setCharge(true);   // Set the renderer to charge mode
+
+        }
         
         // If the player is hit with an egg, go Berserk
         if (coinCollectionSystem.getEgg() && !getApp()->getTimer())
         {
+            //Reset the Charge mood
+            renderer.setCharge(false);  // Set the renderer to normal mode
+            coinCollectionSystem.setCharge(false); // Set the charge effect to false
+
+
             renderer.setDoomed(true);   // Set the renderer to Doom mode
             getApp()->setTimer(true);   // Set the timer (to start the countdown, and to make sure no doom mode is set again)
             cameraController.setReversed(true); // Reverse the controls
             startTime = glfwGetTime();          // The start time of the doom mode
             getApp()->setCountdownTime(startTime);  // Set the countdown time (to be used in application class)
+        }
+
+        // Check if the charge effect is over
+        if (glfwGetTime() - chargeStartTime > 2.0f && renderer.getCharge())
+        {
+            renderer.setCharge(false);  // Set the renderer to normal mode
+            coinCollectionSystem.setCharge(false); // Set the charge effect to false
+
         }
 
         // This condition is used to make sure that the doom mode is set for 5 seconds (Pauses excluded)
@@ -159,6 +188,8 @@ class Playstate : public our::State
             coinCollectionSystem.setEgg(false);
             cameraController.setReversed(false);
             renderer.setDoomed(false);
+
+            
         }
 
         // If the player pressed the P key, go to the pause state
@@ -178,7 +209,6 @@ class Playstate : public our::State
     void onDestroy() override
     {
 
-        cout << "Destroy Playstate\n";
         // delete all systems pointers
         delete coinGenerationSystem;
         delete roadRepeaterSystem;

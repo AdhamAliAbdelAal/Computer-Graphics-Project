@@ -43,7 +43,8 @@ namespace our
         std::vector<LightComponent *> lights;
         Texture2D *colorTarget, *depthTarget, *skyTexture;
         bool doomed = false;              // If the player is doomed
-        std::string doomPath, normalPath;             // Path of the shaders of the doom effect and the normal effect
+        bool charge = false;              // If the batter is charging
+        std::string doomPath, normalPath, chargePath;             // Path of the shaders of doom effect, normal effect, and charge effect
     public:
         // Initialize the renderer including the sky and the Postprocessing objects.
         // windowSize is the width & height of the window (in pixels).
@@ -53,11 +54,20 @@ namespace our
         // This function should be called every frame to draw the given world
          void render(World* world);
 
-        // Set Path of the shader
+        // Set Doom effect
         void setDoomed(bool doom) {
             this->doomed = doom;
         }
 
+        // Set charge effect
+        void setCharge(bool charge) {
+            this->charge = charge;
+        }
+
+        // get charge effect
+        bool getCharge() {
+            return this->charge;
+        }
     };
 
 }

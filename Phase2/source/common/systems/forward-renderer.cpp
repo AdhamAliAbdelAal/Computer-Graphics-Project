@@ -62,9 +62,10 @@ namespace our {
         // Then we check if there is a postprocessing shader in the configuration
         if(config.contains("postprocess")){
 
-            // Set Doom and Normal paths
+            // Set Doom, Normal, and Charge paths
             doomPath = config.value<std::string>("doomed", "");
             normalPath = config.value<std::string>("postprocess", "");
+            chargePath = config.value<std::string>("charge", "");
             //TODO: (Req 11) Create a framebuffer
             // Generating the frame buffer in the postprocessFrameBuffer variable, and binding it
             glGenFramebuffers(1, &postprocessFrameBuffer);
@@ -398,6 +399,8 @@ namespace our {
             postprocessShader->attach("assets/shaders/fullscreen.vert", GL_VERTEX_SHADER);
             if(doomed) // Doom effect
                 postprocessShader->attach(doomPath, GL_FRAGMENT_SHADER);
+            else if (charge) // Charge effect
+                postprocessShader->attach(chargePath, GL_FRAGMENT_SHADER);
             else
                 postprocessShader->attach(normalPath, GL_FRAGMENT_SHADER);
 

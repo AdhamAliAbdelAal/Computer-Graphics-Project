@@ -34,6 +34,7 @@ namespace our
         int score = 0;
         int battery_charge = 5;
         bool egg = false;
+        bool charge = false;
         CoinCollectionSystem()
         {
             SoundEngine = createIrrKlangDevice();
@@ -47,6 +48,7 @@ namespace our
             score = 0;
             battery_charge = 5;
             egg = false;
+            charge = false;
         }
 
 
@@ -107,9 +109,10 @@ namespace our
                             battery_charge += gainComponent->gain;
                             battery_charge = clamp(battery_charge, 0, 5);
 
-                            if (gainComponent->gain == -1)
-                            {
+                            if (gainComponent->gain == -1){
                                 egg = true;
+                            } else if (gainComponent->gain == 1){
+                                charge = true;
                             }
                         }
                         world->markForRemoval(it);
@@ -138,6 +141,16 @@ namespace our
         // set egg
         void setEgg(bool Egg) {
             egg = Egg;
+        }
+
+        // get charge
+        bool getCharge() {
+            return charge;
+        }
+
+        // set charge
+        void setCharge(bool Charge) {
+            charge = Charge;
         }
     };
 
