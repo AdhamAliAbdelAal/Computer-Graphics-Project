@@ -72,7 +72,7 @@ namespace our
             for(int i=0;i<4;++i){
                 if(randomFloat<=ratios[i]){
                     entity = world->objectDeserialize(objects[i]);
-                    position = glm::vec3(generateRandomFloat(), y_pos[i], -10);
+                    position = glm::vec3(generateRandomFloat(), y_pos[i], -20);
                     break;
                 }
             }
