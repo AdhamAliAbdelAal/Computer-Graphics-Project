@@ -25,10 +25,10 @@ class Playstate : public our::State
 
     ISoundEngine *SoundEngine = nullptr;
 
-    our::World world;
-    our::ForwardRenderer renderer;
-    our::FreeCameraControllerSystem cameraController;
-    our::MovementSystem movementSystem;
+    our::World world;              // The world that holds all entities and systems
+    our::ForwardRenderer renderer; // The renderer that will render the world
+    our::FreeCameraControllerSystem cameraController; // The camera controller system
+    our::MovementSystem movementSystem; // The movement system (controls the movement of entities)
     // coin generation system is responsible for generating coins
     our::CoinGenerationSystem *coinGenerationSystem;
 
@@ -44,16 +44,19 @@ class Playstate : public our::State
     // Battery system is responsible for collected coins
     our::BatterySystem *batteryController;
 
+    // returns the name of the state
     std::string getName() override
     {
         return "play";
     }
+
     void onInitialize() override
     {
+        // Initialize the sound engine
         SoundEngine= createIrrKlangDevice();
-        SoundEngine->play2D("assets/sounds/background.mp3", true);
-        SoundEngine->setSoundVolume(0.3f);
-        cout << "Initialize Playstate\n";
+        SoundEngine->play2D("assets/sounds/background.mp3", true); // Play background music
+        SoundEngine->setSoundVolume(0.3f);                          // Set volume (Lower than intitial volume)
+        
         // First of all, we get the scene configuration from the app config
         auto &config = getApp()->getConfig()["scene"];
         // If we have assets in the scene config, we deserialize them
@@ -67,14 +70,14 @@ class Playstate : public our::State
             world.deserialize(config["world"]);
             // cout<<"world deserialized : "<<typeid(config["world"]).name()<<'\n';
         }
-        // if we have a coin in the scene config, we use to hold the data of the coin
+        // if we have a coin in the scene config, we use it to hold the data of the coin
         if (config.contains("coin") && config.contains("fire") && config.contains("monster") && config.contains("turbo"))
         {
             if (!config["coin"].is_object())
                 return;
             coinGenerationSystem = new our::CoinGenerationSystem(config["coin"], config["fire"], config["monster"], config["turbo"]);
         }
-
+        // if we have a road in the scene config, we use it to hold the data of the road
         if (config.contains("road") && config.contains("fence"))
         {
             if (!config["road"].is_object() || !config["fence"].is_object())
@@ -91,6 +94,7 @@ class Playstate : public our::State
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
 
+        // We initialize the battery controller system
         batteryController = new our::BatterySystem(config["world"], config["assets"]["textures"], &world);
     }
 
@@ -116,38 +120,40 @@ class Playstate : public our::State
         // And finally we use the renderer system to draw the scene (if 10 seconds passed, we change the background)
         renderer.render(&world);
 
-        // Set Score
+        // Set Score (Pass the number of collected coins to the app)
         getApp()->setScore(coinCollectionSystem.get_num_of_collected_coins());
 
         // Get a reference to the keyboard object
         auto &keyboard = getApp()->getKeyboard();
 
+        // Set the winning condition (25 coins)
         if (coinCollectionSystem.get_num_of_collected_coins()>=25)
         {
             // If the player won, go to the win state
             getApp()->changeState("win");
         }
 
+        // Set the losing condition (0 charge in battery)
         if (coinCollectionSystem.get_battery_charge() == 0)
         {
             // If the player lost, go to the over state
             getApp()->changeState("over");
         }
-
+        
+        // If the player is hit with an egg, go Berserk
         if (coinCollectionSystem.getEgg() && !getApp()->getTimer())
         {
-            // If the player is hit, go Berserk
-            renderer.setDoomed(true);
-            getApp()->setTimer(true);
-            cameraController.setReversed(true);
-            startTime = glfwGetTime();
-            getApp()->setCountdownTime(startTime);
+            renderer.setDoomed(true);   // Set the renderer to Doom mode
+            getApp()->setTimer(true);   // Set the timer (to start the countdown, and to make sure no doom mode is set again)
+            cameraController.setReversed(true); // Reverse the controls
+            startTime = glfwGetTime();          // The start time of the doom mode
+            getApp()->setCountdownTime(startTime);  // Set the countdown time (to be used in application class)
         }
 
+        // This condition is used to make sure that the doom mode is set for 5 seconds (Pauses excluded)
         if (glfwGetTime() - pauseReturnTime > (5.0f - (pauseStartTime - startTime)) && getApp()->getTimer())
         {
-            cout<<"called\n";
-            // If the countdown is over, go to the over state
+            // If the countdown is over, reset everything
             getApp()->setTimer(false);
             getApp()->setCountdown(5);
             coinCollectionSystem.setEgg(false);
@@ -155,19 +161,16 @@ class Playstate : public our::State
             renderer.setDoomed(false);
         }
 
-        
-
-
+        // If the player pressed the P key, go to the pause state
         if (keyboard.justPressed(GLFW_KEY_P))
         {
-            // If the P key is pressed in this frame, toggle the pause state
-            pauseStartTime = glfwGetTime();
+            pauseStartTime = glfwGetTime();  // Set the pause start time
             getApp()->changeState("pause", true); // True Passed to control the Clearing of the color buffer in the application class
         }
 
+        // If the escape key is pressed in this frame, go to the menu state
         if (keyboard.justPressed(GLFW_KEY_ESCAPE))
         {
-            // If the escape  key is pressed in this frame, go to the play state
             getApp()->changeState("menu");
         }
     }
@@ -197,16 +200,3 @@ class Playstate : public our::State
         }
     }
 };
-
-/*
-    Doom State: A state reached before losing, a countdown starts after which you'll lose, you can pause the game
-    during that countdown, pause time won't be considered in the countdown. The countdown will resume after the pause is over.
-    The countodown is 5 seconds.
-
-    Pause State: A state reached when you press the P key, you can resume the game by pressing the P key again.
-
-    Over State: A state reached when you lose, you can go back to the menu by pressing the escape key.
-
-    Menu State: A state reached when you hit the esc button, you can restart the game by pressing the space key.
-
-*/

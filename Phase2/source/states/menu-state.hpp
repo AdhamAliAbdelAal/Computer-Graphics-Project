@@ -106,15 +106,20 @@ class Menustate: public our::State {
         // - The argument list () which is the arguments that the lambda should receive when it is called.
         //      We leave it empty since button actions receive no input.
         // - The body {} which contains the code to be executed.
-        if(getApp()->getFullScreen())
-            buttons[0].position = {830.0f, 607.0f};
-        else 
-            buttons[0].position = {810.0f, 607.0f};
 
-        buttons[0].size = {400.0f, 33.0f};
+        // The position of the first button varies depending on whether the game is in fullscreen or not.
+        if(getApp()->getFullScreen()){
+            buttons[0].position = {860.0f, 607.0f};
+            buttons[1].position = {880.0f, 644.0f};
+        }
+        else {
+            buttons[0].position = {810.0f, 607.0f};
+            buttons[1].position = {830.0f, 644.0f};
+        }
+
+        buttons[0].size = {420.0f, 33.0f};
         buttons[0].action = [this](){this->getApp()->changeState("play");};
 
-        buttons[1].position = {830.0f, 644.0f};
         buttons[1].size = {400.0f, 33.0f};
         buttons[1].action = [this](){this->getApp()->close();};
     }
@@ -176,9 +181,9 @@ class Menustate: public our::State {
             if(button.isInside(mousePosition)){
                 //Hover Colors
                 if(i == 0)
-                    highlightMaterial->tint = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+                    highlightMaterial->tint = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);        // Green
                 else if(i == 1)
-                    highlightMaterial->tint = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+                    highlightMaterial->tint = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);        // Red
 
                 highlightMaterial->setup();
                 highlightMaterial->shader->set("transform", VP*button.getLocalToWorld());

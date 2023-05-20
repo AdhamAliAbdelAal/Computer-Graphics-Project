@@ -70,4 +70,22 @@ int main(int argc, char** argv) {
     // Finally run the application
     // Here, the application loop will run till the terminatio condition is statisfied
     return app.run(run_for_frames);
+
+
+    /********************************************SUMMARY OF THE GAME STATES********************************************/
+    /*
+    Doom State: A state reached when hit by an egg, a countdown starts with an effect that mimics a drunken effect, you can pause the game
+    during that countdown, pause time won't be considered in the countdown. The countdown will resume after the pause is over.
+    The countodown is 5 seconds.   (There is no class for this state, it is handled in the play state)
+
+    Pause State: A state reached when you press the P key, you can resume the game by pressing the P key again.
+
+    Over State: A state reached when you lose, you can go back to the menu by pressing the escape key.
+
+    Menu State: A state reached when you hit the esc button, you can restart the game by pressing the space key.
+
+    Win State: A state reached when you collect 25 coins, you can restart the game by pressing the space key.
+
+    Play State: The main state of the game, you can pause the game by pressing the P key, you can go back to the menu by pressing the esc key.
+    */
 }

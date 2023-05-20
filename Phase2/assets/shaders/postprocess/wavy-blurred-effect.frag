@@ -1,18 +1,11 @@
 #version 330
 uniform sampler2D tex;
-uniform float time;
+uniform float time;  // Uniform variable for time
 uniform float speed=5;
 uniform float amplitude=0.05;
 uniform float frequency=3;
 in vec2 tex_coord;
 out vec4 frag_color;
-
-// Battery charge level (between 0.0 and 1.0)
-float startValue = 0.4;
-float endValue = 0.9;
-
-// Battery charge color
-vec3 battery_color = vec3(0.0, 1.0, 0.0);
 
 // The number of samples we read to compute the blurring effect
 #define STEPS 16

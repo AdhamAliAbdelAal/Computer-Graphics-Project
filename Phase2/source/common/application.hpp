@@ -80,7 +80,7 @@ namespace our {
         // Fading effect variables Of the timer
         float fadingSpeed = 15.0f;              // The speed of the fading effect
         float Alpha = 255.0f;                  // The alpha value of the fading effect
-        bool tick = false;
+        bool tick = false;                      // Variable Controlling Effect
         // Virtual functions to be overrode and change the default behaviour of the application
         // according to the example needs.
         virtual void configureOpenGL();                             // This function sets OpenGL Window Hints in GLFW.

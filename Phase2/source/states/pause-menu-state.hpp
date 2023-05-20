@@ -44,7 +44,7 @@ class Pausestate: public our::State {
         menuMaterial->texture = our::texture_utils::loadImage("assets/textures/pause.png");
         // Initially, the menu material will be black, then it will fade in
         menuMaterial->tint = glm::vec4(0.0f, 0.0f, 0.0f, 0.5f);
-        // We will use blending to fade in the menu
+        // We enable blending so that the pause menu is transparent (above the game scene)
         menuMaterial->pipelineState.blending.enabled = true;
         menuMaterial->pipelineState.blending.equation = GL_FUNC_ADD;
         menuMaterial->pipelineState.blending.sourceFactor = GL_SRC_ALPHA;

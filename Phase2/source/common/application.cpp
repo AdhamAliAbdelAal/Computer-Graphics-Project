@@ -209,6 +209,7 @@ int our::Application::run(int run_for_frames) {
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
 
+    // Read Fonts to use for on-screen text
     ImFont *font = io.Fonts->AddFontFromFileTTF("assets\\fonts\\HoltwoodOneSC.ttf", 100.0f);
     ImFont *font2 = io.Fonts->AddFontFromFileTTF("assets\\fonts\\HoltwoodOneSC.ttf", 80.0f);
 
@@ -246,7 +247,7 @@ int our::Application::run(int run_for_frames) {
     // The time at which the last frame started. But there was no frames yet, so we'll just pick the current time.
     double last_frame_time = glfwGetTime();
     int current_frame = 0;
-    State * playState = nullptr;
+    State * playState = nullptr;  // A pointer to hold the play state (to be used to retrieve it after pauses)
 
     //Game loop
     while(!glfwWindowShouldClose(window)){
@@ -263,21 +264,25 @@ int our::Application::run(int run_for_frames) {
 
         if(currentState) currentState->onImmediateGui(); // Call to run any required Immediate GUI.
 
+        // check if the current state is play to display the score and timer
         if(currentState->getName() == "play") {
-
+            // Initialize the window size and position
             ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x, io.DisplaySize.y));
             ImGui::Begin(" ", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
             ImGui::SetWindowPos(" ", ImVec2(0, 0));
 
+            // Initialize the style of the window (to set colors)
             ImGuiStyle *style = &ImGui::GetStyle();
 
             ImVec4 *colors = style->Colors;
             colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
             colors[ImGuiCol_Border] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
 
+            // Set Cursor Position
             ImGui::SetCursorPosX(60/1200.0f*io.DisplaySize.x);
             ImGui::SetCursorPosY(0);
 
+            // Display the score
             ImGui::PushFont(font);
             string l1 = "Score: ";
             string l2 = to_string(score);
@@ -285,8 +290,10 @@ int our::Application::run(int run_for_frames) {
             ImGui::Text(totalLine.c_str());
             ImGui::PopFont();
 
+            // Display the timer
             if(timer)
             {
+                // If Alpha is more than 255, decrement it by fadingSpeed (if it is less than 0, increment it by fadingSpeed)
                 if(tick || Alpha >= 255)
                 {
                     tick = true;
@@ -304,7 +311,7 @@ int our::Application::run(int run_for_frames) {
                     else tick = true;
                 }
 
-
+                // Set Cursor Position
                 ImGui::SetCursorPosX(580/1200.0f*io.DisplaySize.x);
                 ImGui::SetCursorPosY(40/720.0f*io.DisplaySize.y);
 
@@ -313,6 +320,7 @@ int our::Application::run(int run_for_frames) {
                 ImGui::TextColored(ImColor(255,255,255, (int)Alpha),l.c_str());
                 ImGui::PopFont();
                 
+                // Decrement the countdown every second
                 if(glfwGetTime() - countdownTime > 1.0f){
                     countdownTime = glfwGetTime();
                     countdown = max(0, countdown-1);
@@ -323,6 +331,7 @@ int our::Application::run(int run_for_frames) {
 
         }
 
+        // If the current state is over, display the score on the game over screen
         else if (currentState->getName() == "over")
         {
             ImGui::SetNextWindowSize(ImVec2(win_config.size.x, (4/7.2f)*io.DisplaySize.y));
@@ -336,6 +345,7 @@ int our::Application::run(int run_for_frames) {
             colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
             colors[ImGuiCol_Border] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
             
+            // Different Cases for Cursor Position (To center the score)
             if(abs(score)>=10) {
                 if(score<0)
                     ImGui::SetCursorPosX(560/1200.0f*io.DisplaySize.x);
@@ -422,15 +432,15 @@ int our::Application::run(int run_for_frames) {
         // If a scene change was requested, apply it
         while(nextState){
             // If a scene was already running, destroy it (not delete since we can go back to it later)
+            // If the state isn't play, destroy it
+            // If it is play but the next isn't pause, detroy it still
             if((currentState&&currentState->getName()!="play")||nextState->getName()=="over"||nextState->getName()=="menu"
             ||nextState->getName()=="win") 
             {   
-                cout<<"Current: "<<currentState->getName()<<endl;
-
                 currentState->onDestroy();
                 if(nextState->getName()=="over" || nextState->getName()=="menu"|| nextState->getName()=="win")
-                {
-                    cout<<"playState Nulled"<<endl;
+                {   
+                    // Reset the variables
                     playState = nullptr;
                     timer = false;
                     countdown = 5;
@@ -440,16 +450,19 @@ int our::Application::run(int run_for_frames) {
             // Switch scenes
             currentState = nextState;
             nextState = nullptr;
-            // Initialize the new scene
+            // Initialize the new scene (if not play or if play but not from pause)
             if(currentState->getName()!="play"||!playState)
                 currentState->onInitialize();
 
+            // Populate the playState variable if the current state is play
             if(currentState->getName()=="play") {
+                // Coming from pause
                 if(playState){
                     
                   currentState = playState;
                   currentState->setPauseReturnTime(glfwGetTime());  
                 } 
+                // Not coming from pause
                 else playState = currentState;
             }
         }

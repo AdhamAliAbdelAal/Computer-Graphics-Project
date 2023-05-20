@@ -23,7 +23,7 @@ void main() {
     vec4 original_color = texture(tex, tex_coord);
     
     // Calculate the blend factor based on the battery level
-    float blend_factor = 1.0 - battery_level;
+    float blend_factor = 1.0 - (0.5 + tex_coord.y);
     
     // Create a color gradient based on the battery level
     vec3 blended_color = mix(original_color.rgb, battery_color, blend_factor);

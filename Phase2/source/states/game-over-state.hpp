@@ -41,7 +41,7 @@ class Overstate: public our::State {
         menuMaterial->shader->link();
         // Then we load the menu texture
         menuMaterial->texture = our::texture_utils::loadImage("assets/textures/over.png");
-        // Initially, the menu material will be black, then it will fade in
+        // Initially, the menu material will be black, then it will fade in (Green Tint)
         menuMaterial->tint = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 
         // Second, we create a material to highlight the hovered buttons
@@ -83,6 +83,9 @@ class Overstate: public our::State {
         // - The argument list () which is the arguments that the lambda should receive when it is called.
         //      We leave it empty since button actions receive no input.
         // - The body {} which contains the code to be executed. 
+
+
+        // The position varies depending on whether the game is in full screen or not
         if(getApp()->getFullScreen())
             button.position = {340.0f, 622.0f};
         else
@@ -141,8 +144,7 @@ class Overstate: public our::State {
         menuMaterial->shader->set("transform", VP*M);
         rectangle->draw();
 
-        // For every button, check if the mouse is inside it. If the mouse is inside, we draw the highlight rectangle over it.
-       
+        // For the button, check if the mouse is inside it. If the mouse is inside, we draw the highlight rectangle over it.
         if(button.isInside(mousePosition)){
             highlightMaterial->setup();
             highlightMaterial->shader->set("transform", VP*button.getLocalToWorld());

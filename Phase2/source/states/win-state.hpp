@@ -28,6 +28,7 @@ class Winstate: public our::State {
     // An array of the button that we can interact with
     std::array<Button, 2> buttons;
 
+    // returns the name of the state
     std::string getName() override {
         return "win";
     }
@@ -83,11 +84,19 @@ class Winstate: public our::State {
         // - The argument list () which is the arguments that the lambda should receive when it is called.
         //      We leave it empty since button actions receive no input.
         // - The body {} which contains the code to be executed. 
-        buttons[0].position = {300.0f, 460.0f};
+
+        // Alter positions based on fullscreen
+        if (getApp()->getFullScreen()){
+            buttons[0].position = {340.0f, 460.0f};
+            buttons[1].position = {325.0f, 535.0f};
+        }
+        else {
+            buttons[0].position = {300.0f, 460.0f};
+            buttons[1].position = {285.0f, 535.0f};
+        }
         buttons[0].size = {600.0f, 50.0f};
         buttons[0].action = [this](){this->getApp()->changeState("play");};
 
-        buttons[1].position = {285.0f, 535.0f};
         buttons[1].size = {630.0f, 50.0f};
         buttons[1].action = [this](){this->getApp()->changeState("menu");};
 

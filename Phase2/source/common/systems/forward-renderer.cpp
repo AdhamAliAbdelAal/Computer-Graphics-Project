@@ -62,6 +62,7 @@ namespace our {
         // Then we check if there is a postprocessing shader in the configuration
         if(config.contains("postprocess")){
 
+            // Set Doom and Normal paths
             doomPath = config.value<std::string>("doomed", "");
             normalPath = config.value<std::string>("postprocess", "");
             //TODO: (Req 11) Create a framebuffer
@@ -395,7 +396,7 @@ namespace our {
             //TODO: (Req 11) Return to the default framebuffer
             ShaderProgram* postprocessShader = new ShaderProgram();
             postprocessShader->attach("assets/shaders/fullscreen.vert", GL_VERTEX_SHADER);
-            if(doomed) 
+            if(doomed) // Doom effect
                 postprocessShader->attach(doomPath, GL_FRAGMENT_SHADER);
             else
                 postprocessShader->attach(normalPath, GL_FRAGMENT_SHADER);
