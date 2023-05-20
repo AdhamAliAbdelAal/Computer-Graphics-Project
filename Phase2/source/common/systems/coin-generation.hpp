@@ -58,7 +58,6 @@ namespace our
         void update(World *world, float deltaTime)
         {
             // check if the time passed is less than the delay
-            cout<<delay<<'\n';
             ll now=glfwGetTime()*1000;
             if (now - curr_time < delay)
                 return;

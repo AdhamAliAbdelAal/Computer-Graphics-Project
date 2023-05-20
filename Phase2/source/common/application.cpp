@@ -10,6 +10,7 @@
 #include <queue>
 #include <tuple>
 #include <filesystem>
+#include <iostream>
 
 #include <flags/flags.h>
 using namespace std;
@@ -263,7 +264,7 @@ int our::Application::run(int run_for_frames) {
 
         if(currentState->getName() == "play") {
 
-            ImGui::SetNextWindowSize(ImVec2(win_config.size.x, win_config.size.y));
+            ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x, io.DisplaySize.y));
             ImGui::Begin(" ", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
             ImGui::SetWindowPos(" ", ImVec2(0, 0));
 
@@ -273,7 +274,7 @@ int our::Application::run(int run_for_frames) {
             colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
             colors[ImGuiCol_Border] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
 
-            ImGui::SetCursorPosX(60);
+            ImGui::SetCursorPosX(60/1200.0f*io.DisplaySize.x);
             ImGui::SetCursorPosY(0);
 
             ImGui::PushFont(font);
@@ -303,8 +304,8 @@ int our::Application::run(int run_for_frames) {
                 }
 
 
-                ImGui::SetCursorPosX(580);
-                ImGui::SetCursorPosY(40);
+                ImGui::SetCursorPosX(580/1200.0f*io.DisplaySize.x);
+                ImGui::SetCursorPosY(40/720.0f*io.DisplaySize.y);
 
                 ImGui::PushFont(font2);
                 string l = to_string(countdown);
@@ -323,27 +324,28 @@ int our::Application::run(int run_for_frames) {
 
         else if (currentState->getName() == "over")
         {
-            ImGui::SetNextWindowSize(ImVec2(1280, 400));
+            ImGui::SetNextWindowSize(ImVec2(win_config.size.x, (4/7.2f)*io.DisplaySize.y));
+
             ImGui::Begin(" ", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
             ImGui::SetWindowPos(" ", ImVec2(0, 0));
 
             ImGuiStyle *style = &ImGui::GetStyle();
-
+            cout<<"size: "<<io.DisplaySize.x<<" "<<io.DisplaySize.y<<endl;
             ImVec4 *colors = style->Colors;
             colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
             colors[ImGuiCol_Border] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
             
             if(abs(score)>=10) {
                 if(score<0)
-                    ImGui::SetCursorPosX(560);
+                    ImGui::SetCursorPosX(560/1200.0f*io.DisplaySize.x);
                 else 
-                    ImGui::SetCursorPosX(570);
+                    ImGui::SetCursorPosX(570/1200.0f*io.DisplaySize.x);
             }
             else if(score<0)
-                ImGui::SetCursorPosX(570);
+                ImGui::SetCursorPosX(570/1200.0f*io.DisplaySize.x);
             else 
-                ImGui::SetCursorPosX(580);
-            ImGui::SetCursorPosY(285);
+                ImGui::SetCursorPosX(580/1200.0f*io.DisplaySize.x);
+            ImGui::SetCursorPosY(285/720.0f*io.DisplaySize.y);
 
             ImGui::PushFont(font2);
             string totalLine = to_string(score);
