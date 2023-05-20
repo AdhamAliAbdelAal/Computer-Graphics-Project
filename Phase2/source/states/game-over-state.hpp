@@ -83,7 +83,10 @@ class Overstate: public our::State {
         // - The argument list () which is the arguments that the lambda should receive when it is called.
         //      We leave it empty since button actions receive no input.
         // - The body {} which contains the code to be executed. 
-        button.position = {300.0f, 622.0f};
+        if(getApp()->getFullScreen())
+            button.position = {340.0f, 622.0f};
+        else
+            button.position = {300.0f, 622.0f};
         button.size = {600.0f, 40.0f};
         button.action = [this](){this->getApp()->changeState("play");};
 

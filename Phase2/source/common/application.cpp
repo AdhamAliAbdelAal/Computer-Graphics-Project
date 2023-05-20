@@ -146,6 +146,7 @@ our::WindowConfiguration our::Application::getWindowConfiguration() {
     int height = window_config["size"]["height"].get<int>();
 
     bool isFullScreen = window_config["fullscreen"].get<bool>();
+    fullScreen = isFullScreen;
 
     return {title, {width, height}, isFullScreen};
 }
@@ -330,7 +331,7 @@ int our::Application::run(int run_for_frames) {
             ImGui::SetWindowPos(" ", ImVec2(0, 0));
 
             ImGuiStyle *style = &ImGui::GetStyle();
-            cout<<"size: "<<io.DisplaySize.x<<" "<<io.DisplaySize.y<<endl;
+
             ImVec4 *colors = style->Colors;
             colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
             colors[ImGuiCol_Border] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);

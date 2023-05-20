@@ -75,7 +75,9 @@ namespace our {
         int countdown = 5;                      // The countdown of the timer
         int score = 0;                          // The score of the player
         float countdownTime = 0;                //Time the countdown was last changed
+        bool fullScreen = false;                // If true, the window will be fullscreen
 
+        // Fading effect variables Of the timer
         float fadingSpeed = 15.0f;              // The speed of the fading effect
         float Alpha = 255.0f;                  // The alpha value of the fading effect
         bool tick = false;
@@ -158,6 +160,11 @@ namespace our {
         // set countDown
         void setCountdown(int count) {
             this->countdown = count;
+        }
+
+        // get fullScreen
+        bool getFullScreen() {
+            return fullScreen;
         }
 
         // Class Getters.
