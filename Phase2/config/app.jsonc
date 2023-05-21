@@ -35,11 +35,9 @@
                 "fire": "assets/textures/Fire.png",
                 "road": "assets/textures/road.jpg",
                 "wood": "assets/textures/wood.jpg",
-                "glass": "assets/textures/glass-panels.png",
                 "ball": "assets/textures/toy_ball_01.png",
                 "fence":"assets/textures/fence.jpg",
                 "grass": "assets/textures/grass_a.png",
-                "flower": "assets/textures/flower.png",
                 "grasses": "assets/textures/grass_ground_d.jpg",
                 "battery_bar_green": "assets/textures/green.png",
                 "battery_bar_yellow": "assets/textures/yellow.png",
@@ -121,21 +119,6 @@
                     },
                     "tint": [1, 1, 1, 1],
                     "texture": "grasses",
-                    "sampler": "default"
-                },
-                "flower":{
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling":{
-                            "enabled": false
-                        },
-                        "depthTesting":{
-                            "enabled": true
-                        }
-                    },
-                    "tint": [1, 1, 1, 1],
-                    "texture": "flower",
                     "sampler": "default"
                 },
                 "moon": {
