@@ -33,9 +33,6 @@ namespace our
             int sign = (x > 0) ? 1 : -1;
             if ((!linear && abs(x) > 20) || (linear && abs(x) > glm::pi<float>() * 3))
             {
-                // cout<<"hello\n";
-                // cout<<(!linear&&abs(x)>glm::pi<float>()*2)<<'\n';
-                // cout<<"hello\n";
                 return 0;
             }
             return sign * this->speedBooster;
@@ -63,12 +60,9 @@ namespace our
         // This should be called every frame to update all entities containing a MovementComponent.
         void update(World *world, float deltaTime, Application *app)
         {
-            // set<string>s;
-            // cout << "general speed: " << generalSpeed << '\n';
             if (time(0) - delay > 3)
             {
                 speedBooster += 1.0f;
-                // cout << "delay: " << speedBooster << '\n';
                 delay = time(0);
                 updateSpeeds = true;
             }
@@ -86,7 +80,6 @@ namespace our
                     glm::vec3 currentLinearVelocity = glm::vec3(0.0f, 0.0f, 0.0f);
                     if (movement->linearVelocity.z > 0)
                     {
-                        // cout<<"hello\n";
                         currentLinearVelocity = glm::vec3(0.0f, 0.0f, generalSpeed);
                     }
                     glm::vec3 currentAngularVelocity = movement->angularVelocity;
@@ -94,18 +87,13 @@ namespace our
                     {
                         currentLinearVelocity.x += this->boost_speed(currentLinearVelocity.x, false);
                         currentLinearVelocity.y += this->boost_speed(currentLinearVelocity.y, false);
-                        // cout<<"speed: "<<generalSpeed<<'\n';
                         currentLinearVelocity.z += this->boost_speed(currentLinearVelocity.z, false);
-                        // cout<<"speed: "<<currentLinearVelocity.z<<'\n';
 
                         currentAngularVelocity.x += this->boost_speed(currentAngularVelocity.x, true);
                         currentAngularVelocity.y += this->boost_speed(currentAngularVelocity.y, true);
                         currentAngularVelocity.z += this->boost_speed(currentAngularVelocity.z, true);
-                        // s.insert(entity->name);
                         movement->linearVelocity = currentLinearVelocity;
                         movement->angularVelocity = currentAngularVelocity;
-                        // if(currentLinearVelocity.z)
-                        //     generalSpeed=currentLinearVelocity.z;
                     }
                     speedMax = max(speedMax, currentLinearVelocity.z);
                     if (app->getKeyboard().isPressed(GLFW_KEY_LEFT_SHIFT))
@@ -116,19 +104,8 @@ namespace our
                     // Change the position and rotation based on the linear & angular velocity and delta time.
                     entity->localTransform.position += deltaTime * currentLinearVelocity;
                     entity->localTransform.rotation += deltaTime * currentAngularVelocity;
-
-                    if (entity->name == "coin")
-                    {
-                        // cout<<"speed: "<<currentLinearVelocity.z<<'\n';
-                    }
-                    // cnt+=(deltaTime*movement->angularVelocity.x);
-                    // cout<<"rotate("<<movement->angularVelocity.x<< " , "<<movement->angularVelocity.y<<')'<<'\n';
-                    // cout<<"rotate("<<entity->localTransform.rotation.x<< " , "<<entity->localTransform.rotation.y<<')'<<'\n';
-                    // cout<<cnt<<'\n';
                 }
             }
-            // if(s.size()!=0)
-            //     cout<<"cnt: "<<s.size()<<'\n';
             updateSpeeds = false;
             generalSpeed = speedMax;
         }

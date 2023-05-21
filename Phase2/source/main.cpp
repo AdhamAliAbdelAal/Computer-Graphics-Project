@@ -63,7 +63,6 @@ int main(int argc, char** argv) {
     app.registerState<EntityTestState>("entity-test");
     // Then choose the state to run based on the option "start-scene" in the config
     if(app_config.contains(std::string{"start-scene"})){
-        cout<<app_config["start-scene"].get<std::string>()<<'\n';
         app.changeState(app_config["start-scene"].get<std::string>());
     }
 

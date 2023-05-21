@@ -76,32 +76,25 @@ namespace our
                     break;
                 }
             }
-            // cout<<"coin generated : "<<entity<<'\n';
             if (!entity)
                 return;
-
-            // cout << generateRandomFloat() << '\n';
-            // change the position of the coin to the generated position
             entity->localTransform.position = position;
 
             // delete all coins that are out of the screen
             const unordered_set<Entity *> entities = world->getEntities();
             for (auto it : entities)
             {
-                // cout<<"entity : "<<it<<'\n';
                 if (!it)
                     continue;
                 // if the entity has a gain component
                 GainComponent *gain = it->getComponent<GainComponent>();
                 if (gain)
                 {
-                    // cout<<"Gain : "<<gain<<'\n';
                     // get the position of the entity
                     glm::vec3 &position = it->localTransform.position;
                     // if the position of the entity is greater than 10
                     if (position.z > 10)
                     {
-                        // cout<<"coin deleted : "<<it<<'\n';
                         // delete the entity
                         world->markForRemoval(it);
                     }
@@ -110,7 +103,6 @@ namespace our
                     MovementComponent *ball = it->getComponent<MovementComponent>();
                     if(ball){
                         delay=max(ball->angularVelocity.x*60+1000.0f, 300.0f);
-                        // cout<<delay<<" , "<<ball->angularVelocity.x<<'\n';
                     }
                 }
             }

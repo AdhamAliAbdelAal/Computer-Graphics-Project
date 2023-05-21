@@ -68,7 +68,6 @@ class Playstate : public our::State
         if (config.contains("world"))
         {
             world.deserialize(config["world"]);
-            // cout<<"world deserialized : "<<typeid(config["world"]).name()<<'\n';
         }
         // if we have a coin in the scene config, we use it to hold the data of the coin
         if (config.contains("coin") && config.contains("fire") && config.contains("monster") && config.contains("turbo"))
