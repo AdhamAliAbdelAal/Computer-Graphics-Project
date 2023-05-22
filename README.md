@@ -1,4 +1,4 @@
-# The Great Escape game 🏃‍♂️
+# Run Forrest , Run game 🏃‍♂️
 
 ## 📝 Table of Contents
 
@@ -12,17 +12,14 @@
 
 
 ### 📘 About<a name = "about"></a>
-<!-- 
-* 
-* The Great Escape game is a 3D maze in which your goal is to get out of the maze by reaching the 
-trophy before your time ends and die. -->
+
 
 
 
 ## 🏁 Getting Started <a name = "start"></a>
 
 ```
-Git clone https://github.com/reem-atalah/Computer-Graphics-Project.git
+Git clone https://github.com/reem-atalah/Computer-Graphics-Project
 ```
 
 ```
@@ -48,16 +45,12 @@ Run this Command  .\bin\GAME_APPLICATION.exe
 
 ## 📷 Game Demo<a name = "demo"></a>
 
-<!-- * Menu
-![menu](images/main_menu.png )
-* Start Scene
-![Start Scene](images/start_scene.png )
-* End Scene
-![End Scene](images/end_scene.png )
-* Lose Screen
-![Lose Screen](images/lose_scene.png )
-* Win Screen
-![Win Screen](images/won_state.png ) -->
+![menu](pics/Game1.jpg )
+
+![Start Scene](pics/Game2.jpg )
+
+![End Scene](pics/Game3.jpg)
+
 
 
 ## 💻 Included Libraries <a name = "IncludedLibraries"></a>
@@ -66,18 +59,12 @@ Run this Command  .\bin\GAME_APPLICATION.exe
 - [glfw 3.3](https://github.com/glfw/glfw)
 - [glm 0.9.9.8](https://github.com/g-truc/glm)
 - [imgui v1.78](https://github.com/ocornut/imgui)
-- [flags](https://github.com/sailormoon/flags)
-- [json 3.9.1](https://github.com/nlohmann/json)
-- [stb](https://github.com/nothings/stb)
-- [tinygltf v2.4.0](https://github.com/syoyo/tinygltf)
-- [tinyobjloader v1.0.6](https://github.com/tinyobjloader/tinyobjloader)
 
 ## 📌 Modules <a name = "modules"></a>
 
-* collision detection system 
-* 3d rendering system
+
 * lighting system
-* Different Game States
+
 
 ## Contributors <a name = "contributors"></a>
 <table align="center">
