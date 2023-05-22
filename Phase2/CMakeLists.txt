@@ -123,4 +123,14 @@ set(STATES_SOURCES
 add_executable(GAME_APPLICATION source/main.cpp ${STATES_SOURCES} ${COMMON_SOURCES} ${VENDOR_SOURCES})
 target_link_libraries(GAME_APPLICATION glfw)
 # Link the irrKlang.lib library to the target
-target_link_libraries(GAME_APPLICATION ${CMAKE_SOURCE_DIR}/libs/irrKlang.lib)
+target_link_libraries(GAME_APPLICATION ${CMAKE_SOURCE_DIR}/vendor/irrKlang/lib/Winx64-visualStudio/irrKlang.lib)
+# Link the irrKlang.dll library to the target
+add_custom_command(TARGET GAME_APPLICATION POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_SOURCE_DIR}/vendor/irrKlang/bin/winx64-visualStudio/irrKlang.dll"
+        $<TARGET_FILE_DIR:GAME_APPLICATION>)
+# Link the ikpMP3.dll library to the target
+add_custom_command(TARGET GAME_APPLICATION POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_SOURCE_DIR}/vendor/irrKlang/bin/winx64-visualStudio/ikpMP3.dll"
+        $<TARGET_FILE_DIR:GAME_APPLICATION>)
