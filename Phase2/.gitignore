@@ -3,7 +3,7 @@
 cmake-build-*/
 build/
 out/
-bin/
+/bin/
 
 # imgui saved state
 imgui.ini
