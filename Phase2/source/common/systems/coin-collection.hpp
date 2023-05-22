@@ -31,8 +31,11 @@ namespace our
         ISoundEngine *SoundEngine;
         
     public:
+        //  the score of the player
         int score = 0;
+        // the battery charge of the player
         int battery_charge = 5;
+        // if the player has collected the egg
         bool egg = false;
         bool charge = false;
         CoinCollectionSystem()
@@ -55,10 +58,6 @@ namespace our
         // This should be called every frame to update all entities.
         void update(World *world, float deltaTime)
         {
-            // if (time(0) - effect_delay == 1)
-            // {
-            //     SoundEngine->stopAllSounds();
-            // }
             const unordered_set<Entity *> entities = world->getEntities();
             Entity *ball = nullptr;
             for (auto it : entities)
@@ -88,7 +87,6 @@ namespace our
                         SoundEngine->stopAllSounds();
                         if (gainComponent->effect == "score")
                         {
-                            // effect_delay = time(0);
                             if (gainComponent->gain == 1)
                             {
                                 SoundEngine->play2D("assets/sounds/coin.wav", false, false, true);

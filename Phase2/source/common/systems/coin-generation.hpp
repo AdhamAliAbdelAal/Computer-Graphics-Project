@@ -28,7 +28,7 @@ namespace our
         // for coin generation
         ll curr_time;
         ll delay;
-        // coins, fire, monster, turbo
+        // coins, fire, monster, turbo percentages
         float ratios[4]={0.3,0.3,0.2,0.2};
         float y_pos[4]= {0, -1, 0, 0};
 
@@ -102,6 +102,7 @@ namespace our
                 if(it->name=="ball"){
                     MovementComponent *ball = it->getComponent<MovementComponent>();
                     if(ball){
+                        // objects are generated based on the speed of the ball
                         delay=max(ball->angularVelocity.x*60+1000.0f, 300.0f);
                     }
                 }
