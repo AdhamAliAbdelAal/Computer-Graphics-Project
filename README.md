@@ -63,7 +63,8 @@ Run this Command  .\bin\GAME_APPLICATION.exe
 ## 📌 Modules <a name = "modules"></a>
 
 
-* lighting system
+* Lighting system
+* Battery
 
 
 ## Contributors <a name = "contributors"></a>
